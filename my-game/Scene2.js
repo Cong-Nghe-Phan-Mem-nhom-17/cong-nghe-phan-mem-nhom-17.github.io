@@ -22,6 +22,7 @@ class Scene2 extends Phaser.Scene{
         // load image object;
         this.load.image('imageBird', 'assets/images/imageBird.png')
         this.load.image('redBall', 'assets/images/redBall.png')
+        this.load.image('img1', 'assets/images/img1.png')
     }
 
     create(){
@@ -44,6 +45,23 @@ class Scene2 extends Phaser.Scene{
         // add text;
         this.text1 = this.add.text(800, 350, "Click Above " + "\n" + "The Strange Creature", {font: "50px Arial", fill: "black"});
         this.displayResult = this.add.text(250, 350, "Result", {font: "50px Arial", fill: "black"});
+
+        //drag
+        this.img1 = this.add.image(1100, 550, "img1").setInteractive();
+
+        
+        this.input.setDraggable(this.img1);
+
+        this.input.on('dragstart', function (pointer, gameObject) {
+            this.children.bringToTop(gameObject);
+        }, this);
+    
+        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+            gameObject.x = dragX;
+            gameObject.y = dragY;
+    
+        });
+
 
         // set onClick for the buttons;
         this.buttonAbove.setInteractive().on('pointerdown', () => this.eventClickButtonAbove(arr[ballNumber - 1]));
