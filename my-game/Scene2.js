@@ -193,11 +193,31 @@ class Scene2 extends Phaser.Scene{
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
             gameObject.x = dragX;
             gameObject.y = dragY;
+            
+                if (gameObject.x >= 450 && gameObject.x <= 600  && gameObject.y >= 250 && gameObject.y <= 350 )
+                    zone1.setTint(0x00ff00);
+                else if (gameObject.x >= 650 && gameObject.x <= 800  && gameObject.y >= 250 && gameObject.y <= 350 )
+                    zone2.setTint(0x00ff00);
+                else if (gameObject.x >= 450 && gameObject.x <= 600 && gameObject.y >= 540 && gameObject.y <= 640 )
+                    zone3.setTint(0x00ff00);
+                else if (gameObject.x >= 650 && gameObject.x <= 800 && gameObject.y >= 540 && gameObject.y <= 640 )
+                    zone4.setTint(0x00ff00);
+                else {
+                        zone1.clearTint();
+                        zone2.clearTint();
+                        zone3.clearTint();
+                        zone4.clearTint();
+                    }
+            
+            
         });
 
-        this.input.on('dragenter', function (pointer, gameObject, dropZone) {
-            zone1.setTint(0x00ff00);
-            zone2.setTint(0xff0000);
+        this.input.on('dragenter', function (pointer, gameObject, dragX, dragY) {
+            
+            
+
+            //zone1.setTint(0x00ff00);
+            //zone2.setTint(0xff0000);
         });
 
         this.input.on('dragleave', function (pointer, gameObject, dropZone) {
