@@ -6,7 +6,7 @@ var displayResult2;
 class Scene2 extends Phaser.Scene{
 
     constructor() {
-        super("playGame");
+        super('Scene2');
     }
 
     preload() {
@@ -69,7 +69,7 @@ class Scene2 extends Phaser.Scene{
         // set onClick for the buttons;
         this.buttonAbove.setInteractive().on('pointerdown', () => this.eventClickButtonAbove(arr[ballNumber - 1]));
         this.buttonBelow.setInteractive().on('pointerdown', () => this.eventClickButtonBelow(arr[ballNumber - 1]));
-        this.backButton.setInteractive();
+        this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'));
 
         //effect of sprites;
         this.input.on('gameobjectdown', function (pointer, gameObject) {

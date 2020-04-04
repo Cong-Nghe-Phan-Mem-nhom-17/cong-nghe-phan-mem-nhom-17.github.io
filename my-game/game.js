@@ -7,7 +7,7 @@ window.onload=function () {
 		height: 770,
 		parent: 'phaser-game',
 		background: 0x000000,
-		scene: [Scene2]
+		scene: [Menu,Scene2]
 	};
 
 	game = new Phaser.Game(config);
