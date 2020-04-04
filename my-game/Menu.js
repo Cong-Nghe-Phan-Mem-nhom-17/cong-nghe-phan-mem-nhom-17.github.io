@@ -1,3 +1,5 @@
+
+
 class Menu extends Phaser.Scene {
     constructor() {
         super('Menu')
@@ -15,9 +17,13 @@ class Menu extends Phaser.Scene {
         this.background = this.add.image(0, 0, "backGround").setOrigin(0, 0);
         this.framework = this.add.image(233, 115, "frameMenu").setOrigin(0, 0);
 
-        this.play1 = this.add.sprite(233, 225, 'play1').setOrigin(0,0)
-        this.play2 = this.add.sprite(466, 225, 'play2').setOrigin(0,0)
-        this.play3 = this.add.sprite(699, 225, 'play3').setOrigin(0,0)
+        this.play1 = this.add.sprite(250, 225, 'play1').setOrigin(0,0)
+        this.play2 = this.add.sprite(470, 225, 'play2').setOrigin(0,0)
+        this.play3 = this.add.sprite(700, 225, 'play3').setOrigin(0,0)
+
+        _const = 360;
+        ballNumber = 9;
+        status = 0;
 
         this.play1.setInteractive().on('pointerdown', () => this.scene.start('Scene2'))
 
