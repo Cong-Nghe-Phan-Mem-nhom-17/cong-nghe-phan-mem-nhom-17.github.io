@@ -1,6 +1,7 @@
 let _const = 360;
 let ballNumber = 9;
 let status = 0;
+var displayResult2;
 
 class Scene2 extends Phaser.Scene{
 
@@ -23,6 +24,8 @@ class Scene2 extends Phaser.Scene{
         this.load.image('imageBird', 'assets/images/imageBird.png')
         this.load.image('redBall', 'assets/images/redBall.png')
         this.load.image('img1', 'assets/images/img1.png')
+        this.load.image('imageBug', 'assets/images/imageBug.png');
+        this.load.image('zonePut', 'assets/images/zonePut.png');
     }
 
     create(){
@@ -47,27 +50,34 @@ class Scene2 extends Phaser.Scene{
         this.displayResult = this.add.text(250, 350, "Result", {font: "50px Arial", fill: "black"});
 
         //drag
-        this.img1 = this.add.image(1100, 550, "img1").setInteractive();
-
-        
-        this.input.setDraggable(this.img1);
-
-        this.input.on('dragstart', function (pointer, gameObject) {
-            this.children.bringToTop(gameObject);
-        }, this);
-    
-        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-            gameObject.x = dragX;
-            gameObject.y = dragY;
-    
-        });
+        // this.img1 = this.add.image(1100, 550, "img1").setInteractive();
+        //
+        //
+        // this.input.setDraggable(this.img1);
+        //
+        // this.input.on('dragstart', function (pointer, gameObject) {
+        //     this.children.bringToTop(gameObject);
+        // }, this);
+        //
+        // this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+        //     gameObject.x = dragX;
+        //     gameObject.y = dragY;
+        //
+        // });
 
 
         // set onClick for the buttons;
         this.buttonAbove.setInteractive().on('pointerdown', () => this.eventClickButtonAbove(arr[ballNumber - 1]));
         this.buttonBelow.setInteractive().on('pointerdown', () => this.eventClickButtonBelow(arr[ballNumber - 1]));
+        this.backButton.setInteractive();
 
         //effect of sprites;
+        this.input.on('gameobjectdown', function (pointer, gameObject) {
+            gameObject.setTint(0xff0000);
+        });
+        this.input.on('gameobjectup', function (pointer, gameObject) {
+            gameObject.clearTint();
+        });
         this.input.on('gameobjectover', function (pointer, gameObject) {
             gameObject.setTint(0x8EEDE2);
         });
@@ -83,9 +93,9 @@ class Scene2 extends Phaser.Scene{
             ball.destroy();
             ball = null;
             ballNumber--;
-            if(ballNumber == 0){
+            if(ballNumber == 5){
                 this.destroyObject();
-                this.handleGameOver();
+                this.handleNextFrameGame();
             }
         }
         else{
@@ -101,9 +111,9 @@ class Scene2 extends Phaser.Scene{
             ball.destroy();
             ball = null;
             ballNumber--;
-            if(ballNumber == 0){
+            if(ballNumber == 5){
                 this.destroyObject();
-                this.handleGameOver();
+                this.handleNextFrameGame();
             }
         }
         else{
@@ -130,6 +140,8 @@ class Scene2 extends Phaser.Scene{
         this.buttonBelow = null;
         this.text1.destroy();
         this.text1 = null;
+        this.displayResult.destroy();
+        this.displayResult = null;
     }
 
     handleGameOver(){
@@ -142,6 +154,72 @@ class Scene2 extends Phaser.Scene{
         this.input.on('gameobjectout', function (pointer, gameObject) {
             gameObject.clearTint();
         });
+    }
+
+    handleNextFrameGame(){
+        displayResult2 = this.add.text(250, 350, "Result!", {font: '50px Arial', fill: 'Black'});
+        var temp2 = Phaser.Math.Between(0, 1);
+        var temp2 = 1;
+        if(temp2 == 0){
+            this.textQuestion2 = this.add.text(800, 300, 'Put the Bug into' + '\n' + ' Above the bird!', {font: '50px Arial', fill: "Black"});
+        }
+        else{
+            this.textQuestion2 = this.add.text(800, 300, 'Put the Bug into' + '\n' + ' Below the bird!', {font: '50px Arial', fill: "Black"});
+        }
+        status = temp2;
+
+        this.imageBug = this.add.image(1150, 550, 'imageBug', Phaser.Math.RND.pick(this.framework)).setInteractive();
+        this.input.setDraggable(this.imageBug);
+
+        var zone1 = this.add.image(500, 300, 'zonePut').setInteractive();
+        var zone2 = this.add.image(700, 300, 'zonePut').setInteractive();
+        var zone3 = this.add.image(500, 590, 'zonePut').setInteractive();
+        var zone4 = this.add.image(700, 590, 'zonePut').setInteractive();
+
+        zone1.input.dropZone = true;
+        zone2.input.dropZone = true;
+        zone3.input.dropZone = true;
+        zone4.input.dropZone = true;
+
+        // this.addGraph(zone1, 0);
+        // this.addGraph(zone2, 0);
+        // this.addGraph(zone3, 1);
+        // this.addGraph(zone4, 1);
+
+        this.input.on('dragstart', function (pointer, gameObject) {
+            this.children.bringToTop(gameObject);
+        }, this);
+
+        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+            gameObject.x = dragX;
+            gameObject.y = dragY;
+        });
+
+        this.input.on('dragenter', function (pointer, gameObject, dropZone) {
+            zone1.setTint(0x00ff00);
+            zone2.setTint(0xff0000);
+        });
+
+        this.input.on('dragleave', function (pointer, gameObject, dropZone) {
+            zone1.clearTint();
+            zone2.clearTint();
+        });
+
+        this.input.on('drop', function (pointer, gameObject, dropZone) {
+            gameObject.x = dropZone.x;
+            gameObject.y = dropZone.y;
+            zone1.clearTint();
+            zone2.clearTint();
+        });
+
+        this.input.on('dragend', function (pointer, gameObject, dropped) {
+            if (!dropped)
+            {
+                gameObject.x = 1150;
+                gameObject.y = 550;
+            }
+        });
+
     }
 
     update(){
