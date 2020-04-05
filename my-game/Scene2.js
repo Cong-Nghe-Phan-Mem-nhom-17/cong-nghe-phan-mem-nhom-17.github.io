@@ -165,7 +165,7 @@ class Scene2 extends Phaser.Scene{
     handleNextFrameGame(){
         displayResult2 = this.add.text(250, 350, "Result!", {font: '50px Arial', fill: 'Black'});
         status = 0;
-        textQuestion2 = this.add.text(800, 300, 'Put the Bug into' + '\n' + ' Above the bird!', {font: '50px Arial', fill: "Black"});
+        textQuestion2 = this.add.text(850, 350, 'Put the Bug into' + '\n' + ' Above the bird!', {font: '50px Arial', fill: "Black"});
 
         imageBug = this.add.image(1150, 550, 'imageBug', Phaser.Math.RND.pick(this.framework)).setInteractive();
         this.input.setDraggable(imageBug);
@@ -224,10 +224,10 @@ class Scene2 extends Phaser.Scene{
                     ballNumber--;
                     var temp2 = Phaser.Math.Between(0, 1);
                     if(temp2 == 0){
-                        textQuestion2.setText('Put the Bug into' + '\n' + ' Above the bird!');
+                        textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
                     }
                     else{
-                        textQuestion2.setText('Put the Bug into' + '\n' + ' Below the bird!');
+                        textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
                     }
                     status = temp2;
                     if(ballNumber == 0){
@@ -249,7 +249,7 @@ class Scene2 extends Phaser.Scene{
                 }
                 else{
                     displayResult2.setText('False!');
-                    textQuestion2.setText('Below Below Below!');
+                    textQuestion2.setText('Below Below '+ '\n' +'Below!');
                     gameObject.x = 1150;
                     gameObject.y = 550;
                 }
@@ -262,10 +262,10 @@ class Scene2 extends Phaser.Scene{
                     ballNumber--;
                     var temp2 = Phaser.Math.Between(0, 1);
                     if(temp2 == 0){
-                        textQuestion2.setText('Put the Bug into' + '\n' + ' Above the bird!');
+                        textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
                     }
                     else{
-                        textQuestion2.setText('Put the Bug into' + '\n' + ' Below the bird!');
+                        textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
                     }
                     status = temp2;
                     if(ballNumber == 0){
@@ -287,7 +287,7 @@ class Scene2 extends Phaser.Scene{
                 }
                 else{
                     displayResult2.setText('False!');
-                    textQuestion2.setText('Below Below Below!');
+                    textQuestion2.setText('Below Below '+ '\n' +'Below!');
                     gameObject.x = 1150;
                     gameObject.y = 550;
                 }
@@ -300,10 +300,10 @@ class Scene2 extends Phaser.Scene{
                     ballNumber--;
                     var temp2 = Phaser.Math.Between(0, 1);
                     if(temp2 == 0){
-                        textQuestion2.setText('Put the Bug into' + '\n' + ' Above the bird!');
+                        textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
                     }
                     else{
-                        textQuestion2.setText('Put the Bug into' + '\n' + ' Below the bird!');
+                        textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
                     }
                     status = temp2;
                     if(ballNumber == 0){
@@ -325,7 +325,7 @@ class Scene2 extends Phaser.Scene{
                 }
                 else{
                     displayResult2.setText('False!');
-                    textQuestion2.setText('Above Above Above!');
+                    textQuestion2.setText('Above Above '+ '\n' +'Above!');
                     gameObject.x = 1150;
                     gameObject.y = 550;
                 }
@@ -338,10 +338,10 @@ class Scene2 extends Phaser.Scene{
                     ballNumber--;
                     var temp2 = Phaser.Math.Between(0, 1);
                     if(temp2 == 0){
-                        textQuestion2.setText('Put the Bug into' + '\n' + ' Above the bird!');
+                        textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
                     }
                     else{
-                        textQuestion2.setText('Put the Bug into' + '\n' + ' Below the bird!');
+                        textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
                     }
                     status = temp2;
                     if(ballNumber == 0){
@@ -363,7 +363,7 @@ class Scene2 extends Phaser.Scene{
                 }
                 else{
                     displayResult2.setText('False!');
-                    textQuestion2.setText('Above Above Above!');
+                    textQuestion2.setText('Above Above '+ '\n' +'Above!');
                     gameObject.x = 1150;
                     gameObject.y = 550;
                 }
