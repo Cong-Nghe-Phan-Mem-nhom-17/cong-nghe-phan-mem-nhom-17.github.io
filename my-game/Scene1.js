@@ -153,7 +153,7 @@ class Scene1 extends Phaser.Scene{
     handleGameOver(){
         this.text2 = this.add.text(725, 137, "WIN!", {font: "50px Arial", fill: "red" });
         this.nextButton = this.add.sprite(1150, 117, 'nextButton').setOrigin(0, 0);
-        
+        // Click to chance scene
         this.nextButton.setInteractive().on('pointerdown', () =>{
             _const2 = 360
             ballNumber2 = 9
