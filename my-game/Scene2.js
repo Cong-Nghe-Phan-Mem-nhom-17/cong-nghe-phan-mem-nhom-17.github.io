@@ -17,19 +17,19 @@ class Scene2 extends Phaser.Scene{
         this.load.image('cat', 'assets/images/cat.png')
         this.load.image('bird', 'assets/images/bird.png')
         this.load.image('backButton', 'assets/images/backButton.png')
-        //khong co anh nay trong assets them vao di Huan
-        // this.load.image('tree', 'assets/images/79.png')
-        // this.load.image('squirrel', 'assets/images/squirrel.png')
+        
+         this.load.image('tree', 'assets/images/79.png')
+         this.load.image('squirrel', 'assets/images/squirrel.png')
 }   
 
     create(){
         // Object of the game;
         this.background = this.add.image(0, 0, "backGround").setOrigin(0, 0);
         this.framework = this.add.image(233, 115, "frameWork").setOrigin(0, 0);
-        // this.tree = this.add.image(250, 270, "tree").setOrigin(0, 0);
+         this.tree = this.add.image(250, 270, "tree").setOrigin(0, 0);
         this.cat = this.add.image(250, 230, "cat").setOrigin(0, 0);
-        this.bird = this.add.image(340, 550, "bird").setOrigin(0, 0);
-        // this.squirrel = this.add.image(350, 400, "squirrel").setOrigin(0, 0);
+        this.bird = this.add.image(340, 560, "bird").setOrigin(0, 0);
+         this.squirrel = this.add.image(350, 400, "squirrel").setOrigin(0, 0);
 
         this.backButton = this.add.sprite(245, 117, 'backButton').setOrigin(0,0);
 
