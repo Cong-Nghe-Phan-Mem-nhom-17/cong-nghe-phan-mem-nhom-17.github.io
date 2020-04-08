@@ -11,7 +11,9 @@ let ballNumber3 = 4;
 class Scene3 extends Phaser.Scene{
 
     constructor() {
+
         super('Scene3');
+
     }
 
     preload() {
@@ -42,7 +44,9 @@ class Scene3 extends Phaser.Scene{
         // add image object;
         imag1 = this.add.image(1150, 550, 'img1', Phaser.Math.RND.pick(this.framework));
         ball = this.add.image(430, 137, "redBall").setOrigin(0, 0);
+
         arrNumberOfPlay = new Array("numberOfPlay");
+
         for(let i = 0; i < number; i++){
             arrNumberOfPlay[i] = this.add.image(1200, _const3 += 70, "numberOfPlay").setOrigin(0, 0);
         }
@@ -52,7 +56,23 @@ class Scene3 extends Phaser.Scene{
         displayResult = this.add.text(250, 350, "Result!", {font: "50px Arial", fill: "black"});
 
         // set onClick for the buttons;
-        this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'));
+        this.backButton.setInteractive().on('pointerdown', () => {
+
+            this.scene.start('Menu')
+
+        });
+
+        this.input.on('gameobjectover', function(pointer, gameObject) {
+            
+            gameObject.setTint(0x8EEDE2)
+
+        })
+
+        this.input.on('gameobjectout', function(pointer, gameObject) {
+
+            gameObject.clearTint()
+
+        })
         imag1.setInteractive();
         this.input.setDraggable(imag1);
 

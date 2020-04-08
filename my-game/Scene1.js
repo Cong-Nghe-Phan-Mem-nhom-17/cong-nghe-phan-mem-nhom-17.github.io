@@ -61,10 +61,14 @@ class Scene1 extends Phaser.Scene{
 
         //effect of sprites;
         this.input.on('gameobjectover', function (pointer, gameObject) {
+
             gameObject.setTint(0x8EEDE2);
+
         });
         this.input.on('gameobjectout', function (pointer, gameObject) {
+
             gameObject.clearTint();
+            
         });
     }
 
@@ -152,22 +156,25 @@ class Scene1 extends Phaser.Scene{
 
     handleGameOver(){
         this.text2 = this.add.text(725, 137, "WIN!", {font: "50px Arial", fill: "red" });
-        this.nextButton = this.add.sprite(1150, 117, 'nextButton').setOrigin(0, 0);
+        var nextButton = this.add.sprite(1150, 117, 'nextButton').setOrigin(0, 0);
         // Click to chance scene
-        this.nextButton.setInteractive().on('pointerdown', () =>{
-            _const2 = 360
-            ballNumber2 = 9
-            status2 = 0
-            this.scene.start('Scene2')
+        nextButton.setInteractive().on('pointerdown', () =>{
+            
+            this.scene.start('Menu')
+
         })
 
         this.input.on('gameobjectover', function (pointer, gameObject) {
+
             gameObject.setTint(0x8EEDE2);
+
         });
 
         this.input.on('gameobjectout', function (pointer, gameObject) {
+
             gameObject.clearTint();
         });
+
     }
 
     handleNextFrameGame(){

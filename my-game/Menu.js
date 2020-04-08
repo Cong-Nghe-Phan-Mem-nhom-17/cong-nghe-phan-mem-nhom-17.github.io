@@ -96,7 +96,12 @@ class Menu extends Phaser.Scene {
         this.play3 = this.add.sprite(950, 300, 'play3').setOrigin(0,0)
 
         this.play3.setInteractive().on('pointerdown', () => {
+
+            number = 3
+            status3 = 0
+            _const3 = 200
             this.scene.start('Scene3')
+
         })
 
         this.textPlay3 = this.add.text(950, 550, "Place an object in a given \nposition above below \nanother object", {
@@ -107,7 +112,12 @@ class Menu extends Phaser.Scene {
         }).setOrigin(0, 0)
 
         this.textPlay3.setInteractive().on('pointerdown', () => {
+            
+            number = 3
+            status3 = 0
+            _const3 = 200
             this.scene.start('Scene3')
+
         })
 
         this.input.on('gameobjectover', function (pointer, gameObject) {

@@ -15,12 +15,14 @@ class Scene2 extends Phaser.Scene{
         this.load.image('frameWork', 'assets/images/frameWork.png')
         this.load.image('redBall', 'assets/images/redBall.png')
         this.load.image('nextButton', 'assets/images/nextButton.png')
+        this.load.image('backButton', 'assets/images/backButton.png')
+
         this.load.image('cat', 'assets/images/cat.png')
         this.load.image('bird', 'assets/images/bird.png')
-        this.load.image('backButton', 'assets/images/backButton.png')
-        
         this.load.image('tree', 'assets/images/79.png')
         this.load.image('squirrel', 'assets/images/squirrel.png')
+
+        this.load.image('mouse', 'assets/images/mouse.png')
 
         //button
         this.load.image('ok1', 'assets/images/ok1.png')
@@ -110,8 +112,8 @@ class Scene2 extends Phaser.Scene{
         
         this.cat.setAlpha(0.5)
         this.bird.setAlpha(1)
-        this.answer_1.setText('The bird is above the squirrel.');
-        this.answer_2.setText('The bird is below the squirrel.'); 
+        this.answer_1.setText('The squirrel is below the bird.');
+        this.answer_2.setText('The squirrel is above the bird.'); 
 
         var ok1 = this.add.sprite(1105, 362, "ok1").setOrigin(0, 0)
 
@@ -129,7 +131,7 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
-            //this.phase_2()
+            this.phase_3()
 
         });
 
@@ -145,6 +147,56 @@ class Scene2 extends Phaser.Scene{
 
         })
 
+    }
+
+    phase_3() {
+
+        this.cat.setAlpha(1)
+        this.squirrel.setAlpha(0.5)
+        this.answer_1.setText('The bird is above the cat.');
+        this.answer_2.setText('The bird is below the cat.'); 
+
+        var ok1 = this.add.sprite(1105, 362, "ok1").setOrigin(0, 0)
+
+        ok1.setInteractive().on('pointerdown', () => {
+
+            ok1.setTint('red')
+
+        })
+
+        var ok2 = this.add.sprite(1105, 420, "ok2").setOrigin(0, 0);
+
+       
+        ok2.setInteractive().on('pointerdown', () => {
+
+            this.destroyBall()
+            ok1.destroy()
+            ok2.destroy()
+            this.tree.destroy()
+            this.cat.destroy()
+            this.squirrel.destroy()
+            this.bird.destroy()
+            // this.phase_4()
+
+        });
+
+        this.input.on('gameojectover', function(pointer, gameObject) {
+
+            gameObject.setTint(0x8EEDE2)
+
+        })
+
+        this.input.on('gameobjectout', function(pointer, gameObject) {
+
+            gameObject.clearTint()
+
+        })
+
+    }
+
+    phase_4() {
+
+        
     }
     
     destroyBall(){
