@@ -2,15 +2,15 @@ let ball;
 let arrNumberOfPlay;
 let _const3 = 200;
 let number = 3;
-let status3 = 0;
+let status3 = 1;
+let numberOfPlay = 4;
+let textOver;
 let displayResult;
 let textQuestion3;
 let imag1;
 let imag2;
 let imag3;
 let imag4;
-let textOver;
-let ballNumber3 = 4;
 
 class Scene3 extends Phaser.Scene{
 
@@ -22,16 +22,16 @@ class Scene3 extends Phaser.Scene{
 
     preload() {
         // load image background;
-        this.load.image('backGround', 'assets/images/backGround.png')
-        this.load.image('frameWork', 'assets/images/frameWork.png')
-        this.load.image('castle', "assets/images/castle.png")
+        this.load.image('backGround', 'assets/images/backGround.png');
+        this.load.image('frameWork', 'assets/images/frameWork.png');
+        this.load.image('castle', "assets/images/castle.png");
 
         // load image button;
-        this.load.image('backButton', 'assets/images/backButton.png')
+        this.load.image('backButton', 'assets/images/backButton.png');
 
         // load image object;
-        this.load.image('redBall', 'assets/images/redBall.png')
-        this.load.image('numberOfPlay', "assets/images/numberOfPlay.png")
+        this.load.image('redBall', 'assets/images/redBall.png');
+        this.load.image('numberOfPlay', "assets/images/numberOfPlay.png");
         this.load.image('img1', 'assets/images/img1.png');
         this.load.image('img2', 'assets/images/img2.png');
         this.load.image('img3', 'assets/images/img3.png');
@@ -62,7 +62,7 @@ class Scene3 extends Phaser.Scene{
         }
 
         // add text;
-        textQuestion3 = this.add.text(450, 620, "Place the bee BELOW the window", {font: "35px Arial", fill: "black"})
+        textQuestion3 = this.add.text(450, 620, "Place the bee ABOVE the window", {font: "35px Arial", fill: "black"});
         displayResult = this.add.text(250, 350, "Result!", {font: "50px Arial", fill: "black"});
 
         // set onClick for the buttons;
@@ -73,16 +73,16 @@ class Scene3 extends Phaser.Scene{
         });
 
         this.input.on('gameobjectover', function(pointer, gameObject) {
-            
+
             gameObject.setTint(0x8EEDE2)
 
-        })
+        });
 
         this.input.on('gameobjectout', function(pointer, gameObject) {
 
             gameObject.clearTint()
 
-        })
+        });
         imag1.setInteractive();
         imag2.setInteractive();
         imag3.setInteractive();
@@ -141,7 +141,8 @@ class Scene3 extends Phaser.Scene{
             if (gameObject.x >= 500 && gameObject.x <= 640  && gameObject.y >= 255 && gameObject.y <= 395 ){
                 if(status3 == 0){
                     displayResult.setText("Correct!");
-                    status3 = randomQuestion();
+                    textQuestion3.setText("Place the bee BELOW the window");
+                    status3 = 1;
                     zone1.destroy();
                     zone1 = null;
                     gameObject.input.enabled = false;
@@ -156,10 +157,12 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 850 && gameObject.x <= 990  && gameObject.y >= 255 && gameObject.y <= 395){
                 if(status3 == 0){
                     displayResult.setText("Correct!");
-                    status3 = randomQuestion();
+                    textQuestion3.setText("Place the bee BELOW the window");
+                    status3 = 1;
                     zone2.destroy();
                     zone2 = null;
                     gameObject.input.enabled = false;
+                    numberOfPlay--;
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -171,7 +174,8 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 500 && gameObject.x <= 640 && gameObject.y >= 475 && gameObject.y <= 595){
                 if(status3 == 1){
                     displayResult.setText("Correct!");
-                    status3 = randomQuestion();
+                    textQuestion3.setText("Place the bee ABOVE the window");
+                    status3 = 0;
                     zone3.destroy();
                     zone3 = null;
                     gameObject.input.enabled = false;
@@ -186,7 +190,8 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 850 && gameObject.x <= 990 && gameObject.y >= 475 && gameObject.y <= 595 ){
                 if(status3 == 1){
                     displayResult.setText("Correct!");
-                    status3 = randomQuestion();
+                    textQuestion3.setText("Place the bee ABOVE the window");
+                    status3 = 0;
                     zone4.destroy();
                     zone4 = null;
                     gameObject.input.enabled = false;
@@ -199,54 +204,23 @@ class Scene3 extends Phaser.Scene{
                 }
             }
             else {
-                gameObject.x = 1150;
-                gameObject.y = 550;
+                gameObject.x = gameObject.input.dragStartX;
+                gameObject.y = gameObject.input.dragStartY;
             }
         });
 
         this.input.on('dragend', function (pointer, gameObject, dropped) {
             if (!dropped)
             {
-                gameObject.x = 1150;
-                gameObject.y = 550;
+                gameObject.x = gameObject.input.dragStartX;
+                gameObject.y = gameObject.input.dragStartY;
             }
         });
 
-        function randomQuestion() {
-            var temp = Phaser.Math.Between(0, 1);
-            if(temp == 0){
-                textQuestion3.setText("Place the bee ABOVE the window");
-            }
-            else{
-                textQuestion3.setText("Place the bee BELOW the window");
-            }
-            return temp;
-        }
-
-        function destroyobject2() {
-            displayResult2.destroy();
-            displayResult2 = null;
-            imageBug.destroy();
-            imageBug = null;
-            textQuestion2.destroy();
-            textQuestion2 = null;
-            zone1.destroy();
-            zone1 = null;
-            zone2.destroy();
-            zone2 = null;
-            zone3.destroy();
-            zone3 = null;
-            zone4.destroy();
-            zone4 = null;
-        }
     }
 
     update(){
-        // this.input.on('pointerup', () =>{
-        //     imag1 = this.add.image(1150, 550, 'img1', Phaser.Math.RND.pick(this.framework));
-        //     imag1.setInteractive();
-        //     this.input.setDraggable(imag1);
-        // })
+
     }
 
 }
