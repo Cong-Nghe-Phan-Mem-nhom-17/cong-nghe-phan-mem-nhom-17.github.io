@@ -6,6 +6,10 @@ let status3 = 0;
 let displayResult;
 let textQuestion3;
 let imag1;
+let imag2;
+let imag3;
+let imag4;
+let textOver;
 let ballNumber3 = 4;
 
 class Scene3 extends Phaser.Scene{
@@ -28,7 +32,10 @@ class Scene3 extends Phaser.Scene{
         // load image object;
         this.load.image('redBall', 'assets/images/redBall.png')
         this.load.image('numberOfPlay', "assets/images/numberOfPlay.png")
-        this.load.image('img1', 'assets/images/img1.png')
+        this.load.image('img1', 'assets/images/img1.png');
+        this.load.image('img2', 'assets/images/img2.png');
+        this.load.image('img3', 'assets/images/img3.png');
+        this.load.image('img4', 'assets/images/img4.png');
         this.load.image('zonePutWindow', 'assets/images/zonePutWindow.png');
     }
 
@@ -43,6 +50,9 @@ class Scene3 extends Phaser.Scene{
 
         // add image object;
         imag1 = this.add.image(1150, 550, 'img1', Phaser.Math.RND.pick(this.framework));
+        imag2 = this.add.image(1150, 430, 'img2', Phaser.Math.RND.pick(this.framework));
+        imag3 = this.add.image(1150, 310, 'img3', Phaser.Math.RND.pick(this.framework));
+        imag4 = this.add.image(1150, 190, 'img4', Phaser.Math.RND.pick(this.framework));
         ball = this.add.image(430, 137, "redBall").setOrigin(0, 0);
 
         arrNumberOfPlay = new Array("numberOfPlay");
@@ -74,7 +84,11 @@ class Scene3 extends Phaser.Scene{
 
         })
         imag1.setInteractive();
-        this.input.setDraggable(imag1);
+        imag2.setInteractive();
+        imag3.setInteractive();
+        imag4.setInteractive();
+
+        this.input.setDraggable([imag1, imag2, imag3, imag4]);
 
         var zone1 = this.add.image(575, 325, 'zonePutWindow').setInteractive();
         var zone2 = this.add.image(920, 325, 'zonePutWindow').setInteractive();
