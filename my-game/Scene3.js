@@ -150,8 +150,8 @@ class Scene3 extends Phaser.Scene{
                 else{
                     displayResult.setText("Wrong!");
                     textQuestion3.setText('Below Below Below!');
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    gameObject.x = gameObject.input.dragStartX;
+                    gameObject.y = gameObject.input.dragStartY;
                 }
             }
             else if (gameObject.x >= 850 && gameObject.x <= 990  && gameObject.y >= 255 && gameObject.y <= 395){
@@ -167,8 +167,8 @@ class Scene3 extends Phaser.Scene{
                 else{
                     displayResult.setText("Wrong!");
                     textQuestion3.setText('Below Below Below!');
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    gameObject.x = gameObject.input.dragStartX;
+                    gameObject.y = gameObject.input.dragStartY;
                 }
             }
             else if (gameObject.x >= 500 && gameObject.x <= 640 && gameObject.y >= 475 && gameObject.y <= 595){
@@ -183,8 +183,8 @@ class Scene3 extends Phaser.Scene{
                 else{
                     displayResult.setText("Wrong!");
                     textQuestion3.setText('Above Above Above!');
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    gameObject.x = gameObject.input.dragStartX;
+                    gameObject.y = gameObject.input.dragStartY;
                 }
             }
             else if (gameObject.x >= 850 && gameObject.x <= 990 && gameObject.y >= 475 && gameObject.y <= 595 ){
@@ -199,8 +199,8 @@ class Scene3 extends Phaser.Scene{
                 else{
                     displayResult.setText("Wrong!");
                     textQuestion3.setText('Above Above Above!');
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    gameObject.x = gameObject.input.dragStartX;
+                    gameObject.y = gameObject.input.dragStartY;
                 }
             }
             else {
