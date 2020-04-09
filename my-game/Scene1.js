@@ -10,6 +10,9 @@ let zone1;
 let zone2;
 let zone3;
 let zone4;
+let timedEvent1
+let abv;
+let blw;
 
 class Scene1 extends Phaser.Scene{
 
@@ -79,14 +82,25 @@ class Scene1 extends Phaser.Scene{
     eventClickButtonAbove(ball){
         if(status1 == 0){
             this.displayResult.setText("Correct!");
-            status1 = this.randomQuestion();
             ball.destroy();
             ball = null;
             ballNumber1--;
+            abv = this.add.text(440, 275, 'ABOVE', {
+                font: '50px Arial',
+                fill: 'black'
+            })
+
+            timedEvent1 = this.time.delayedCall(2000, function above() {
+                abv.setText("")
+                this.displayResult.setText("Result")
+                status1 = this.randomQuestion();
+            
             if(ballNumber1 == 5){
                 this.destroyObject();
                 this.handleNextFrameGame();
             }
+
+            }, [], this)
             this.input.on('gameobjectdown', function (pointer, gameObject) {
                 gameObject.setTint(0x37FB4B);
             });
@@ -97,6 +111,12 @@ class Scene1 extends Phaser.Scene{
         else{
             this.displayResult.setText("Wrong!");
             this.text1.setText("Below Below Below!");
+
+            timedEvent1 = this.time.delayedCall(1000, function wrong() {
+                this.displayResult.setText("Result")
+                this.text1.setText("Click Below \nThe Strange Creature")
+            }, [], this)
+
             this.input.on('gameobjectdown', function (pointer, gameObject) {
                 gameObject.setTint(0xFD0303);
             });
@@ -109,14 +129,24 @@ class Scene1 extends Phaser.Scene{
     eventClickButtonBelow(ball){
         if(status1 == 1){
             this.displayResult.setText("Correct!");
-            status1 = this.randomQuestion();
             ball.destroy();
             ball = null;
             ballNumber1--;
+            blw = this.add.text(440, 575, 'BELOW', {
+                font: '50px Arial',
+                fill: 'black'
+            })
+
+            timedEvent1 = this.time.delayedCall(2000, function below() {
+                blw.setText("")
+                this.displayResult.setText("Result")
+                status1 = this.randomQuestion();
+
             if(ballNumber1 == 5){
                 this.destroyObject();
                 this.handleNextFrameGame();
             }
+            }, [], this)
             this.input.on('gameobjectdown', function (pointer, gameObject) {
                 gameObject.setTint(0x37FB4B);
             });
@@ -127,6 +157,12 @@ class Scene1 extends Phaser.Scene{
         else{
             this.displayResult.setText("Wrong!");
             this.text1.setText("Above Above Above!");
+
+            timedEvent1 = this.time.delayedCall(1000, function wrong() {
+                this.displayResult.setText("Result")
+                this.text1.setText("Click Above \nThe Strange Creature")
+            }, [], this)
+
             this.input.on('gameobjectdown', function (pointer, gameObject) {
                 gameObject.setTint(0xFD0303);
             });

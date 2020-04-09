@@ -1,6 +1,7 @@
 let _const2=360;
 let ballNumber2 = 9;
 let status2 = 0;
+let timedEvent2
 
 
 
@@ -46,8 +47,6 @@ class Scene2 extends Phaser.Scene{
 
         this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'))
 
-        // this.timer = this.time.events();
-
         this.input.on('gameobjectover', function(pointer, gameObject){
             gameObject.setTint(0x8EEDE2);
         })
@@ -78,13 +77,11 @@ class Scene2 extends Phaser.Scene{
         this.question = this.add.text(630, 270, "Which one is true?" + "\n", {font: "50px Arial", fill: "black"});
 
         // Answers
-        this.answer_1 = this.add.text(580, 360, 'The cat is above the squirrel.', {font: "40px Arial", fill: "black" });
-        // this.answer_1.setInteractive();
+        this.answer_1 = this.add.text(580, 360, 'The cat is ABOVE the squirrel', {font: "40px Arial", fill: "black" });
 
-        this.answer_2 = this.add.text(580, 420, 'The cat is below the squirrel.', {font: "40px Arial", fill: "black" });
-        // this.answer_2.setInteractive();
+        this.answer_2 = this.add.text(580, 420, 'The cat is BELOW the squirrel', {font: "40px Arial", fill: "black" });
 
-        this.ok1 = this.add.sprite(1105, 362, "ok1").setOrigin(0, 0)
+        this.ok1 = this.add.sprite(1130, 362, "ok1").setOrigin(0, 0)
 
         this.ok1.setInteractive().on('pointerdown', () => {
 
@@ -92,12 +89,16 @@ class Scene2 extends Phaser.Scene{
             this.ok1.destroy()
             this.ok2.destroy()
             this.answer_2.setText("")
-            // this.add(Phaser.Timer.SECOND*1, phase_2, this)
-            this.phase_2()
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
 
+                this.phase_2()
+
+            }, [], this)
         });
 
-        this.ok2 = this.add.sprite(1105, 420, "ok2").setOrigin(0, 0);
+        this.ok2 = this.add.sprite(1130, 420, "ok2").setOrigin(0, 0);
 
         this.ok2.setInteractive().on('pointerdown', () => {
 
@@ -124,10 +125,11 @@ class Scene2 extends Phaser.Scene{
         
         this.cat.setAlpha(0.5)
         this.bird.setAlpha(1)
-        this.answer_1.setText('The squirrel is below the bird.');
-        this.answer_2.setText('The squirrel is above the bird.'); 
+        this.question.setText('Which one is true?')
+        this.answer_1.setText('The squirrel is BELOW the bird');
+        this.answer_2.setText('The squirrel is ABOVE the bird'); 
 
-        var ok1 = this.add.sprite(1105, 362, "ok1").setOrigin(0, 0)
+        var ok1 = this.add.sprite(1150, 362, "ok1").setOrigin(0, 0)
 
         ok1.setInteractive().on('pointerdown', () => {
 
@@ -135,7 +137,7 @@ class Scene2 extends Phaser.Scene{
 
         })
 
-        var ok2 = this.add.sprite(1105, 420, "ok2").setOrigin(0, 0);
+        var ok2 = this.add.sprite(1150, 420, "ok2").setOrigin(0, 0);
 
        
         ok2.setInteractive().on('pointerdown', () => {
@@ -143,7 +145,12 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
-            this.phase_3()
+            this.answer_1.setText("")
+            this.question.setText("")
+
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.phase_3()
+            }, [], this)
 
         });
 
@@ -165,8 +172,9 @@ class Scene2 extends Phaser.Scene{
 
         this.cat.setAlpha(1)
         this.squirrel.setAlpha(0.5)
-        this.answer_1.setText('The bird is above the cat.');
-        this.answer_2.setText('The bird is below the cat.'); 
+        this.question.setText('Which one is true?')
+        this.answer_1.setText('The bird is ABOVE the cat');
+        this.answer_2.setText('The bird is BELOW the cat'); 
 
         var ok1 = this.add.sprite(1105, 362, "ok1").setOrigin(0, 0)
 
@@ -184,11 +192,17 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
-            this.tree.destroy()
-            this.cat.destroy()
-            this.squirrel.destroy()
-            this.bird.destroy()
-            this.phase_4()
+            this.answer_1.setText("")
+            this.question.setText("")
+
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.tree.destroy()
+                this.cat.destroy()
+                this.squirrel.destroy()
+                this.bird.destroy()
+                this.phase_4()
+            }, [], this)
+
 
         });
 
@@ -211,11 +225,12 @@ class Scene2 extends Phaser.Scene{
         this.home_0 = this.add.sprite(265, 250, 'home_0').setOrigin(0,0)
         this.mouse = this.add.sprite(300, 250, 'mouse').setOrigin(0,0)
         this.turtle = this.add.sprite(290, 455, 'turtle').setOrigin(0,0)
+        
+        this.question.setText('Which one is true?')
+        this.answer_1.setText('The turtle is ABOVE the mouse')
+        this.answer_2.setText('The turtle is BELOW the mouse')
 
-        this.answer_1.setText('The turtle is above the mouse.')
-        this.answer_2.setText('The turtle is below the mouse.')
-
-        var ok1 = this.add.sprite(1120, 362, 'ok1').setOrigin(0,0)
+        var ok1 = this.add.sprite(1160, 362, 'ok1').setOrigin(0,0)
 
         ok1.setInteractive().on('pointerdown', () => {
 
@@ -224,16 +239,22 @@ class Scene2 extends Phaser.Scene{
 
         })
 
-        var ok2 = this.add.sprite(1120, 420, 'ok2').setOrigin(0,0)
+        var ok2 = this.add.sprite(1160, 420, 'ok2').setOrigin(0,0)
 
         ok2.setInteractive().on('pointerdown', () =>{
 
             this.destroyBall()
-            this.turtle.destroy()
-            this.mouse.destroy()
             ok2.destroy()
             ok1.destroy()
-            this.phase_5()
+
+            this.answer_1.setText("")
+            this.question.setText("")
+
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.turtle.destroy()
+                this.mouse.destroy()
+                this.phase_5()
+            }, [], this)
 
 
         })
@@ -255,26 +276,32 @@ class Scene2 extends Phaser.Scene{
 
     phase_5() {
 
-        // this.home_0 = this.add.sprite(265, 250, 'home_0').setOrigin(0,0)
         this.chicken = this.add.sprite(295, 250, 'chicken').setOrigin(0,0)
         this.frog = this.add.sprite(287, 455, 'frog').setOrigin(0,0)
 
-        this.answer_1.setText('The chicken is above the frog.')
-        this.answer_2.setText('The chicken is below the frog.')
+        this.question.setText('Which one is true?')
+        this.answer_1.setText('The chicken is ABOVE the frog')
+        this.answer_2.setText('The chicken is BELOW the frog')
 
-        var ok1 = this.add.sprite(1120, 362, 'ok1').setOrigin(0,0)
+        var ok1 = this.add.sprite(1155, 362, 'ok1').setOrigin(0,0)
 
         ok1.setInteractive().on('pointerdown', () => {
 
             this.destroyBall()
-            this.chicken.destroy()
             ok2.destroy()
             ok1.destroy()
-            this.phase_6()
+            this.answer_1.setText("")
+            this.question.setText("")
+
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.chicken.destroy()
+                this.phase_6()
+            }, [], this)
+
 
         })
 
-        var ok2 = this.add.sprite(1120, 420, 'ok2').setOrigin(0,0)
+        var ok2 = this.add.sprite(1155, 420, 'ok2').setOrigin(0,0)
 
         ok2.setInteractive().on('pointerdown', () =>{
 
@@ -299,14 +326,13 @@ class Scene2 extends Phaser.Scene{
 
     phase_6() {
 
-        // this.home_0 = this.add.sprite(265, 250, 'home_0').setOrigin(0,0)
         this.turtle = this.add.sprite(300, 250, 'turtle').setOrigin(0,0)
-        // this.frog = this.add.sprite(287, 455, 'frog').setOrigin(0,0)
 
-        this.answer_1.setText('The frog is above the turtle.')
-        this.answer_2.setText('The frog is below the turtle.')
+        this.question.setText('Which one is true?')
+        this.answer_1.setText('The frog is ABOVE the turtle')
+        this.answer_2.setText('The frog is BELOW the turtle')
 
-        var ok1 = this.add.sprite(1120, 362, 'ok1').setOrigin(0,0)
+        var ok1 = this.add.sprite(1140, 362, 'ok1').setOrigin(0,0)
 
         ok1.setInteractive().on('pointerdown', () => {
 
@@ -314,20 +340,26 @@ class Scene2 extends Phaser.Scene{
 
         })
 
-        var ok2 = this.add.sprite(1120, 420, 'ok2').setOrigin(0,0)
+        var ok2 = this.add.sprite(1140, 420, 'ok2').setOrigin(0,0)
 
         ok2.setInteractive().on('pointerdown', () =>{
 
             this.destroyBall()
-            this.home_0.destroy()
-            this.frog.destroy()
-            this.turtle.destroy()
-            this.question.destroy()
-            this.answer_1.destroy()
-            this.answer_2.destroy()
             ok2.destroy()
             ok1.destroy()
-            this.phase_7()
+            this.answer_1.setText("")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.home_0.destroy()
+                this.frog.destroy()
+                this.turtle.destroy()
+                this.question.destroy()
+                this.answer_1.destroy()
+                this.answer_2.destroy()
+                this.phase_7()
+            }, [], this)
+
 
         })
 
@@ -350,7 +382,7 @@ class Scene2 extends Phaser.Scene{
 
         this.home_1 = this.add.sprite(850, 250, 'home_1').setOrigin(0, 0)
         this.home_2 = this.add.sprite(1070, 250, 'home_2').setOrigin(0, 0)
-        this.mouse = this.add.sprite(882, 295, 'mouse').setOrigin(0, 0)
+        this.frog = this.add.sprite(882, 295, 'frog').setOrigin(0, 0)
         this.chicken = this.add.sprite(1095, 425, 'chicken').setOrigin(0, 0)
 
         // Question
@@ -363,14 +395,14 @@ class Scene2 extends Phaser.Scene{
 
         // Answers
 
-        this.answer_1 = this.add.text(265, 390, 'The mouse is above the chicken.', {
+        this.answer_1 = this.add.text(265, 390, 'The frog is ABOVE the chicken', {
 
             font: '40px Arial',
             fill: 'black'
 
         })
 
-        this.answer_2 = this.add.text(265, 490, 'The mouse is below the chicken', {
+        this.answer_2 = this.add.text(265, 490, 'The frog is BELOW the chicken', {
 
             font: '40px Arial',
             fill: 'black'
@@ -384,11 +416,17 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
-            this.home_1.destroy()
-            this.home_2.destroy()
-            this.mouse.destroy()
-            this.chicken.destroy()
-            this.phase_8()
+            this.answer_1.setText("")
+            this.question.setText("")
+
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.home_1.destroy()
+                this.home_2.destroy()
+                this.frog.destroy()
+                this.chicken.destroy()
+                this.phase_8()
+            }, [], this)
+
             
         })
 
@@ -420,8 +458,9 @@ class Scene2 extends Phaser.Scene{
         this.frog = this.add.sprite(1095, 295, 'frog').setOrigin(0, 0)
         this.turtle = this.add.sprite(882, 430, 'turtle').setOrigin(0, 0)
 
-        this.answer_1.setText('The turtle is below the frog.')
-        this.answer_2.setText('The frog is below the turtle.')
+        this.question.setText('Which one is true?')
+        this.answer_1.setText('The turtle is BELOW the frog')
+        this.answer_2.setText('The frog is BELOW the turtle')
 
         var ok1 = this.add.sprite(265, 440, 'ok1').setOrigin(0, 0)
 
@@ -430,10 +469,16 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
-            this.home_1.destroy()
-            this.frog.destroy()
-            this.turtle.destroy()
-            this.phase_9()
+            this.answer_1.setText("")
+            this.question.setText("")
+
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.home_1.destroy()
+                this.frog.destroy()
+                this.turtle.destroy()
+                this.phase_9()
+            }, [], this)
+
             
         })
 
@@ -467,8 +512,9 @@ class Scene2 extends Phaser.Scene{
         this.cat = this.add.sprite(882, 460, 'cat').setOrigin(0, 0)
         this.mouse = this.add.sprite(1105, 450, 'mouse').setOrigin(0, 0)
 
-        this.answer_1.setText('The mouse is below the cat.')
-        this.answer_2.setText('The frog is above the cat.')
+        this.question.setText('Which one is true?')
+        this.answer_1.setText('The mouse is BELOW the cat')
+        this.answer_2.setText('The frog is ABOVE the cat')
 
         var ok1 = this.add.sprite(265, 440, 'ok1').setOrigin(0, 0)
 
@@ -485,16 +531,21 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
-            this.question.destroy()
-            this.answer_1.destroy()
-            this.answer_2.destroy()
-            this.home_0.destroy()
-            this.home_2.destroy()
-            this.frog.destroy()
-            this.cat.destroy()
-            this.mouse.destroy()
+            this.answer_1.setText("")
+            this.question.setText("")
 
-            this.end_scene()
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.home_0.destroy()
+                this.home_2.destroy()
+                this.frog.destroy()
+                this.cat.destroy()
+                this.mouse.destroy()
+                this.question.destroy()
+                this.answer_1.destroy()
+                this.answer_2.destroy()
+                this.end_scene()
+            }, [], this)
+
 
         })
 

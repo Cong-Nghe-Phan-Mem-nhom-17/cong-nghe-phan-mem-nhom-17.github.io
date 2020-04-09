@@ -15,16 +15,30 @@ class Menu extends Phaser.Scene {
         this.load.image('play1', 'assets/images/play1.png')
         this.load.image('play2', 'assets/images/play2.png')
         this.load.image('play3', 'assets/images/play3.png')
-        this.load.audio('audioBelow', 'assets/audio/below.mp3')
+        // them audio test
+        // this.load.audio('fx', [
+            
+        //     'assets/audio/above.ogg'
+        // ])
+        // them image test
+        // this.load.image('cat', 'assets/images/cat.png')
 
     }
+
+    
     create(){
         
         this.background = this.add.image(0, 0, "backGround").setOrigin(0, 0);
 
         this.framework = this.add.image(233, 115, "frameMenu").setOrigin(0, 0);
 
-        // this.audioBelow = this.add.audio('audioBelow')
+        // this.cat = this.add.image(10, 10, 'cat').setOrigin(0,0)
+        
+        // this.timeevent = this.time.delayedCall(2000, function hung(){
+
+        //     this.cat.setScale(2)
+
+        // }, [], this)
          
 
         this.text0 = this.add.text(350, 200, "CHOOSE A GAME TO PLAY!", {
