@@ -99,7 +99,7 @@ class Menu extends Phaser.Scene {
 
             number = 3;
             status3 = 0;
-            _const3 = 200;
+            _const3 = 570;
             numberOfPlay = 4;
             this.scene.start('Scene3')
 
@@ -116,7 +116,7 @@ class Menu extends Phaser.Scene {
             numberOfPlay = 4;
             number = 3;
             status3 = 0;
-            _const3 = 200;
+            _const3 = 570;
             this.scene.start('Scene3')
 
         })

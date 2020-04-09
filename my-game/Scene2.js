@@ -514,6 +514,9 @@ class Scene2 extends Phaser.Scene{
     }
 
     end_scene() {
+
+        this.backButton.destroy()
+        
         this.nofication = this.add.text(475, 145, 'Well done! You completed the card!', {
 
             font: '35px Arial',

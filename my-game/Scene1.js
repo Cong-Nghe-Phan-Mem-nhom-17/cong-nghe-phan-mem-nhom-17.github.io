@@ -333,6 +333,7 @@ class Scene1 extends Phaser.Scene{
         zone3.destroy();
         zone4.destroy();
         this.bird.destroy();
+        this.backButton.destroy()
     }
 
     update(){

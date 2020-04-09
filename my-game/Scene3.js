@@ -1,6 +1,6 @@
 let ball;
 let arrNumberOfPlay;
-let _const3 = 200;
+let _const3 = 570;
 let number = 3;
 let status3 = 0;
 let numberOfPlay = 4;
@@ -23,15 +23,16 @@ class Scene3 extends Phaser.Scene{
     preload() {
         // load image background;
         this.load.image('backGround', 'assets/images/backGround.png');
-        this.load.image('frameWork', 'assets/images/frameWork.png');
+        this.load.image('frame', 'assets/images/frameMenu.png');
         this.load.image('castle', "assets/images/castle.png");
 
         // load image button;
         this.load.image('backButton', 'assets/images/backButton.png');
         this.load.image('lesson', 'assets/images/lesson.png');
+        this.load.image('nextButton', 'assets/images/nextbutton.png')
 
         // load image object;
-        this.load.image('redBall', 'assets/images/redBall.png');
+        // this.load.image('redBall', 'assets/images/redBall.png');
         this.load.image('numberOfPlay', "assets/images/numberOfPlay.png");
         this.load.image('img1', 'assets/images/img1.png');
         this.load.image('img2', 'assets/images/img2.png');
@@ -43,7 +44,7 @@ class Scene3 extends Phaser.Scene{
     create(){
         // add image background and framework;
         this.background = this.add.image(0, 0, "backGround").setOrigin(0, 0);
-        this.framework = this.add.image(233, 115, "frameWork").setOrigin(0, 0);
+        this.framework = this.add.image(233, 115, "frame").setOrigin(0, 0);
         this.castle = this.add.image(335, 200, "castle").setOrigin(0, 0);
 
         // add image button;
@@ -54,16 +55,16 @@ class Scene3 extends Phaser.Scene{
         imag2 = this.add.image(1150, 430, 'img2', Phaser.Math.RND.pick(this.framework));
         imag3 = this.add.image(1150, 310, 'img3', Phaser.Math.RND.pick(this.framework));
         imag4 = this.add.image(1150, 190, 'img4', Phaser.Math.RND.pick(this.framework));
-        ball = this.add.image(430, 137, "redBall").setOrigin(0, 0);
+        // ball = this.add.image(430, 137, "redBall").setOrigin(0, 0);
 
         arrNumberOfPlay = new Array("numberOfPlay");
 
         for(let i = 0; i < number; i++){
-            arrNumberOfPlay[i] = this.add.image(1200, _const3 += 70, "numberOfPlay").setOrigin(0, 0);
+            arrNumberOfPlay[i] = this.add.image(_const3 += 70, 140, "numberOfPlay").setOrigin(0, 0);
         }
 
         // add text;
-        textQuestion3 = this.add.text(450, 620, "Place the bee ABOVE the window", {font: "35px Arial", fill: "black"});
+        textQuestion3 = this.add.text(450, 620, "Place the bug ABOVE the window", {font: "35px Arial", fill: "black"});
         displayResult = this.add.text(250, 350, "Result!", {font: "50px Arial", fill: "black"});
 
         // set onClick for the buttons;
@@ -122,6 +123,8 @@ class Scene3 extends Phaser.Scene{
         });
 
         this.input.on('dragleave', function (pointer, gameObject, dropZone) {
+
+            dropZone.clearTint()
 
         });
 
@@ -226,9 +229,19 @@ class Scene3 extends Phaser.Scene{
         imag2.destroy();
         imag3.destroy();
         imag4.destroy();
-        ball.destroy();
+        // ball.destroy();
         displayResult.destroy();
         textQuestion3.destroy();
+
+        if(number > 0){
+
+            for(let i = 0; i < number; i++){
+
+                arrNumberOfPlay[i].destroy();
+
+            }
+
+        }
         if(zone1 != null) zone1.destroy();
         if(zone2 != null) zone2.destroy();
         if(zone3 != null) zone3.destroy();
@@ -237,6 +250,7 @@ class Scene3 extends Phaser.Scene{
 
     handleGameOver(){
         if(numberOfPlay == 0){
+            this.backButton.destroy()
             this.destroyObject();
             this.nofication = this.add.text(475, 145, 'Well done! You completed the card!', {
 
@@ -267,7 +281,29 @@ class Scene3 extends Phaser.Scene{
         }
         if(number == 0){
             this.destroyObject();
-            textOver = this.add.text(625, 137, "TRY AGAIN!", {font: "50px Arial", fill: "red" });
+            textOver = this.add.text(625, 137, "Oops! Try Again!", {font: "50px Arial", fill: "black" });
+            textOver.setInteractive().on('pointerdown', () =>{
+
+                number = 3;
+                status3 = 0;
+                _const3 = 570;
+                numberOfPlay = 4;
+                this.scene.start('Scene3')
+
+            })
+
+            this.input.on('gameobjectover', function(pointer, gameObject) {
+
+                textOver.setColor('red');
+
+            })
+
+            this.input.on('gameobjectout', function(pointer, gameObject){
+
+                textOver.setColor('black')
+
+            })
+
         }
     }
 
