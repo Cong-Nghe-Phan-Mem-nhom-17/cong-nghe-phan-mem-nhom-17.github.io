@@ -185,10 +185,10 @@ class Scene1 extends Phaser.Scene{
         imageBug = this.add.image(1150, 550, 'imageBug', Phaser.Math.RND.pick(this.framework)).setInteractive();
         this.input.setDraggable(imageBug);
 
-        var zone1 = this.add.image(500, 300, 'zonePut').setInteractive().setName('0');
-        var zone2 = this.add.image(700, 300, 'zonePut').setInteractive().setName('0');
-        var zone3 = this.add.image(500, 590, 'zonePut').setInteractive().setName('1');
-        var zone4 = this.add.image(700, 590, 'zonePut').setInteractive().setName('1');
+        var zone1 = this.add.image(500, 300, 'zonePut').setInteractive();
+        var zone2 = this.add.image(700, 300, 'zonePut').setInteractive();
+        var zone3 = this.add.image(500, 590, 'zonePut').setInteractive();
+        var zone4 = this.add.image(700, 590, 'zonePut').setInteractive();
 
         zone1.input.dropZone = true;
         zone2.input.dropZone = true;
@@ -237,29 +237,9 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1].destroy();
                     arr[ballNumber1 - 1] = null;
                     ballNumber1--;
-                    var temp2 = Phaser.Math.Between(0, 1);
-                    if(temp2 == 0){
-                        textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
-                    }
-                    else{
-                        textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
-                    }
-                    status1 = temp2;
+                    status1 = randomQuestion();
                     if(ballNumber1 == 0){
-                        displayResult2.destroy();
-                        displayResult2 = null;
-                        imageBug.destroy();
-                        imageBug = null;
-                        textQuestion2.destroy();
-                        textQuestion2 = null;
-                        zone1.destroy();
-                        zone1 = null;
-                        zone2.destroy();
-                        zone2 = null;
-                        zone3.destroy();
-                        zone3 = null;
-                        zone4.destroy();
-                        zone4 = null;
+                        destroyObject();
                     }
                 }
                 else{
@@ -275,29 +255,9 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1].destroy();
                     arr[ballNumber1- 1] = null;
                     ballNumber1--;
-                    var temp2 = Phaser.Math.Between(0, 1);
-                    if(temp2 == 0){
-                        textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
-                    }
-                    else{
-                        textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
-                    }
-                    status1 = temp2;
+                    status1 = randomQuestion();
                     if(ballNumber1 == 0){
-                        displayResult2.destroy();
-                        displayResult2 = null;
-                        imageBug.destroy();
-                        imageBug = null;
-                        textQuestion2.destroy();
-                        textQuestion2 = null;
-                        zone1.destroy();
-                        zone1 = null;
-                        zone2.destroy();
-                        zone2 = null;
-                        zone3.destroy();
-                        zone3 = null;
-                        zone4.destroy();
-                        zone4 = null;
+                        destroyObject();
                     }
                 }
                 else{
@@ -313,29 +273,9 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1].destroy();
                     arr[ballNumber1 - 1] = null;
                     ballNumber1--;
-                    var temp2 = Phaser.Math.Between(0, 1);
-                    if(temp2 == 0){
-                        textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
-                    }
-                    else{
-                        textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
-                    }
-                    status1 = temp2;
+                    status1 = randomQuestion();
                     if(ballNumber1 == 0){
-                        displayResult2.destroy();
-                        displayResult2 = null;
-                        imageBug.destroy();
-                        imageBug = null;
-                        textQuestion2.destroy();
-                        textQuestion2 = null;
-                        zone1.destroy();
-                        zone1 = null;
-                        zone2.destroy();
-                        zone2 = null;
-                        zone3.destroy();
-                        zone3 = null;
-                        zone4.destroy();
-                        zone4 = null;
+                        destroyObject();
                     }
                 }
                 else{
@@ -351,29 +291,9 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1].destroy();
                     arr[ballNumber1 - 1] = null;
                     ballNumber1--;
-                    var temp2 = Phaser.Math.Between(0, 1);
-                    if(temp2 == 0){
-                        textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
-                    }
-                    else{
-                        textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
-                    }
-                    status1 = temp2;
+                    status1 = randomQuestion();
                     if(ballNumber1 == 0){
-                        displayResult2.destroy();
-                        displayResult2 = null;
-                        imageBug.destroy();
-                        imageBug = null;
-                        textQuestion2.destroy();
-                        textQuestion2 = null;
-                        zone1.destroy();
-                        zone1 = null;
-                        zone2.destroy();
-                        zone2 = null;
-                        zone3.destroy();
-                        zone3 = null;
-                        zone4.destroy();
-                        zone4 = null;
+                        destroyObject();
                     }
                 }
                 else{
@@ -396,7 +316,36 @@ class Scene1 extends Phaser.Scene{
                 gameObject.y = 550;
             }
         });
+
+        function randomQuestion() {
+            var temp2 = Phaser.Math.Between(0, 1);
+            if(temp2 == 0){
+                textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
+            }
+            else{
+                textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
+            }
+            return temp2;
+        }
+
+        function destroyObject(){
+            displayResult2.destroy();
+            displayResult2 = null;
+            imageBug.destroy();
+            imageBug = null;
+            textQuestion2.destroy();
+            textQuestion2 = null;
+            zone1.destroy();
+            zone1 = null;
+            zone2.destroy();
+            zone2 = null;
+            zone3.destroy();
+            zone3 = null;
+            zone4.destroy();
+            zone4 = null;
+        }
     }
+
 
     update(){
         if(ballNumber1 == 0){

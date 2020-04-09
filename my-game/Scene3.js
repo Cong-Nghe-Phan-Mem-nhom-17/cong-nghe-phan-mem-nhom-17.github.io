@@ -146,6 +146,7 @@ class Scene3 extends Phaser.Scene{
                     zone1.destroy();
                     zone1 = null;
                     gameObject.input.enabled = false;
+                    numberOfPlay--;
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -179,6 +180,7 @@ class Scene3 extends Phaser.Scene{
                     zone3.destroy();
                     zone3 = null;
                     gameObject.input.enabled = false;
+                    numberOfPlay--;
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -195,6 +197,7 @@ class Scene3 extends Phaser.Scene{
                     zone4.destroy();
                     zone4 = null;
                     gameObject.input.enabled = false;
+                    numberOfPlay--;
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -220,8 +223,12 @@ class Scene3 extends Phaser.Scene{
     }
 
     update(){
-
+        if(numberOfPlay == 0){
+            textOver.add.text(725, 137, "WIN!", {font: "50px Arial", fill: "red" });
+        }
     }
+
+
 
 }
 
