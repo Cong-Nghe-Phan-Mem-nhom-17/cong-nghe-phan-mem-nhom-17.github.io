@@ -2,7 +2,7 @@ let ball;
 let arrNumberOfPlay;
 let _const3 = 200;
 let number = 3;
-let status3 = 1;
+let status3 = 0;
 let numberOfPlay = 4;
 let textOver;
 let displayResult;
@@ -28,6 +28,7 @@ class Scene3 extends Phaser.Scene{
 
         // load image button;
         this.load.image('backButton', 'assets/images/backButton.png');
+        this.load.image('lesson', 'assets/images/lesson.png');
 
         // load image object;
         this.load.image('redBall', 'assets/images/redBall.png');
@@ -67,22 +68,17 @@ class Scene3 extends Phaser.Scene{
 
         // set onClick for the buttons;
         this.backButton.setInteractive().on('pointerdown', () => {
-
             this.scene.start('Menu')
-
         });
 
         this.input.on('gameobjectover', function(pointer, gameObject) {
-
             gameObject.setTint(0x8EEDE2)
-
         });
 
         this.input.on('gameobjectout', function(pointer, gameObject) {
-
             gameObject.clearTint()
-
         });
+
         imag1.setInteractive();
         imag2.setInteractive();
         imag3.setInteractive();
@@ -90,17 +86,15 @@ class Scene3 extends Phaser.Scene{
 
         this.input.setDraggable([imag1, imag2, imag3, imag4]);
 
-        var zone1 = this.add.image(575, 325, 'zonePutWindow').setInteractive();
-        var zone2 = this.add.image(920, 325, 'zonePutWindow').setInteractive();
-        var zone3 = this.add.image(575, 550, 'zonePutWindow').setInteractive();
-        var zone4 = this.add.image(920, 550, 'zonePutWindow').setInteractive();
-
+        zone1 = this.add.image(575, 325, 'zonePutWindow').setInteractive();
+        zone2 = this.add.image(920, 325, 'zonePutWindow').setInteractive();
+        zone3 = this.add.image(575, 550, 'zonePutWindow').setInteractive();
+        zone4 = this.add.image(920, 550, 'zonePutWindow').setInteractive();
 
         zone1.input.dropZone = true;
         zone2.input.dropZone = true;
         zone3.input.dropZone = true;
         zone4.input.dropZone = true;
-
 
         this.input.on('dragstart', function (pointer, gameObject) {
             this.children.bringToTop(gameObject);
@@ -110,19 +104,15 @@ class Scene3 extends Phaser.Scene{
             gameObject.x = dragX;
             gameObject.y = dragY;
 
-            if (gameObject.x >= 500 && gameObject.x <= 640  && gameObject.y >= 255 && gameObject.y <= 395 )
+            if (gameObject.x >= 500 && gameObject.x <= 640  && gameObject.y >= 255 && gameObject.y <= 395 && zone1 != null)
                 zone1.setTint(0x00ff00);
-            else if (gameObject.x >= 850 && gameObject.x <= 990  && gameObject.y >= 255 && gameObject.y <= 395)
+            else if (gameObject.x >= 850 && gameObject.x <= 990  && gameObject.y >= 255 && gameObject.y <= 395 && zone2 != null)
                 zone2.setTint(0x00ff00);
-            else if (gameObject.x >= 500 && gameObject.x <= 640 && gameObject.y >= 475 && gameObject.y <= 595)
+            else if (gameObject.x >= 500 && gameObject.x <= 640 && gameObject.y >= 475 && gameObject.y <= 595 && zone3 != null)
                 zone3.setTint(0x00ff00);
-            else if (gameObject.x >= 850 && gameObject.x <= 990 && gameObject.y >= 475 && gameObject.y <= 595 )
+            else if (gameObject.x >= 850 && gameObject.x <= 990 && gameObject.y >= 475 && gameObject.y <= 595 && zone4 != null)
                 zone4.setTint(0x00ff00);
             else {
-                zone1.clearTint();
-                zone2.clearTint();
-                zone3.clearTint();
-                zone4.clearTint();
             }
 
         });
@@ -153,6 +143,7 @@ class Scene3 extends Phaser.Scene{
                     textQuestion3.setText('Below Below Below!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
+                    handleAnsFalse();
                 }
             }
             else if (gameObject.x >= 850 && gameObject.x <= 990  && gameObject.y >= 255 && gameObject.y <= 395){
@@ -170,6 +161,7 @@ class Scene3 extends Phaser.Scene{
                     textQuestion3.setText('Below Below Below!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
+                    handleAnsFalse()
                 }
             }
             else if (gameObject.x >= 500 && gameObject.x <= 640 && gameObject.y >= 475 && gameObject.y <= 595){
@@ -187,6 +179,7 @@ class Scene3 extends Phaser.Scene{
                     textQuestion3.setText('Above Above Above!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
+                    handleAnsFalse();
                 }
             }
             else if (gameObject.x >= 850 && gameObject.x <= 990 && gameObject.y >= 475 && gameObject.y <= 595 ){
@@ -204,6 +197,7 @@ class Scene3 extends Phaser.Scene{
                     textQuestion3.setText('Above Above Above!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
+                    handleAnsFalse();
                 }
             }
             else {
@@ -220,15 +214,65 @@ class Scene3 extends Phaser.Scene{
             }
         });
 
-    }
-
-    update(){
-        if(numberOfPlay == 0){
-            textOver.add.text(725, 137, "WIN!", {font: "50px Arial", fill: "red" });
+        function handleAnsFalse() {
+            arrNumberOfPlay[number - 1].destroy();
+            arrNumberOfPlay[number - 1] = null;
+            number--;
         }
     }
 
+    destroyObject() {
+        imag1.destroy();
+        imag2.destroy();
+        imag3.destroy();
+        imag4.destroy();
+        ball.destroy();
+        displayResult.destroy();
+        textQuestion3.destroy();
+        if(zone1 != null) zone1.destroy();
+        if(zone2 != null) zone2.destroy();
+        if(zone3 != null) zone3.destroy();
+        if(zone4 != null) zone4.destroy();
+    }
 
+    handleGameOver(){
+        if(numberOfPlay == 0){
+            this.destroyObject();
+            this.nofication = this.add.text(475, 145, 'Well done! You completed the card!', {
 
+                font: '35px Arial',
+                fill: 'red'
+
+            });
+
+            var lesson = this.add.sprite(650, 400, 'lesson').setOrigin(0, 0)
+
+            lesson.setInteractive().on('pointerdown', () => {
+
+                this.scene.start('Menu')
+
+            });
+
+            this.input.on('gameobjectover', function(pointer, gameObject) {
+
+                gameObject.setTint(0x8EEDE2)
+
+            });
+
+            this.input.on('gameobjectout', function(pointer, gameObject) {
+
+                gameObject.clearTint()
+
+            });
+        }
+        if(number == 0){
+            this.destroyObject();
+            textOver = this.add.text(625, 137, "TRY AGAIN!", {font: "50px Arial", fill: "red" });
+        }
+    }
+
+    update(){
+        this.handleGameOver();
+    }
 }
 

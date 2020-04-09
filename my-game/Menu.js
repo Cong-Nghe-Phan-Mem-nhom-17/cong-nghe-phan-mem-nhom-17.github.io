@@ -97,9 +97,10 @@ class Menu extends Phaser.Scene {
 
         this.play3.setInteractive().on('pointerdown', () => {
 
-            number = 3
-            status3 = 0
-            _const3 = 200
+            number = 3;
+            status3 = 0;
+            _const3 = 200;
+            numberOfPlay = 4;
             this.scene.start('Scene3')
 
         })
@@ -112,10 +113,10 @@ class Menu extends Phaser.Scene {
         }).setOrigin(0, 0)
 
         this.textPlay3.setInteractive().on('pointerdown', () => {
-            
-            number = 3
-            status3 = 0
-            _const3 = 200
+            numberOfPlay = 4;
+            number = 3;
+            status3 = 0;
+            _const3 = 200;
             this.scene.start('Scene3')
 
         })

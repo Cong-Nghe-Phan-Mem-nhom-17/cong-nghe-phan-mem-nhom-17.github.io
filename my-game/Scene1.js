@@ -5,8 +5,11 @@ let imageBug;
 let displayResult2;
 let textQuestion2;
 let arr;
-let textGameOver;
 let nextButton;
+let zone1;
+let zone2;
+let zone3;
+let zone4;
 
 class Scene1 extends Phaser.Scene{
 
@@ -16,19 +19,20 @@ class Scene1 extends Phaser.Scene{
 
     preload() {
         // load image background;
-        this.load.image('backGround', 'assets/images/backGround.png')
-        this.load.image('frameWork', "assets/images/frameWork.png")
+        this.load.image('backGround', 'assets/images/backGround.png');
+        this.load.image('frameWork', "assets/images/frameWork.png");
 
         // load image button;
-        this.load.image('buttonAbove', 'assets/images/buttonAbove.png')
-        this.load.image('buttonBelow', 'assets/images/buttonBelow.png')
-        this.load.image('nextButton', 'assets/images/nextButton.png')
-        this.load.image('backButton', 'assets/images/backButton.png')
+        this.load.image('buttonAbove', 'assets/images/buttonAbove.png');
+        this.load.image('buttonBelow', 'assets/images/buttonBelow.png');
+        this.load.image('nextButton', 'assets/images/nextButton.png');
+        this.load.image('backButton', 'assets/images/backButton.png');
+        this.load.image('lesson', 'assets/images/lesson.png');
 
         // load image object;
-        this.load.image('imageBird', 'assets/images/imageBird.png')
-        this.load.image('redBall', 'assets/images/redBall.png')
-        this.load.image('img1', 'assets/images/img1.png')
+        this.load.image('imageBird', 'assets/images/imageBird.png');
+        this.load.image('redBall', 'assets/images/redBall.png');
+        this.load.image('img1', 'assets/images/img1.png');
         this.load.image('imageBug', 'assets/images/imageBug.png');
         this.load.image('zonePut', 'assets/images/zonePut.png');
     }
@@ -155,26 +159,29 @@ class Scene1 extends Phaser.Scene{
     }
 
     handleGameOver(){
-        this.text2 = this.add.text(725, 137, "WIN!", {font: "50px Arial", fill: "red" });
-        var nextButton = this.add.sprite(1150, 117, 'nextButton').setOrigin(0, 0);
-        // Click to chance scene
-        nextButton.setInteractive().on('pointerdown', () =>{
-            
-            this.scene.start('Menu')
+        if(ballNumber1 == 0){
+            this.destroyObject2();
+            this.nofication = this.add.text(475, 145, 'Well done! You completed the card!', {font: '35px Arial', fill: 'red'});
+            var lesson = this.add.sprite(650, 400, 'lesson').setOrigin(0, 0)
 
-        })
+            lesson.setInteractive().on('pointerdown', () => {
 
-        this.input.on('gameobjectover', function (pointer, gameObject) {
+                this.scene.start('Menu')
 
-            gameObject.setTint(0x8EEDE2);
+            });
 
-        });
+            this.input.on('gameobjectover', function(pointer, gameObject) {
 
-        this.input.on('gameobjectout', function (pointer, gameObject) {
+                gameObject.setTint(0x8EEDE2)
 
-            gameObject.clearTint();
-        });
+            });
 
+            this.input.on('gameobjectout', function(pointer, gameObject) {
+
+                gameObject.clearTint()
+
+            });
+        }
     }
 
     handleNextFrameGame(){
@@ -185,10 +192,10 @@ class Scene1 extends Phaser.Scene{
         imageBug = this.add.image(1150, 550, 'imageBug', Phaser.Math.RND.pick(this.framework)).setInteractive();
         this.input.setDraggable(imageBug);
 
-        var zone1 = this.add.image(500, 300, 'zonePut').setInteractive();
-        var zone2 = this.add.image(700, 300, 'zonePut').setInteractive();
-        var zone3 = this.add.image(500, 590, 'zonePut').setInteractive();
-        var zone4 = this.add.image(700, 590, 'zonePut').setInteractive();
+        zone1 = this.add.image(500, 300, 'zonePut').setInteractive();
+        zone2 = this.add.image(700, 300, 'zonePut').setInteractive();
+        zone3 = this.add.image(500, 590, 'zonePut').setInteractive();
+        zone4 = this.add.image(700, 590, 'zonePut').setInteractive();
 
         zone1.input.dropZone = true;
         zone2.input.dropZone = true;
@@ -238,9 +245,6 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1] = null;
                     ballNumber1--;
                     status1 = randomQuestion();
-                    if(ballNumber1 == 0){
-                        destroyObject();
-                    }
                 }
                 else{
                     displayResult2.setText('False!');
@@ -256,9 +260,6 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1- 1] = null;
                     ballNumber1--;
                     status1 = randomQuestion();
-                    if(ballNumber1 == 0){
-                        destroyObject();
-                    }
                 }
                 else{
                     displayResult2.setText('False!');
@@ -274,9 +275,6 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1] = null;
                     ballNumber1--;
                     status1 = randomQuestion();
-                    if(ballNumber1 == 0){
-                        destroyObject();
-                    }
                 }
                 else{
                     displayResult2.setText('False!');
@@ -292,9 +290,6 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1] = null;
                     ballNumber1--;
                     status1 = randomQuestion();
-                    if(ballNumber1 == 0){
-                        destroyObject();
-                    }
                 }
                 else{
                     displayResult2.setText('False!');
@@ -327,30 +322,21 @@ class Scene1 extends Phaser.Scene{
             }
             return temp2;
         }
-
-        function destroyObject(){
-            displayResult2.destroy();
-            displayResult2 = null;
-            imageBug.destroy();
-            imageBug = null;
-            textQuestion2.destroy();
-            textQuestion2 = null;
-            zone1.destroy();
-            zone1 = null;
-            zone2.destroy();
-            zone2 = null;
-            zone3.destroy();
-            zone3 = null;
-            zone4.destroy();
-            zone4 = null;
-        }
     }
 
+    destroyObject2(){
+        displayResult2.destroy();
+        imageBug.destroy();
+        textQuestion2.destroy();
+        zone1.destroy();
+        zone2.destroy();
+        zone3.destroy();
+        zone4.destroy();
+        this.bird.destroy();
+    }
 
     update(){
-        if(ballNumber1 == 0){
-            this.handleGameOver();
-        }
+        this.handleGameOver();
     }
 
 }
