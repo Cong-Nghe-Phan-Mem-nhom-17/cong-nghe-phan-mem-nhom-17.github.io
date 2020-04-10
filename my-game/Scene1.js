@@ -281,6 +281,8 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1] = null;
                     ballNumber1--;
                     status1 = randomQuestion();
+                    gameObject.x = 1150;
+                    gameObject.y = 550;
                 }
                 else{
                     displayResult2.setText('False!');
@@ -296,6 +298,8 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1- 1] = null;
                     ballNumber1--;
                     status1 = randomQuestion();
+                    gameObject.x = 1150;
+                    gameObject.y = 550;
                 }
                 else{
                     displayResult2.setText('False!');
@@ -311,6 +315,8 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1] = null;
                     ballNumber1--;
                     status1 = randomQuestion();
+                    gameObject.x = 1150;
+                    gameObject.y = 550;
                 }
                 else{
                     displayResult2.setText('False!');
@@ -326,6 +332,8 @@ class Scene1 extends Phaser.Scene{
                     arr[ballNumber1 - 1] = null;
                     ballNumber1--;
                     status1 = randomQuestion();
+                    gameObject.x = 1150;
+                    gameObject.y = 550;
                 }
                 else{
                     displayResult2.setText('False!');
