@@ -290,7 +290,7 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok2.destroy()
             ok1.destroy()
-            this.answer_1.setText("")
+            this.answer_2.setText("")
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
@@ -416,7 +416,7 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
-            this.answer_1.setText("")
+            this.answer_2.setText("")
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
@@ -469,7 +469,7 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
-            this.answer_1.setText("")
+            this.answer_2.setText("")
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){

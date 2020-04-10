@@ -10,9 +10,10 @@ let zone1;
 let zone2;
 let zone3;
 let zone4;
-let timedEvent1
+let timedEvent1;
 let abv;
 let blw;
+let click1 = 1;
 
 class Scene1 extends Phaser.Scene{
 
@@ -62,8 +63,19 @@ class Scene1 extends Phaser.Scene{
         this.displayResult = this.add.text(250, 350, "Result", {font: "50px Arial", fill: "black"});
 
         // set onClick for the buttons;
-        this.buttonAbove.setInteractive().on('pointerdown', () => this.eventClickButtonAbove(arr[ballNumber1 - 1]));
-        this.buttonBelow.setInteractive().on('pointerdown', () => this.eventClickButtonBelow(arr[ballNumber1 - 1]));
+        
+            this.buttonAbove.setInteractive().on('pointerdown', () => { 
+                if(click1){
+                    this.eventClickButtonAbove(arr[ballNumber1 - 1])
+                }
+            });
+
+            this.buttonBelow.setInteractive().on('pointerdown', () => {
+                if(click1){
+                    this.eventClickButtonBelow(arr[ballNumber1 - 1])
+                }
+            });
+        
         this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'));
 
         //effect of sprites;
@@ -81,6 +93,7 @@ class Scene1 extends Phaser.Scene{
 
     eventClickButtonAbove(ball){
         if(status1 == 0){
+            click1 = 0
             this.displayResult.setText("Correct!");
             ball.destroy();
             ball = null;
@@ -94,6 +107,7 @@ class Scene1 extends Phaser.Scene{
                 abv.setText("")
                 this.displayResult.setText("Result")
                 status1 = this.randomQuestion();
+                click1 = 1
             
             if(ballNumber1 == 5){
                 this.destroyObject();
@@ -128,6 +142,7 @@ class Scene1 extends Phaser.Scene{
 
     eventClickButtonBelow(ball){
         if(status1 == 1){
+            click1 = 0
             this.displayResult.setText("Correct!");
             ball.destroy();
             ball = null;
@@ -138,6 +153,7 @@ class Scene1 extends Phaser.Scene{
             })
 
             timedEvent1 = this.time.delayedCall(2000, function below() {
+                click1 = 1
                 blw.setText("")
                 this.displayResult.setText("Result")
                 status1 = this.randomQuestion();
@@ -285,8 +301,14 @@ class Scene1 extends Phaser.Scene{
                 else{
                     displayResult2.setText('False!');
                     textQuestion2.setText('Below Below '+ '\n' +'Below!');
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    // timedEvent1 = this.time.delayedCall(1000, function wrong1() {
+
+                    //     displayResult2.setText("Result")
+                    //     textQuestion2.setText("Put the " + "\n" + "Above the bird")
+                        gameObject.x = 1150;
+                        gameObject.y = 550;
+
+                    // }, [], this)
                 }
             }
             else if (gameObject.x >= 650 && gameObject.x <= 800  && gameObject.y >= 250 && gameObject.y <= 350 ){
