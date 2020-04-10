@@ -82,9 +82,7 @@ class Scene1 extends Phaser.Scene{
     eventClickButtonAbove(ball){
         if(status1 == 0){
             this.displayResult.setText("Correct!");
-            ball.destroy();
-            ball = null;
-            ballNumber1--;
+            this.deleteBall (ball);
             abv = this.add.text(440, 275, 'ABOVE', {
                 font: '50px Arial',
                 fill: 'black'
@@ -129,9 +127,7 @@ class Scene1 extends Phaser.Scene{
     eventClickButtonBelow(ball){
         if(status1 == 1){
             this.displayResult.setText("Correct!");
-            ball.destroy();
-            ball = null;
-            ballNumber1--;
+            this.deleteBall (ball);
             blw = this.add.text(440, 575, 'BELOW', {
                 font: '50px Arial',
                 fill: 'black'
@@ -181,6 +177,11 @@ class Scene1 extends Phaser.Scene{
             this.text1.setText( "Click Above " + "\n" + "The Strange Creature");
         }
         return temp;
+    }
+    deleteBall (ball){
+        ball.destroy();
+        ball = null;
+        ballNumber1--;
     }
 
     destroyObject(){
@@ -277,9 +278,7 @@ class Scene1 extends Phaser.Scene{
             if (gameObject.x >= 450 && gameObject.x <= 600  && gameObject.y >= 250 && gameObject.y <= 350 ){
                 if(status1 == 0){
                     displayResult2.setText('True!');
-                    arr[ballNumber1 - 1].destroy();
-                    arr[ballNumber1 - 1] = null;
-                    ballNumber1--;
+                    deleteBall (arr[ballNumber1 - 1]);
                     status1 = randomQuestion();
                     gameObject.x = 1150;
                     gameObject.y = 550;
@@ -294,9 +293,7 @@ class Scene1 extends Phaser.Scene{
             else if (gameObject.x >= 650 && gameObject.x <= 800  && gameObject.y >= 250 && gameObject.y <= 350 ){
                 if(status1 == 0){
                     displayResult2.setText('True!');
-                    arr[ballNumber1 - 1].destroy();
-                    arr[ballNumber1- 1] = null;
-                    ballNumber1--;
+                    deleteBall (arr[ballNumber1 - 1]);
                     status1 = randomQuestion();
                     gameObject.x = 1150;
                     gameObject.y = 550;
@@ -311,9 +308,7 @@ class Scene1 extends Phaser.Scene{
             else if (gameObject.x >= 450 && gameObject.x <= 600 && gameObject.y >= 540 && gameObject.y <= 640 ){
                 if(status1 == 1){
                     displayResult2.setText('True!');
-                    arr[ballNumber1 - 1].destroy();
-                    arr[ballNumber1 - 1] = null;
-                    ballNumber1--;
+                    deleteBall (arr[ballNumber1 - 1]);
                     status1 = randomQuestion();
                     gameObject.x = 1150;
                     gameObject.y = 550;
@@ -328,9 +323,7 @@ class Scene1 extends Phaser.Scene{
             else if (gameObject.x >= 650 && gameObject.x <= 800 && gameObject.y >= 540 && gameObject.y <= 640 ){
                 if(status1 == 1){
                     displayResult2.setText('True!');
-                    arr[ballNumber1 - 1].destroy();
-                    arr[ballNumber1 - 1] = null;
-                    ballNumber1--;
+                    deleteBall (arr[ballNumber1 - 1]);
                     status1 = randomQuestion();
                     gameObject.x = 1150;
                     gameObject.y = 550;
@@ -366,8 +359,14 @@ class Scene1 extends Phaser.Scene{
             }
             return temp2;
         }
+        function deleteBall(ball){
+            ball.destroy();
+            ball = null;
+            ballNumber1--;
+        }
+        
     }
-
+    
     destroyObject2(){
         displayResult2.destroy();
         imageBug.destroy();
