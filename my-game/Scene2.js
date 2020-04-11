@@ -102,8 +102,18 @@ class Scene2 extends Phaser.Scene{
         this.ok2 = this.add.sprite(1130, 420, "ok2").setOrigin(0, 0);
 
         this.ok2.setInteractive().on('pointerdown', () => {
-
-            this.ok2.setTint('red')
+            this.ok1.destroy()
+            this.ok2.destroy()
+            this.answer_1.setText("")
+            this.answer_2.setScale(1).setText("Wrong! Do it again")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_2.setScale(1)
+                this.answer_2.destroy()
+                this.phase_1()
+                
+            }, [], this)
 
         })
 
@@ -130,15 +140,24 @@ class Scene2 extends Phaser.Scene{
         this.answer_1.setText('The squirrel is BELOW the bird');
         this.answer_2.setText('The squirrel is ABOVE the bird'); 
 
-        var ok1 = this.add.sprite(1150, 362, "ok1").setOrigin(0, 0)
+        var ok1 = this.add.sprite(1150, 362, "ok1").setOrigin(0, 0);
+        var ok2 = this.add.sprite(1150, 420, "ok2").setOrigin(0, 0);
 
         ok1.setInteractive().on('pointerdown', () => {
+            ok1.destroy()
+            ok2.destroy()
+            
+            this.answer_1.setText("Wrong! Do it again")
+            this.answer_2.setText("")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.phase_2()
+            }, [], this)
 
-            ok1.setTint('red')
+        });
 
-        })
-
-        var ok2 = this.add.sprite(1150, 420, "ok2").setOrigin(0, 0);
+        
 
        
         ok2.setInteractive().on('pointerdown', () => {
@@ -183,7 +202,16 @@ class Scene2 extends Phaser.Scene{
 
         ok1.setInteractive().on('pointerdown', () => {
 
-            ok1.setTint('red')
+            ok1.destroy()
+            ok2.destroy()
+            
+            this.answer_1.setText("Wrong! Do it again")
+            this.answer_2.setText("")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.phase_3()
+            }, [], this)
 
         })
 
@@ -240,7 +268,18 @@ class Scene2 extends Phaser.Scene{
         ok1.setInteractive().on('pointerdown', () => {
 
             
-            ok1.setTint('red')
+            ok1.destroy()
+            ok2.destroy()
+            
+            this.answer_1.setText("Wrong! Do it again")
+            this.answer_2.setText("")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.turtle.destroy()
+                this.mouse.destroy()
+                this.phase_4()
+            }, [], this)
 
         })
 
@@ -313,7 +352,18 @@ class Scene2 extends Phaser.Scene{
 
         ok2.setInteractive().on('pointerdown', () =>{
 
-            ok2.setTint('red')
+            ok1.destroy()
+            ok2.destroy()
+            
+            this.answer_1.setText("")
+            this.answer_2.setText("Wrong! Do it again")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_1.setScale(1)
+                this.chicken.destroy()
+                this.phase_5()
+            }, [], this)
 
         })
 
@@ -334,7 +384,12 @@ class Scene2 extends Phaser.Scene{
 
     phase_6() {
 
+        this.home_0.destroy()
+        this.frog.destroy()
+        this.home_0 = this.add.sprite(265, 250, 'home_0').setOrigin(0,0)
         this.turtle = this.add.sprite(300, 250, 'turtle').setOrigin(0,0)
+        this.frog = this.add.sprite(287, 455, 'frog').setOrigin(0,0)
+
 
         this.question.setText('Which one is true?')
         this.answer_1.setText('The frog is ABOVE the turtle')
@@ -344,9 +399,20 @@ class Scene2 extends Phaser.Scene{
 
         ok1.setInteractive().on('pointerdown', () => {
 
-            ok1.setTint('red')
-
+            ok1.destroy()
+            ok2.destroy()
+            
+            this.answer_1.setText("Wrong! Do it again")
+            this.answer_2.setText("")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.turtle.destroy()
+                this.phase_6()
+            }, [], this)
+            
         })
+        
 
         var ok2 = this.add.sprite(1140, 420, 'ok2').setOrigin(0,0)
 
@@ -360,17 +426,17 @@ class Scene2 extends Phaser.Scene{
             this.question.setText("")
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.answer_2.setScale(1)
-                this.home_0.destroy()
-                this.frog.destroy()
-                this.turtle.destroy()
                 this.question.destroy()
+                this.home_0.destroy()
+                 this.turtle.destroy()
+                this.frog.destroy()
                 this.answer_1.destroy()
                 this.answer_2.destroy()
                 this.phase_7()
             }, [], this)
-
-
+            this.home_0.destroy()
+            this.turtle.destroy()
+            this.frog.destroy()
         })
 
         this.input.on('gameobjectover', function(pointer, gameObject) {
@@ -389,6 +455,9 @@ class Scene2 extends Phaser.Scene{
     }
 
     phase_7() {
+        this.home_0.destroy()
+        this.turtle.destroy()
+        this.frog.destroy()
 
         this.home_1 = this.add.sprite(850, 250, 'home_1').setOrigin(0, 0)
         this.home_2 = this.add.sprite(1070, 250, 'home_2').setOrigin(0, 0)
@@ -433,12 +502,12 @@ class Scene2 extends Phaser.Scene{
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
                 this.answer_1.setScale(1)
                 this.home_1.destroy()
-                this.home_2.destroy()
-                this.frog.destroy()
-                this.chicken.destroy()
+            this.home_2.destroy()
+            this.frog.destroy()
+            this.chicken.destroy()
                 this.phase_8()
             }, [], this)
-
+            
             
         })
 
@@ -446,7 +515,23 @@ class Scene2 extends Phaser.Scene{
 
         ok2.setInteractive().on('pointerdown', () => {
 
-            ok2.setTint('red')
+            ok1.destroy()
+            ok2.destroy()
+            
+            ok1.destroy()
+            ok2.destroy()
+            this.answer_1.setText("Wrong! Do it again")
+            this.answer_2.setText("")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_1.destroy()
+                this.home_1.destroy()
+                this.home_2.destroy()
+                this.frog.destroy()
+                this.chicken.destroy()
+                this.phase_7()
+            }, [], this)
 
         })
 
@@ -464,7 +549,10 @@ class Scene2 extends Phaser.Scene{
     }
 
     phase_8() {
-
+        this.home_1.destroy()
+        this.home_2.destroy()
+        this.frog.destroy()
+        this.chicken.destroy()
         this.home_1 = this.add.sprite(1070, 250, 'home_1').setOrigin(0, 0)
         this.home_2 = this.add.sprite(850, 250, 'home_2').setOrigin(0, 0)
         this.frog = this.add.sprite(1095, 295, 'frog').setOrigin(0, 0)
@@ -492,7 +580,10 @@ class Scene2 extends Phaser.Scene{
                 this.turtle.destroy()
                 this.phase_9()
             }, [], this)
-
+            this.home_1.destroy()
+            this.home_2.destroy()
+            this.frog.destroy()
+            this.turtle.destroy()
             
         })
 
@@ -500,7 +591,22 @@ class Scene2 extends Phaser.Scene{
 
         ok2.setInteractive().on('pointerdown', () => {
 
-            ok2.setTint('red')
+            ok1.destroy()
+            ok2.destroy()
+            
+            ok1.destroy()
+            ok2.destroy()
+            this.answer_1.setText("Wrong! Do it again")
+            this.answer_2.setText("")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.home_1.destroy()
+                this.home_2.destroy()
+                this.turtle.destroy()
+                this.chicken.destroy()
+                this.phase_8()
+            }, [], this)
 
         })
 
@@ -520,8 +626,16 @@ class Scene2 extends Phaser.Scene{
     }
 
     phase_9() {
+        this.home_0.destroy()
+        this.home_1.destroy()
+        this.home_2.destroy()
+        this.frog.destroy()
+        this.chicken.destroy()
+        this.mouse.destroy()
+        this.cat.destroy()
 
         this.home_0 = this.add.sprite(1070, 250, 'home_0').setOrigin(0, 0)
+        this.home_2 = this.add.sprite(850, 250, 'home_2').setOrigin(0, 0)
         this.frog = this.add.sprite(1095, 255, 'frog').setOrigin(0, 0)
         this.cat = this.add.sprite(882, 460, 'cat').setOrigin(0, 0)
         this.mouse = this.add.sprite(1105, 450, 'mouse').setOrigin(0, 0)
@@ -534,7 +648,15 @@ class Scene2 extends Phaser.Scene{
 
         ok1.setInteractive().on('pointerdown', () => {
 
-            ok1.setTint('red')
+            ok1.destroy()
+            ok2.destroy()
+            this.answer_1.setText("")
+            this.answer_2.setText("Wrong! Do it again")
+            this.question.setText("")
+            
+            timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.phase_9()
+            }, [], this)
             
         })
 
@@ -550,17 +672,17 @@ class Scene2 extends Phaser.Scene{
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.home_0.destroy()
-                this.home_2.destroy()
-                this.frog.destroy()
-                this.cat.destroy()
-                this.mouse.destroy()
-                this.question.destroy()
-                this.answer_1.destroy()
-                this.answer_2.destroy()
+                
                 this.end_scene()
             }, [], this)
-
+            this.home_0.destroy()
+            this.home_2.destroy()
+            this.frog.destroy()
+            this.cat.destroy()
+            this.mouse.destroy()
+            this.question.destroy()
+            this.answer_1.destroy()
+            this.answer_2.destroy()
 
         })
 

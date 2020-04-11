@@ -185,12 +185,27 @@ class Scene1 extends Phaser.Scene{
 
     randomQuestion(){
         var temp = Phaser.Math.Between(0, 1);
-        if(temp == 1){
-            this.text1.setText( "Click Below " + "\n" + "The Strange Creature");
+        this.text1.setText( "The next question?");
+        if (ballNumber1 > 5){
+            timedEvent1 = this.time.delayedCall(1000, function wrong() {
+                if(temp == 1){
+                    this.text1.setText( "Click Below " + "\n" + "The Strange Creature");
+                }
+                else{
+                    this.text1.setText( "Click Above " + "\n" + "The Strange Creature");
+                }
+            }, [], this)
         }
-        else{
-            this.text1.setText( "Click Above " + "\n" + "The Strange Creature");
+        else 
+        {
+            if(temp == 1){
+                this.text1.setText( "Click Below " + "\n" + "The Strange Creature");
+            }
+            else{
+                this.text1.setText( "Click Above " + "\n" + "The Strange Creature");
+            }
         }
+        
         return temp;
     }
     deleteBall (ball){
