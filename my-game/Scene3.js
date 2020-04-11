@@ -11,6 +11,9 @@ let imag1;
 let imag2;
 let imag3;
 let imag4;
+let click3 = 1;
+let timedEvent3
+let x = 0;
 
 class Scene3 extends Phaser.Scene{
 
@@ -52,9 +55,9 @@ class Scene3 extends Phaser.Scene{
 
         // add image object;
         imag1 = this.add.image(1150, 550, 'img1', Phaser.Math.RND.pick(this.framework));
-        imag2 = this.add.image(1150, 430, 'img2', Phaser.Math.RND.pick(this.framework));
-        imag3 = this.add.image(1150, 310, 'img3', Phaser.Math.RND.pick(this.framework));
-        imag4 = this.add.image(1150, 190, 'img4', Phaser.Math.RND.pick(this.framework));
+        // imag2 = this.add.image(1150, 430, 'img2', Phaser.Math.RND.pick(this.framework));
+        // imag3 = this.add.image(1150, 310, 'img3', Phaser.Math.RND.pick(this.framework));
+        // imag4 = this.add.image(1150, 190, 'img4', Phaser.Math.RND.pick(this.framework));
         // ball = this.add.image(430, 137, "redBall").setOrigin(0, 0);
 
         arrNumberOfPlay = new Array("numberOfPlay");
@@ -64,7 +67,7 @@ class Scene3 extends Phaser.Scene{
         }
 
         // add text;
-        textQuestion3 = this.add.text(450, 620, "Place the bug ABOVE the window", {font: "35px Arial", fill: "black"});
+        textQuestion3 = this.add.text(450, 620, "Place the bee ABOVE the window", {font: "35px Arial", fill: "black"});
         displayResult = this.add.text(250, 350, "Result!", {font: "50px Arial", fill: "black"});
 
         // set onClick for the buttons;
@@ -81,11 +84,13 @@ class Scene3 extends Phaser.Scene{
         });
 
         imag1.setInteractive();
-        imag2.setInteractive();
-        imag3.setInteractive();
-        imag4.setInteractive();
+        // imag2.setInteractive();
+        // imag3.setInteractive();
+        // imag4.setInteractive();
 
-        this.input.setDraggable([imag1, imag2, imag3, imag4]);
+        this.input.setDraggable(imag1);
+
+        
 
         zone1 = this.add.image(575, 325, 'zonePutWindow').setInteractive();
         zone2 = this.add.image(920, 325, 'zonePutWindow').setInteractive();
@@ -134,12 +139,13 @@ class Scene3 extends Phaser.Scene{
             if (gameObject.x >= 500 && gameObject.x <= 640  && gameObject.y >= 255 && gameObject.y <= 395 ){
                 if(status3 == 0){
                     displayResult.setText("Correct!");
-                    textQuestion3.setText("Place the bee BELOW the window");
+                    // textQuestion3.setText("Place the bee BELOW the window");
                     status3 = 1;
                     zone1.destroy();
                     zone1 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
+                    x = 1 ;
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -152,12 +158,13 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 850 && gameObject.x <= 990  && gameObject.y >= 255 && gameObject.y <= 395){
                 if(status3 == 0){
                     displayResult.setText("Correct!");
-                    textQuestion3.setText("Place the bee BELOW the window");
+                    // textQuestion3.setText("Place the bee BELOW the window");
                     status3 = 1;
                     zone2.destroy();
                     zone2 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
+                    x = 1;
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -170,12 +177,13 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 500 && gameObject.x <= 640 && gameObject.y >= 475 && gameObject.y <= 595){
                 if(status3 == 1){
                     displayResult.setText("Correct!");
-                    textQuestion3.setText("Place the bee ABOVE the window");
+                    // textQuestion3.setText("Place the bee ABOVE the window");
                     status3 = 0;
                     zone3.destroy();
                     zone3 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
+                    x = 1
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -188,12 +196,13 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 850 && gameObject.x <= 990 && gameObject.y >= 475 && gameObject.y <= 595 ){
                 if(status3 == 1){
                     displayResult.setText("Correct!");
-                    textQuestion3.setText("Place the bee ABOVE the window");
+                    // textQuestion3.setText("Place the bee ABOVE the window");
                     status3 = 0;
                     zone4.destroy();
                     zone4 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
+                    x = 1
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -309,6 +318,44 @@ class Scene3 extends Phaser.Scene{
 
     update(){
         this.handleGameOver();
+        if(x == 1){
+            x = 0
+            if(numberOfPlay == 3){ 
+                timedEvent3 = this.time.delayedCall(1500, function nextObject() {
+                    displayResult.setText("Result!")
+                    textQuestion3.setText("Place the butterfly BELOW the window")
+                    imag2 = this.add.image(1150, 550, 'img2')
+                    imag2.setInteractive()
+                    this.input.setDraggable(imag2)
+                    
+    
+                }, [], this)
+                
+            } else 
+            if(numberOfPlay == 2){
+                timedEvent3 = this.time.delayedCall(1500, function nextObject() {
+                    displayResult.setText("Result!")
+                    textQuestion3.setText("Place the bug ABOVE the window")
+                    imag3 = this.add.image(1150, 550, 'img3')
+                    imag3.setInteractive()
+                    this.input.setDraggable(imag3)
+                    
+    
+                }, [], this)
+            } else 
+            if(numberOfPlay == 1){
+                timedEvent3 = this.time.delayedCall(1500, function nextObject() {
+                    displayResult.setText("Result!")
+                    textQuestion3.setText("Place the worm BELOW the window")
+                    imag4 = this.add.image(1150, 550, 'img4')
+                    imag4.setInteractive()
+                    this.input.setDraggable(imag4)
+                    
+    
+                }, [], this)
+            }
+        }
+        
     }
 }
 
