@@ -28,10 +28,13 @@ class Scene1 extends Phaser.Scene{
 
         // load image button;
         this.load.image('buttonAbove', 'assets/images/buttonAbove.png');
+        this.load.image('effectTrueAbove', 'assets/images/effectTrueAbove.png');
         this.load.image('buttonBelow', 'assets/images/buttonBelow.png');
+        this.load.image('effectTrueBelow', 'assets/images/effectTrueBelow.png');
         this.load.image('nextButton', 'assets/images/nextButton.png');
         this.load.image('backButton', 'assets/images/backButton.png');
         this.load.image('lesson', 'assets/images/lesson.png');
+
 
         // load image object;
         this.load.image('imageBird', 'assets/images/imageBird.png');
@@ -65,15 +68,15 @@ class Scene1 extends Phaser.Scene{
         // set onClick for the buttons;
         
             this.buttonAbove.setInteractive().on('pointerdown', () => { 
-                if(click1){
+                // if(click1){
                     this.eventClickButtonAbove(arr[ballNumber1 - 1])
-                }
+                //}
             });
 
             this.buttonBelow.setInteractive().on('pointerdown', () => {
-                if(click1){
+                //if(click1){
                     this.eventClickButtonBelow(arr[ballNumber1 - 1])
-                }
+                //}
             });
         
         this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'));
@@ -93,32 +96,32 @@ class Scene1 extends Phaser.Scene{
 
     eventClickButtonAbove(ball){
         if(status1 == 0){
-            click1 = 0
+            //click1 = 0
+            this.effectTrueAbove = this.add.image(233, 225, "effectTrueAbove").setOrigin(0, 0);
             this.displayResult.setText("Correct!");
-            this.deleteBall (ball);
+
             abv = this.add.text(440, 275, 'ABOVE', {
                 font: '50px Arial',
                 fill: 'black'
             })
 
+            this.buttonBelow.visible = false;
+            this.buttonAbove.visible = false;
+
             timedEvent1 = this.time.delayedCall(2000, function above() {
+                this.deleteBall(ball);
                 abv.setText("")
                 this.displayResult.setText("Result")
                 status1 = this.randomQuestion();
-                click1 = 1
-            
-            if(ballNumber1 == 5){
-                this.destroyObject();
-                this.handleNextFrameGame();
-            }
-
-            }, [], this)
-            this.input.on('gameobjectdown', function (pointer, gameObject) {
-                gameObject.setTint(0x37FB4B);
-            });
-            this.input.on('gameobjectup', function (pointer, gameObject) {
-                gameObject.clearTint();
-            });
+                //click1 = 1
+                this.effectTrueAbove.destroy();
+                this.buttonBelow.visible = true;
+                this.buttonAbove.visible = true;
+                if (ballNumber1 == 5) {
+                    this.destroyObject();
+                    this.handleNextFrameGame();
+                }
+            }, [], this);
         }
         else{
             this.displayResult.setText("Wrong!");
@@ -140,31 +143,27 @@ class Scene1 extends Phaser.Scene{
 
     eventClickButtonBelow(ball){
         if(status1 == 1){
-            click1 = 0
+            //click1 = 0
+            this.effectTrueBelow = this.add.image(233, 525, "effectTrueBelow").setOrigin(0, 0);
             this.displayResult.setText("Correct!");
             this.deleteBall (ball);
+
             blw = this.add.text(440, 575, 'BELOW', {
                 font: '50px Arial',
                 fill: 'black'
             })
 
             timedEvent1 = this.time.delayedCall(2000, function below() {
-                click1 = 1
+                //click1 = 1
                 blw.setText("")
                 this.displayResult.setText("Result")
                 status1 = this.randomQuestion();
-
-            if(ballNumber1 == 5){
-                this.destroyObject();
-                this.handleNextFrameGame();
-            }
+                this.effectTrueBelow.destroy();
+                if(ballNumber1 == 5){
+                    this.destroyObject();
+                    this.handleNextFrameGame();
+                }
             }, [], this)
-            this.input.on('gameobjectdown', function (pointer, gameObject) {
-                gameObject.setTint(0x37FB4B);
-            });
-            this.input.on('gameobjectup', function (pointer, gameObject) {
-                gameObject.clearTint();
-            });
         }
         else{
             this.displayResult.setText("Wrong!");
