@@ -88,11 +88,12 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             this.ok1.destroy()
             this.ok2.destroy()
+            this.answer_1.setScale(1.2)
             this.answer_2.setText("")
             this.question.setText("")
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-
+                this.answer_1.setScale(1)
                 this.phase_2()
 
             }, [], this)
@@ -146,9 +147,11 @@ class Scene2 extends Phaser.Scene{
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setText("")
+            this.answer_2.setScale(1.2)
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_2.setScale(1)
                 this.phase_3()
             }, [], this)
 
@@ -193,9 +196,11 @@ class Scene2 extends Phaser.Scene{
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setText("")
+            this.answer_2.setScale(1.2)
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_2.setScale(1)
                 this.tree.destroy()
                 this.cat.destroy()
                 this.squirrel.destroy()
@@ -246,11 +251,12 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok2.destroy()
             ok1.destroy()
-
             this.answer_1.setText("")
+            this.answer_2.setScale(1.2)
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_2.setScale(1)
                 this.turtle.destroy()
                 this.mouse.destroy()
                 this.phase_5()
@@ -290,10 +296,12 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok2.destroy()
             ok1.destroy()
+            this.answer_1.setScale(1.2)
             this.answer_2.setText("")
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_1.setScale(1)
                 this.chicken.destroy()
                 this.phase_6()
             }, [], this)
@@ -348,9 +356,11 @@ class Scene2 extends Phaser.Scene{
             ok2.destroy()
             ok1.destroy()
             this.answer_1.setText("")
+            this.answer_2.setScale(1.2)
             this.question.setText("")
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_2.setScale(1)
                 this.home_0.destroy()
                 this.frog.destroy()
                 this.turtle.destroy()
@@ -416,10 +426,12 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
+            this.answer_1.setScale(1.2)
             this.answer_2.setText("")
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_1.setScale(1)
                 this.home_1.destroy()
                 this.home_2.destroy()
                 this.frog.destroy()
@@ -469,10 +481,12 @@ class Scene2 extends Phaser.Scene{
             this.destroyBall()
             ok1.destroy()
             ok2.destroy()
+            this.answer_1.setScale(1.2)
             this.answer_2.setText("")
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
+                this.answer_1.setScale(1)
                 this.home_1.destroy()
                 this.frog.destroy()
                 this.turtle.destroy()
@@ -532,6 +546,7 @@ class Scene2 extends Phaser.Scene{
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setText("")
+            this.answer_2.setScale(1.2)
             this.question.setText("")
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
