@@ -35,7 +35,6 @@ class Scene3 extends Phaser.Scene{
         this.load.image('nextButton', 'assets/images/nextbutton.png')
 
         // load image object;
-        // this.load.image('redBall', 'assets/images/redBall.png');
         this.load.image('numberOfPlay', "assets/images/numberOfPlay.png");
         this.load.image('img1', 'assets/images/img1.png');
         this.load.image('img2', 'assets/images/img2.png');
@@ -55,10 +54,6 @@ class Scene3 extends Phaser.Scene{
 
         // add image object;
         imag1 = this.add.image(1150, 550, 'img1', Phaser.Math.RND.pick(this.framework));
-        // imag2 = this.add.image(1150, 430, 'img2', Phaser.Math.RND.pick(this.framework));
-        // imag3 = this.add.image(1150, 310, 'img3', Phaser.Math.RND.pick(this.framework));
-        // imag4 = this.add.image(1150, 190, 'img4', Phaser.Math.RND.pick(this.framework));
-        // ball = this.add.image(430, 137, "redBall").setOrigin(0, 0);
 
         arrNumberOfPlay = new Array("numberOfPlay");
 
@@ -84,13 +79,8 @@ class Scene3 extends Phaser.Scene{
         });
 
         imag1.setInteractive();
-        // imag2.setInteractive();
-        // imag3.setInteractive();
-        // imag4.setInteractive();
 
         this.input.setDraggable(imag1);
-
-        
 
         zone1 = this.add.image(575, 325, 'zonePutWindow').setInteractive();
         zone2 = this.add.image(920, 325, 'zonePutWindow').setInteractive();
@@ -119,6 +109,10 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 850 && gameObject.x <= 990 && gameObject.y >= 475 && gameObject.y <= 595 && zone4 != null)
                 zone4.setTint(0x00ff00);
             else {
+                zone1.clearTint();
+                zone2.clearTint();
+                zone3.clearTint();
+                zone4.clearTint();
             }
 
         });
@@ -139,7 +133,6 @@ class Scene3 extends Phaser.Scene{
             if (gameObject.x >= 500 && gameObject.x <= 640  && gameObject.y >= 255 && gameObject.y <= 395 ){
                 if(status3 == 0){
                     displayResult.setText("Correct!");
-                    // textQuestion3.setText("Place the bee BELOW the window");
                     status3 = 1;
                     zone1.destroy();
                     zone1 = null;
@@ -158,7 +151,6 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 850 && gameObject.x <= 990  && gameObject.y >= 255 && gameObject.y <= 395){
                 if(status3 == 0){
                     displayResult.setText("Correct!");
-                    // textQuestion3.setText("Place the bee BELOW the window");
                     status3 = 1;
                     zone2.destroy();
                     zone2 = null;
@@ -177,7 +169,6 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 500 && gameObject.x <= 640 && gameObject.y >= 475 && gameObject.y <= 595){
                 if(status3 == 1){
                     displayResult.setText("Correct!");
-                    // textQuestion3.setText("Place the bee ABOVE the window");
                     status3 = 0;
                     zone3.destroy();
                     zone3 = null;
@@ -196,7 +187,6 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 850 && gameObject.x <= 990 && gameObject.y >= 475 && gameObject.y <= 595 ){
                 if(status3 == 1){
                     displayResult.setText("Correct!");
-                    // textQuestion3.setText("Place the bee ABOVE the window");
                     status3 = 0;
                     zone4.destroy();
                     zone4 = null;
@@ -238,7 +228,6 @@ class Scene3 extends Phaser.Scene{
         if(imag2 != null) imag2.destroy();
         if(imag3 != null) imag3.destroy();
         if(imag4 != null) imag4.destroy();
-        // ball.destroy();
         displayResult.destroy();
         textQuestion3.destroy();
 
@@ -316,8 +305,7 @@ class Scene3 extends Phaser.Scene{
         }
     }
 
-    update(){
-        this.handleGameOver();
+    changeObject(){
         if(x == 1){
             x = 0
             if(numberOfPlay == 3){ 
@@ -356,6 +344,11 @@ class Scene3 extends Phaser.Scene{
             }
         }
         
+    }
+
+    update(){
+        this.handleGameOver();
+        this.changeObject()
     }
 }
 

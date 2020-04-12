@@ -13,7 +13,8 @@ let zone4;
 let timedEvent1;
 let abv;
 let blw;
-let click1 = 1;
+let next1 = 0;
+let gameobject;
 
 class Scene1 extends Phaser.Scene{
 
@@ -40,8 +41,15 @@ class Scene1 extends Phaser.Scene{
 
         // load image object;
         this.load.image('imageBird', 'assets/images/imageBird.png');
+        this.load.image('mouse', 'assets/images/mouse.png');
+        this.load.image('chicken', 'assets/images/chicken.png');
+        this.load.image('frog', 'assets/images/frog.png');
+        this.load.image('turtle', 'assets/images/turtle.png');
         this.load.image('redBall', 'assets/images/redBall.png');
         this.load.image('img1', 'assets/images/img1.png');
+        this.load.image('img2', 'assets/images/img2.png');
+        this.load.image('img3', 'assets/images/img3.png');
+        this.load.image('img4', 'assets/images/img4.png');
         this.load.image('imageBug', 'assets/images/imageBug.png');
         this.load.image('zonePut', 'assets/images/zonePut.png');
     }
@@ -71,15 +79,11 @@ class Scene1 extends Phaser.Scene{
         // set onClick for the buttons;
         
             this.buttonAbove.setInteractive().on('pointerdown', () => { 
-                // if(click1){
                     this.eventClickButtonAbove(arr[ballNumber1 - 1])
-                //}
             });
 
             this.buttonBelow.setInteractive().on('pointerdown', () => {
-                //if(click1){
                     this.eventClickButtonBelow(arr[ballNumber1 - 1])
-                //}
             });
         
         this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'));
@@ -99,7 +103,6 @@ class Scene1 extends Phaser.Scene{
 
     eventClickButtonAbove(ball){
         if(status1 == 0){
-            //click1 = 0
             this.effectTrueAbove = this.add.image(233, 225, "effectTrueAbove").setOrigin(0, 0);
             this.children.bringToTop(this.bird);
             this.displayResult.setText("Correct!");
@@ -114,7 +117,6 @@ class Scene1 extends Phaser.Scene{
                 abv.setText("")
                 this.displayResult.setText("Result");
                 status1 = this.randomQuestion();
-                //click1 = 1
                 this.effectTrueAbove.destroy();
                 this.buttonBelow.visible = true;
                 this.buttonAbove.visible = true;
@@ -151,7 +153,6 @@ class Scene1 extends Phaser.Scene{
 
     eventClickButtonBelow(ball){
         if(status1 == 1){
-            //click1 = 0
             this.effectTrueBelow = this.add.image(233, 525, "effectTrueBelow").setOrigin(0, 0);
             this.children.bringToTop(this.bird);
             this.displayResult.setText("Correct!");
@@ -165,7 +166,6 @@ class Scene1 extends Phaser.Scene{
             this.buttonAbove.visible = false;
 
             timedEvent1 = this.time.delayedCall(2000, function below() {
-                //click1 = 1
                 blw.setText("")
                 this.displayResult.setText("Result")
                 status1 = this.randomQuestion();
@@ -173,9 +173,11 @@ class Scene1 extends Phaser.Scene{
                 if(ballNumber1 == 5){
                     this.destroyObject();
                     this.handleNextFrameGame();
+                } else {
+                    this.buttonBelow.visible = true;
+                    this.buttonAbove.visible = true;
                 }
-                this.buttonBelow.visible = true;
-                this.buttonAbove.visible = true;
+                
             }, [], this)
         }
         else{
@@ -273,11 +275,11 @@ class Scene1 extends Phaser.Scene{
     }
 
     handleNextFrameGame(){
-        displayResult2 = this.add.text(250, 350, "Result!", {font: '50px Arial', fill: 'Black'});
+        displayResult2 = this.add.text(250, 350, "Result!", {font: '40px Arial', fill: 'Black'});
         status1 = 0;
-        textQuestion2 = this.add.text(850, 350, 'Put the Bug into' + '\n' + ' Above the bird!', {font: '50px Arial', fill: "Black"});
+        textQuestion2 = this.add.text(760, 350, ' Put the Bug into' + '\n' + ' Above the strange creature!', {font: '40px Arial', fill: "Black"});
 
-        imageBug = this.add.image(1150, 550, 'imageBug', Phaser.Math.RND.pick(this.framework)).setInteractive();
+        imageBug = this.add.image(1020, 530, 'imageBug', Phaser.Math.RND.pick(this.framework)).setInteractive();
         this.input.setDraggable(imageBug);
 
         zone1 = this.add.image(500, 300, 'zonePut').setInteractive();
@@ -292,6 +294,7 @@ class Scene1 extends Phaser.Scene{
 
         this.input.on('dragstart', function (pointer, gameObject) {
             this.children.bringToTop(gameObject);
+            gameObject.clearTint()
         }, this);
 
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
@@ -320,7 +323,7 @@ class Scene1 extends Phaser.Scene{
         });
 
         this.input.on('dragleave', function (pointer, gameObject, dropZone) {
-
+            dropZone.clearTint()
         });
 
         this.input.on('drop', function (pointer, gameObject, dropZone) {
@@ -330,98 +333,85 @@ class Scene1 extends Phaser.Scene{
                 if(status1 == 0){
                     displayResult2.setText('True!');
                     deleteBall (arr[ballNumber1 - 1]);
-                    status1 = randomQuestion();
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    next1 = 1;
                 }
                 else{
                     displayResult2.setText('False!');
                     textQuestion2.setText('Below Below '+ '\n' +'Below!');
-                    // timedEvent1 = this.time.delayedCall(1000, function wrong1() {
-
-                    //     displayResult2.setText("Result")
-                    //     textQuestion2.setText("Put the " + "\n" + "Above the bird")
-                        gameObject.x = 1150;
-                        gameObject.y = 550;
-
-                    // }, [], this)
+                        gameObject.x = gameObject.input.dragStartX;
+                        gameObject.y = gameObject.input.dragStartY;
                 }
             }
             else if (gameObject.x >= 650 && gameObject.x <= 800  && gameObject.y >= 250 && gameObject.y <= 350 ){
                 if(status1 == 0){
                     displayResult2.setText('True!');
                     deleteBall (arr[ballNumber1 - 1]);
-                    status1 = randomQuestion();
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    next1 = 1;
                 }
                 else{
                     displayResult2.setText('False!');
                     textQuestion2.setText('Below Below '+ '\n' +'Below!');
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    gameObject.x = gameObject.input.dragStartX;
+                    gameObject.y = gameObject.input.dragStartY;
                 }
             }
             else if (gameObject.x >= 450 && gameObject.x <= 600 && gameObject.y >= 540 && gameObject.y <= 640 ){
                 if(status1 == 1){
                     displayResult2.setText('True!');
                     deleteBall (arr[ballNumber1 - 1]);
-                    status1 = randomQuestion();
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    next1 = 1;
                 }
                 else{
                     displayResult2.setText('False!');
                     textQuestion2.setText('Above Above '+ '\n' +'Above!');
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    gameObject.x = gameObject.input.dragStartX;
+                    gameObject.y = gameObject.input.dragStartY;
                 }
             }
             else if (gameObject.x >= 650 && gameObject.x <= 800 && gameObject.y >= 540 && gameObject.y <= 640 ){
                 if(status1 == 1){
                     displayResult2.setText('True!');
                     deleteBall (arr[ballNumber1 - 1]);
-                    status1 = randomQuestion();
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    next1 = 1;
                 }
                 else{
                     displayResult2.setText('False!');
                     textQuestion2.setText('Above Above '+ '\n' +'Above!');
-                    gameObject.x = 1150;
-                    gameObject.y = 550;
+                    gameObject.x = gameObject.input.dragStartX;
+                    gameObject.y = gameObject.input.dragStartY;
                 }
             }
             else {
-                gameObject.x = 1150;
-                gameObject.y = 550;
+                gameObject.x = gameObject.input.dragStartX;
+                gameObject.y = gameObject.input.dragStartY;
             }
         });
 
         this.input.on('dragend', function (pointer, gameObject, dropped) {
             if (!dropped)
             {
-                gameObject.x = 1150;
-                gameObject.y = 550;
+                gameObject.x = gameObject.input.dragStartX;
+                gameObject.y = gameObject.input.dragStartY;
             }
         });
 
-        function randomQuestion() {
-            var temp2 = Phaser.Math.Between(0, 1);
-            if(temp2 == 0){
-                textQuestion2.setText('Put the Bug into' + '\n' + 'Above the bird!');
-            }
-            else{
-                textQuestion2.setText('Put the Bug into' + '\n' + 'Below the bird!');
-            }
-            return temp2;
-        }
         function deleteBall(ball){
             ball.destroy();
             ball = null;
             ballNumber1--;
         }
         
+    }
+
+    randomQuestion_1() {
+        var temp2 = Phaser.Math.Between(0, 1);
+        if(temp2 == 0){
+            textQuestion2.setText('Put the Bug into' + '\n' + 'Above the strange creature!');
+        }
+        else{
+            textQuestion2.setText('Put the Bug into' + '\n' + 'Below the strange creature!');
+        }
+        return temp2;
     }
     
     destroyObject2(){
@@ -432,12 +422,75 @@ class Scene1 extends Phaser.Scene{
         zone2.destroy();
         zone3.destroy();
         zone4.destroy();
-        this.bird.destroy();
+        gameobject.destroy();
         this.backButton.destroy()
+    }
+
+    changeObject(){
+        if(next1){
+            next1 = 0
+            if(ballNumber1 == 4){
+                timedEvent1 = this.time.delayedCall(2000, function next (){
+                    this.clear_tint()
+                    imageBug.destroy()
+                    this.bird.destroy()
+                    this.bird = null
+                    displayResult2.setText("Result!")
+                    status1 = this.randomQuestion_1();
+                    gameobject = this.add.image(550, 370, 'mouse').setOrigin(0, 0)
+                    imageBug = this.add.image(1020, 530, 'img1', Phaser.Math.RND.pick(this.framework)).setInteractive()
+                    this.input.setDraggable(imageBug)
+                }, [], this)
+            } else
+            if(ballNumber1 == 3){
+                timedEvent1 = this.time.delayedCall(2000, function next (){
+                    this.clear_tint()
+                    imageBug.destroy()
+                    gameobject.destroy()
+                    displayResult2.setText("Result!")
+                    status1 = this.randomQuestion_1()
+                    gameobject = this.add.image(550,  370, 'chicken').setOrigin(0, 0)
+                    imageBug = this.add.image(1020, 530, 'img2', Phaser.Math.RND.pick(this.framework)).setInteractive()
+                    this.input.setDraggable(imageBug)
+                }, [], this)
+            } else
+            if(ballNumber1 == 2){
+                timedEvent1 = this.time.delayedCall(2000, function next (){
+                    this.clear_tint()
+                    imageBug.destroy()
+                    gameobject.destroy()
+                    displayResult2.setText("Result!")
+                    status1 = this.randomQuestion_1()
+                    gameobject = this.add.image(550,  370, 'frog').setOrigin(0, 0)
+                    imageBug = this.add.image(1020, 530, 'img3', Phaser.Math.RND.pick(this.framework)).setInteractive()
+                    this.input.setDraggable(imageBug)
+                }, [], this)
+            } else
+            if(ballNumber1 == 1){
+                timedEvent1 = this.time.delayedCall(2000, function next (){
+                    this.clear_tint()
+                    imageBug.destroy()
+                    gameobject.destroy()
+                    displayResult2.setText("Result!")
+                    status1 = this.randomQuestion_1()
+                    gameobject = this.add.image(550,  370, 'turtle').setOrigin(0, 0)
+                    imageBug = this.add.image(1020, 530, 'img4', Phaser.Math.RND.pick(this.framework)).setInteractive()
+                    this.input.setDraggable(imageBug)
+                }, [], this)
+            }
+        }
+    }
+
+    clear_tint() {
+        zone1.clearTint()
+        zone2.clearTint()
+        zone3.clearTint()
+        zone4.clearTint()
     }
 
     update(){
         this.handleGameOver();
+        this.changeObject()
     }
 
 }
