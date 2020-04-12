@@ -29,8 +29,10 @@ class Scene1 extends Phaser.Scene{
         // load image button;
         this.load.image('buttonAbove', 'assets/images/buttonAbove.png');
         this.load.image('effectTrueAbove', 'assets/images/effectTrueAbove.png');
+        this.load.image('effectFalseAbove', 'assets/images/effectFalseAbove.png');
         this.load.image('buttonBelow', 'assets/images/buttonBelow.png');
         this.load.image('effectTrueBelow', 'assets/images/effectTrueBelow.png');
+        this.load.image('effectFalseBelow', 'assets/images/effectFalseBelow.png');
         this.load.image('nextButton', 'assets/images/nextButton.png');
         this.load.image('backButton', 'assets/images/backButton.png');
         this.load.image('lesson', 'assets/images/lesson.png');
@@ -54,8 +56,9 @@ class Scene1 extends Phaser.Scene{
         this.buttonBelow = this.add.sprite(233, 525, 'buttonBelow').setOrigin(0,0);
         this.backButton = this.add.sprite(245, 117, 'backButton').setOrigin(0,0);
 
-        // add iamge object;
+        // add image object;
         this.bird = this.add.image(420, 340, "imageBird").setOrigin(0, 0);
+
         arr = new Array("redBall");
         for(let i = 0; i < ballNumber1; i++){
             arr[i] = this.add.image(_const1 += 70, 137, "redBall").setOrigin(0, 0);
@@ -98,12 +101,10 @@ class Scene1 extends Phaser.Scene{
         if(status1 == 0){
             //click1 = 0
             this.effectTrueAbove = this.add.image(233, 225, "effectTrueAbove").setOrigin(0, 0);
+            this.children.bringToTop(this.bird);
             this.displayResult.setText("Correct!");
 
-            abv = this.add.text(440, 275, 'ABOVE', {
-                font: '50px Arial',
-                fill: 'black'
-            })
+            abv = this.add.text(440, 275, 'ABOVE', {font: '50px Arial', fill: 'black'});
 
             this.buttonBelow.visible = false;
             this.buttonAbove.visible = false;
@@ -111,7 +112,7 @@ class Scene1 extends Phaser.Scene{
             timedEvent1 = this.time.delayedCall(2000, function above() {
                 this.deleteBall(ball);
                 abv.setText("")
-                this.displayResult.setText("Result")
+                this.displayResult.setText("Result");
                 status1 = this.randomQuestion();
                 //click1 = 1
                 this.effectTrueAbove.destroy();
@@ -124,10 +125,17 @@ class Scene1 extends Phaser.Scene{
             }, [], this);
         }
         else{
+            this.effectFalseAbove = this.add.image(233, 225, "effectFalseAbove").setOrigin(0, 0);
+            this.children.bringToTop(this.bird);
             this.displayResult.setText("Wrong!");
             this.text1.setText("Below Below Below!");
+            this.buttonBelow.visible = false;
+            this.buttonAbove.visible = false;
 
             timedEvent1 = this.time.delayedCall(1000, function wrong() {
+                this.effectFalseAbove.destroy();
+                this.buttonBelow.visible = true;
+                this.buttonAbove.visible = true;
                 this.displayResult.setText("Result")
                 this.text1.setText("Click Below \nThe Strange Creature")
             }, [], this)
@@ -145,13 +153,16 @@ class Scene1 extends Phaser.Scene{
         if(status1 == 1){
             //click1 = 0
             this.effectTrueBelow = this.add.image(233, 525, "effectTrueBelow").setOrigin(0, 0);
+            this.children.bringToTop(this.bird);
             this.displayResult.setText("Correct!");
             this.deleteBall (ball);
 
             blw = this.add.text(440, 575, 'BELOW', {
                 font: '50px Arial',
                 fill: 'black'
-            })
+            });
+            this.buttonBelow.visible = false;
+            this.buttonAbove.visible = false;
 
             timedEvent1 = this.time.delayedCall(2000, function below() {
                 //click1 = 1
@@ -163,13 +174,22 @@ class Scene1 extends Phaser.Scene{
                     this.destroyObject();
                     this.handleNextFrameGame();
                 }
+                this.buttonBelow.visible = true;
+                this.buttonAbove.visible = true;
             }, [], this)
         }
         else{
+            this.effectFalseBelow = this.add.image(233, 525, "effectFalseBelow").setOrigin(0, 0);
+            this.children.bringToTop(this.bird);
             this.displayResult.setText("Wrong!");
             this.text1.setText("Above Above Above!");
+            this.buttonBelow.visible = false;
+            this.buttonAbove.visible = false;
 
             timedEvent1 = this.time.delayedCall(1000, function wrong() {
+                this.effectFalseBelow.destroy();
+                this.buttonBelow.visible = true;
+                this.buttonAbove.visible = true;
                 this.displayResult.setText("Result")
                 this.text1.setText("Click Above \nThe Strange Creature")
             }, [], this)
@@ -208,6 +228,7 @@ class Scene1 extends Phaser.Scene{
         
         return temp;
     }
+
     deleteBall (ball){
         ball.destroy();
         ball = null;

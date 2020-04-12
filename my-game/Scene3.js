@@ -234,10 +234,10 @@ class Scene3 extends Phaser.Scene{
     }
 
     destroyObject() {
-        imag1.destroy();
-        imag2.destroy();
-        imag3.destroy();
-        imag4.destroy();
+        if(imag1 != null) imag1.destroy();
+        if(imag2 != null) imag2.destroy();
+        if(imag3 != null) imag3.destroy();
+        if(imag4 != null) imag4.destroy();
         // ball.destroy();
         displayResult.destroy();
         textQuestion3.destroy();
