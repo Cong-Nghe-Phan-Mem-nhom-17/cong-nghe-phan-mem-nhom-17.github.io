@@ -1,5 +1,4 @@
 
-
 class Menu extends Phaser.Scene {
 
     constructor() {
@@ -31,16 +30,7 @@ class Menu extends Phaser.Scene {
         this.background = this.add.image(0, 0, "backGround").setOrigin(0, 0);
 
         this.framework = this.add.image(233, 115, "frameMenu").setOrigin(0, 0);
-
-        // this.cat = this.add.image(10, 10, 'cat').setOrigin(0,0)
-        
-        // this.timeevent = this.time.delayedCall(2000, function hung(){
-
-        //     this.cat.setScale(2)
-
-        // }, [], this)
          
-
         this.text0 = this.add.text(350, 200, "CHOOSE A GAME TO PLAY!", {
 
             font: "50px Arial", 
