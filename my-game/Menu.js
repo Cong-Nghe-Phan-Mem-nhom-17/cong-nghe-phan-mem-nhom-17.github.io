@@ -9,11 +9,11 @@ class Menu extends Phaser.Scene {
 
     preload() {
 
-        this.load.image('backGround', 'assets/images/backGround.png')
-        this.load.image('frameMenu', 'assets/images/frameMenu.png')
-        this.load.image('play1', 'assets/images/play1.png')
-        this.load.image('play2', 'assets/images/play2.png')
-        this.load.image('play3', 'assets/images/play3.png')
+        this.load.image('backGround', 'assets/images/imageBackground/backGround.png')
+        this.load.image('frameMenu', 'assets/images/imageBackground/frameMenu.png')
+        this.load.image('play1', 'assets/images/imageBackground/play1.png')
+        this.load.image('play2', 'assets/images/imageBackground/play2.png')
+        this.load.image('play3', 'assets/images/imageBackground/play3.png')
         // them audio test
         // this.load.audio('fx', [
             

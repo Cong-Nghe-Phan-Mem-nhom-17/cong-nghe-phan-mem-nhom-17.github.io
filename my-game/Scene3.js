@@ -25,21 +25,23 @@ class Scene3 extends Phaser.Scene{
 
     preload() {
         // load image background;
-        this.load.image('backGround', 'assets/images/backGround.png');
-        this.load.image('frame', 'assets/images/frameMenu.png');
-        this.load.image('castle', "assets/images/castle.png");
+        this.load.image('backGround', 'assets/images/imageBackground/backGround.png');
+        this.load.image('frame', 'assets/images/imageBackground/frameMenu.png');
+        this.load.image('castle', "assets/images/imageBackground/castle.png");
 
         // load image button;
-        this.load.image('backButton', 'assets/images/backButton.png');
-        this.load.image('lesson', 'assets/images/lesson.png');
-        this.load.image('nextButton', 'assets/images/nextbutton.png')
+        this.load.image('backButton', 'assets/images/imageButton/backButton.png');
+        this.load.image('lesson', 'assets/images/imageButton/lesson.png');
+        this.load.image('nextButton', 'assets/images/imageButton/nextbutton.png')
 
         // load image object;
-        this.load.image('numberOfPlay', "assets/images/numberOfPlay.png");
-        this.load.image('img1', 'assets/images/img1.png');
-        this.load.image('img2', 'assets/images/img2.png');
-        this.load.image('img3', 'assets/images/img3.png');
-        this.load.image('img4', 'assets/images/img4.png');
+        this.load.image('numberOfPlay', "assets/images/imageObject/numberOfPlay.png");
+        this.load.image('img1', 'assets/images/imageObject/img1.png');
+        this.load.image('img2', 'assets/images/imageObject/img2.png');
+        this.load.image('img3', 'assets/images/imageObject/img3.png');
+        this.load.image('img4', 'assets/images/imageObject/img4.png');
+
+        //load image zone;
         this.load.image('zonePutWindow', 'assets/images/zonePutWindow.png');
     }
 

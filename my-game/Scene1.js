@@ -26,34 +26,35 @@ class Scene1 extends Phaser.Scene{
 
     preload() {
         // load image background;
-        this.load.image('backGround', 'assets/images/backGround.png');
-        this.load.image('frameWork', "assets/images/frameWork.png");
+        this.load.image('backGround', 'assets/images/imageBackground/backGround.png');
+        this.load.image('frameWork', "assets/images/imageBackground/frameWork.png");
 
         // load image button;
-        this.load.image('buttonAbove', 'assets/images/buttonAbove.png');
-        this.load.image('effectTrueAbove', 'assets/images/effectTrueAbove.png');
-        this.load.image('effectFalseAbove', 'assets/images/effectFalseAbove.png');
-        this.load.image('buttonBelow', 'assets/images/buttonBelow.png');
-        this.load.image('effectTrueBelow', 'assets/images/effectTrueBelow.png');
-        this.load.image('effectFalseBelow', 'assets/images/effectFalseBelow.png');
-        this.load.image('nextButton', 'assets/images/nextButton.png');
-        this.load.image('backButton', 'assets/images/backButton.png');
-        this.load.image('lesson', 'assets/images/lesson.png');
-
+        this.load.image('buttonAbove', 'assets/images/imageButton/buttonAbove.png');
+        this.load.image('effectTrueAbove', 'assets/images/imageButton/effectTrueAbove.png');
+        this.load.image('effectFalseAbove', 'assets/images/imageButton/effectFalseAbove.png');
+        this.load.image('buttonBelow', 'assets/images/imageButton/buttonBelow.png');
+        this.load.image('effectTrueBelow', 'assets/images/imageButton/effectTrueBelow.png');
+        this.load.image('effectFalseBelow', 'assets/images/imageButton/effectFalseBelow.png');
+        this.load.image('nextButton', 'assets/images/imageButton/nextButton.png');
+        this.load.image('backButton', 'assets/images/imageButton/backButton.png');
+        this.load.image('lesson', 'assets/images/imageButton/lesson.png');
 
         // load image object;
-        this.load.image('imageBird', 'assets/images/imageBird.png');
-        this.load.image('mouse', 'assets/images/mouse.png');
-        this.load.image('chicken', 'assets/images/chicken.png');
-        this.load.image('frog', 'assets/images/frog.png');
-        this.load.image('turtle', 'assets/images/turtle.png');
-        this.load.image('redBall', 'assets/images/redBall.png');
-        this.load.image('img1', 'assets/images/img1.png');
-        this.load.image('img2', 'assets/images/img2.png');
-        this.load.image('img3', 'assets/images/img3.png');
-        this.load.image('img4', 'assets/images/img4.png');
-        this.load.image('imageBug', 'assets/images/imageBug.png');
-        this.load.image('zonePut', 'assets/images/zonePut.png');
+        this.load.image('imageBird', 'assets/images/imageObject/imageBird.png');
+        this.load.image('mouse', 'assets/images/imageObject/mouse.png');
+        this.load.image('chicken', 'assets/images/imageObject/chicken.png');
+        this.load.image('frog', 'assets/images/imageObject/frog.png');
+        this.load.image('turtle', 'assets/images/imageObject/turtle.png');
+        this.load.image('redBall', 'assets/images/imageObject/redBall.png');
+        this.load.image('img1', 'assets/images/imageObject/img1.png');
+        this.load.image('img2', 'assets/images/imageObject/img2.png');
+        this.load.image('img3', 'assets/images/imageObject/img3.png');
+        this.load.image('img4', 'assets/images/imageObject/img4.png');
+        this.load.image('imageBug', 'assets/images/imageObject/imageBug.png');
+
+        //load image zone;
+        this.load.image('zonePut', 'assets/images/imageZone/zonePut.png');
     }
 
     create(){
@@ -68,7 +69,6 @@ class Scene1 extends Phaser.Scene{
 
         // add image object;
         this.bird = this.add.image(420, 340, "imageBird").setOrigin(0, 0);
-
         arr = new Array("redBall");
         for(let i = 0; i < ballNumber1; i++){
             arr[i] = this.add.image(_const1 += 70, 137, "redBall").setOrigin(0, 0);
@@ -79,30 +79,23 @@ class Scene1 extends Phaser.Scene{
         this.displayResult = this.add.text(250, 350, "Result", {font: "50px Arial", fill: "black"});
 
         // set onClick for the buttons;
-        
-            this.buttonAbove.setInteractive().on('pointerdown', () => { 
-                    this.eventClickButtonAbove(arr[ballNumber1 - 1])
-            });
+        this.buttonAbove.setInteractive().on('pointerdown', () => {
+            this.eventClickButtonAbove(arr[ballNumber1 - 1])
+        });
 
-            this.buttonBelow.setInteractive().on('pointerdown', () => {
-                    this.eventClickButtonBelow(arr[ballNumber1 - 1])
-            });
+        this.buttonBelow.setInteractive().on('pointerdown', () => {
+            this.eventClickButtonBelow(arr[ballNumber1 - 1])
+        });
         
         this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'));
 
         //effect of sprites;
-        this.input.on('gameobjectover', function (pointer, gameObject) {
+        this.input.on('gameobjectover', function (pointer, gameObject) { gameObject.setTint(0x8EEDE2); });
 
-            gameObject.setTint(0x8EEDE2);
-
-        });
-        this.input.on('gameobjectout', function (pointer, gameObject) {
-
-            gameObject.clearTint();
-            
-        });
+        this.input.on('gameobjectout', function (pointer, gameObject) { gameObject.clearTint(); });
     }
 
+    //Handle events when click button above;
     eventClickButtonAbove(ball){
         if(status1 == 0){
             this.effectTrueAbove = this.add.image(233, 225, "effectTrueAbove").setOrigin(0, 0);
@@ -153,6 +146,7 @@ class Scene1 extends Phaser.Scene{
         }
     }
 
+    //Handle events when click button below;
     eventClickButtonBelow(ball){
         if(status1 == 1){
             this.effectTrueBelow = this.add.image(233, 525, "effectTrueBelow").setOrigin(0, 0);
@@ -207,6 +201,7 @@ class Scene1 extends Phaser.Scene{
         }
     }
 
+    //Random text question;
     randomQuestion(){
         var temp = Phaser.Math.Between(0, 1);
         this.text1.setText( "The next question?");
@@ -235,12 +230,14 @@ class Scene1 extends Phaser.Scene{
         return temp;
     }
 
+    //Delete ball object when click true;
     deleteBall (ball){
         ball.destroy();
         ball = null;
         ballNumber1--;
     }
 
+    //Destroy object to change frameGame;
     destroyObject(){
         this.buttonAbove.destroy();
         this.buttonAbove = null;
@@ -252,6 +249,7 @@ class Scene1 extends Phaser.Scene{
         this.displayResult = null;
     }
 
+    //Handle game over when ballNumber == 0;
     handleGameOver(){
         if(ballNumber1 == 0){
             this.destroyObject2();
@@ -278,6 +276,7 @@ class Scene1 extends Phaser.Scene{
         }
     }
 
+    //Handle next framegame when ballNumber == 5;
     handleNextFrameGame(){
         displayResult2 = this.add.text(250, 350, "Result!", {font: '50px Arial', fill: 'Black'});
         status1 = 0;
@@ -407,6 +406,7 @@ class Scene1 extends Phaser.Scene{
         
     }
 
+    //Random text question;
     randomQuestion_1() {
         var temp2 = Phaser.Math.Between(0, 1);
         if(temp2 == 0){
@@ -417,7 +417,8 @@ class Scene1 extends Phaser.Scene{
         }
         return temp2;
     }
-    
+
+    //Destroy object when game over;
     destroyObject2(){
         displayResult2.destroy();
         imageBug.destroy();
@@ -430,6 +431,7 @@ class Scene1 extends Phaser.Scene{
         this.backButton.destroy()
     }
 
+    //Change object after ans true;
     changeObject(){
         if(next1){
             next1 = 0
@@ -493,6 +495,7 @@ class Scene1 extends Phaser.Scene{
         }
     }
 
+    //Clear effect of button;
     clear_tint() {
         zone1.clearTint()
         zone2.clearTint()
@@ -501,8 +504,8 @@ class Scene1 extends Phaser.Scene{
     }
 
     update(){
+        this.changeObject();
         this.handleGameOver();
-        this.changeObject()
     }
 
 }

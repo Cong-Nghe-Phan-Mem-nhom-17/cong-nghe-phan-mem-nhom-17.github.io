@@ -12,30 +12,32 @@ class Scene2 extends Phaser.Scene{
     }
 
     preload() {
-        this.load.image('backGround', 'assets/images/backGround.png')
-        this.load.image('frameWork', 'assets/images/frameWork.png')
-        this.load.image('redBall', 'assets/images/redBall.png')
+        //load image backGround, frameWork;
+        this.load.image('backGround', 'assets/images/imageBackground/backGround.png');
+        this.load.image('frameWork', 'assets/images/imageBackground/frameWork.png');
 
-        this.load.image('nextButton', 'assets/images/nextButton.png')
-        this.load.image('backButton', 'assets/images/backButton.png')
+        //load image button;
+        this.load.image('nextButton', 'assets/images/imageButton/nextButton.png');
+        this.load.image('backButton', 'assets/images/imageButton/backButton.png');
+        this.load.image('ok1', 'assets/images/imageButton/ok1.png');
+        this.load.image('ok2', 'assets/images/imageButton/ok2.png');
+        this.load.image('lesson', 'assets/images/imageButton/lesson.png');
 
-        this.load.image('home_0', 'assets/images/home_0.png')
-        this.load.image('home_1', 'assets/images/home_1.png')
-        this.load.image('home_2', 'assets/images/home_2.png')
-        this.load.image('tree', 'assets/images/79.png')
+        //load image outside;
+        this.load.image('home_0', 'assets/images/imageOutside/home_0.png');
+        this.load.image('home_1', 'assets/images/imageOutside/home_1.png');
+        this.load.image('home_2', 'assets/images/imageOutside/home_2.png');
+        this.load.image('tree', 'assets/images/imageOutside/79.png');
 
-        this.load.image('cat', 'assets/images/cat.png')
-        this.load.image('bird', 'assets/images/bird.png')
-        this.load.image('squirrel', 'assets/images/squirrel.png')
-        this.load.image('mouse', 'assets/images/mouse.png')
-        this.load.image('turtle', 'assets/images/turtle.png')
-        this.load.image('chicken', 'assets/images/chicken.png')
-        this.load.image('frog', 'assets/images/frog.png')
-
-        this.load.image('ok1', 'assets/images/ok1.png')
-        this.load.image('ok2', 'assets/images/ok2.png')
-
-        this.load.image('lesson', 'assets/images/lesson.png')
+        //load image object;
+        this.load.image('cat', 'assets/images/imageObject/cat.png');
+        this.load.image('bird', 'assets/images/imageObject/bird.png');
+        this.load.image('squirrel', 'assets/images/imageObject/squirrel.png');
+        this.load.image('mouse', 'assets/images/imageObject/mouse.png');
+        this.load.image('turtle', 'assets/images/imageObject/turtle.png');
+        this.load.image('chicken', 'assets/images/imageObject/chicken.png');
+        this.load.image('frog', 'assets/images/imageObject/frog.png');
+        this.load.image('redBall', 'assets/images/imageObject/redBall.png');
     }   
 
     create(){
