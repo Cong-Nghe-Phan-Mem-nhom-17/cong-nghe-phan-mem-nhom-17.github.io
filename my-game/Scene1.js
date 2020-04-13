@@ -429,62 +429,45 @@ class Scene1 extends Phaser.Scene{
             next1 = 0
             if(ballNumber1 == 4){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
-                    nameBug = "bee"
-                    nameObject = "mouse"
-                    this.clear_tint()
-                    imageBug.destroy()
-                    this.bird.destroy()
-                    this.bird = null
-                    displayResult2.setText("Result!")
-                    status1 = this.randomQuestion_1();
-                    gameobject = this.add.image(550, 370, 'mouse').setOrigin(0, 0)
-                    imageBug = this.add.image(1020, 530, 'img1', Phaser.Math.RND.pick(this.framework)).setInteractive()
-                    this.input.setDraggable(imageBug)
+                    this.drawImage("bee", "mouse", 'img1')
                 }, [], this)
             } else
             if(ballNumber1 == 3){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
-                    nameBug = "butterfly"
-                    nameObject = "chicken"
-                    this.clear_tint()
-                    imageBug.destroy()
-                    gameobject.destroy()
-                    displayResult2.setText("Result!")
-                    status1 = this.randomQuestion_1()
-                    gameobject = this.add.image(550,  370, 'chicken').setOrigin(0, 0)
-                    imageBug = this.add.image(1020, 530, 'img2', Phaser.Math.RND.pick(this.framework)).setInteractive()
-                    this.input.setDraggable(imageBug)
+                    this.drawImage("butterfly", "chicken", 'img2')
                 }, [], this)
             } else
             if(ballNumber1 == 2){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
-                    nameBug = "bug"
-                    nameObject = "frog"
-                    this.clear_tint()
-                    imageBug.destroy()
-                    gameobject.destroy()
-                    displayResult2.setText("Result!")
-                    status1 = this.randomQuestion_1()
-                    gameobject = this.add.image(550,  370, 'frog').setOrigin(0, 0)
-                    imageBug = this.add.image(1020, 530, 'img3', Phaser.Math.RND.pick(this.framework)).setInteractive()
-                    this.input.setDraggable(imageBug)
+                    this.drawImage("bug", "frog", 'img3')
                 }, [], this)
             } else
             if(ballNumber1 == 1){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
-                    nameBug = "worm"
-                    nameObject = "turlte"
-                    this.clear_tint()
-                    imageBug.destroy()
-                    gameobject.destroy()
-                    displayResult2.setText("Result!")
-                    status1 = this.randomQuestion_1()
-                    gameobject = this.add.image(550,  370, 'turtle').setOrigin(0, 0)
-                    imageBug = this.add.image(1020, 530, 'img4', Phaser.Math.RND.pick(this.framework)).setInteractive()
-                    this.input.setDraggable(imageBug)
+                    this.drawImage("worm", "turtle", 'img4')
                 }, [], this)
             }
         }
+    }
+
+    //drawImage
+    drawImage (nameBug, object, bug) {
+        nameBug = nameBug
+        nameObject = object
+        this.clear_tint()
+        imageBug.destroy()
+        if(ballNumber1 == 4) {
+            this.bird.destroy()
+            this.bird = null
+        }
+        else    
+            gameobject.destroy()
+
+        displayResult2.setText("Result!")
+        status1 = this.randomQuestion_1()
+        gameobject = this.add.image(550,  370, object).setOrigin(0, 0)
+        imageBug = this.add.image(1020, 530, bug, Phaser.Math.RND.pick(this.framework)).setInteractive()
+        this.input.setDraggable(imageBug)
     }
 
     //Clear effect of button;
