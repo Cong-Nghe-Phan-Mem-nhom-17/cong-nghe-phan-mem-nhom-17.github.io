@@ -106,7 +106,7 @@ class Scene1 extends Phaser.Scene{
     eventClickButtonAbove(ball){
         if(status1 == 0){
             this.effectTrueAbove = this.add.image(233, 225, "effectTrueAbove").setOrigin(0, 0);
-            this.drawIsCorrect(true)
+            this.drawIsCorrect(true, 1)
 
             timedEvent1 = this.time.delayedCall(2000, function Correct() {
                 abv.setText("")
@@ -122,7 +122,7 @@ class Scene1 extends Phaser.Scene{
         }
         else{
             this.effectFalseAbove = this.add.image(233, 225, "effectFalseAbove").setOrigin(0, 0);
-            this.drawIsCorrect(false)
+            this.drawIsCorrect(false, 1)
             timedEvent1 = this.time.delayedCall(1000, function wrong() {
                 this.effectFalseAbove.destroy();
                 this.buttonBelow.visible = true;
@@ -140,38 +140,13 @@ class Scene1 extends Phaser.Scene{
         }
     }
 
-    //draw correct
-    drawIsCorrect (isCorrect ){
-        
-        this.children.bringToTop(this.bird);
-        if (isCorrect == false){
-            this.displayResult.setText("Wrong!");
-            this.text1.setText("Below Below Below!");
-        }
-        else{
-            this.displayResult.setText("Correct!");
-            next_round1 = 1;
-            abv = this.add.text(440, 275, 'ABOVE', {font: '50px Arial', fill: 'black'});
-        }
-        this.buttonBelow.visible = false;
-        this.buttonAbove.visible = false;
-        return 0;
-    }
+    
 
     //Handle events when click button below;
     eventClickButtonBelow(ball){
         if(status1 == 1){
             this.effectTrueBelow = this.add.image(233, 525, "effectTrueBelow").setOrigin(0, 0);
-            this.children.bringToTop(this.bird);
-            this.displayResult.setText("Correct!");
-            next_round1 = 1;
-
-            blw = this.add.text(440, 575, 'BELOW', {
-                font: '50px Arial',
-                fill: 'black'
-            });
-            this.buttonBelow.visible = false;
-            this.buttonAbove.visible = false;
+            this.drawIsCorrect (true, 0)
 
             timedEvent1 = this.time.delayedCall(2000, function correct() {
                 blw.setText("")
@@ -188,12 +163,7 @@ class Scene1 extends Phaser.Scene{
         }
         else{
             this.effectFalseBelow = this.add.image(233, 525, "effectFalseBelow").setOrigin(0, 0);
-            this.children.bringToTop(this.bird);
-            this.displayResult.setText("Wrong!");
-            this.text1.setText("Above Above Above!");
-            this.buttonBelow.visible = false;
-            this.buttonAbove.visible = false;
-
+            this.drawIsCorrect (false, 0)
             timedEvent1 = this.time.delayedCall(1000, function wrong() {
                 this.effectFalseBelow.destroy();
                 this.buttonBelow.visible = true;
@@ -209,6 +179,29 @@ class Scene1 extends Phaser.Scene{
                 gameObject.clearTint();
             });
         }
+    }
+
+    //draw correct
+    drawIsCorrect (isCorrect, text ){
+        this.children.bringToTop(this.bird);
+        if (isCorrect == false){
+            this.displayResult.setText("Wrong!");
+            if (text == 1)
+                this.text1.setText("Below Below Below!");
+            if (text == 0)   
+                this.text1.setText("Above Above Above!");
+        }
+        else{
+            this.displayResult.setText("Correct!");
+            next_round1 = 1;
+            if (text == 1)
+                abv = this.add.text(440, 275, 'ABOVE', {font: '50px Arial', fill: 'black'});
+            if (text == 0)   
+                blw = this.add.text(440, 575, 'BELOW', {font: '50px Arial',fill: 'black'});
+        }
+        this.buttonBelow.visible = false;
+        this.buttonAbove.visible = false;
+        return 0;
     }
 
     //Random text question;
