@@ -336,9 +336,11 @@ class Scene1 extends Phaser.Scene{
                 if(status1 == 0){
                     displayResult2.setText('True!');
                     deleteBall (arr[ballNumber1 - 1]);
+                    gameObject.input.enabled = false;
                     next1 = 1;
                 }
                 else{
+                    gameObject.input.enabled = true;
                     displayResult2.setText('False!');
                     textQuestion2.setText('Below Below '+ '\n' +'Below!');
                         gameObject.x = gameObject.input.dragStartX;
@@ -349,9 +351,11 @@ class Scene1 extends Phaser.Scene{
                 if(status1 == 0){
                     displayResult2.setText('True!');
                     deleteBall (arr[ballNumber1 - 1]);
+                    gameObject.input.enabled = false;
                     next1 = 1;
                 }
                 else{
+                    gameObject.input.enabled = true;
                     displayResult2.setText('False!');
                     textQuestion2.setText('Below Below '+ '\n' +'Below!');
                     gameObject.x = gameObject.input.dragStartX;
@@ -360,11 +364,13 @@ class Scene1 extends Phaser.Scene{
             }
             else if (gameObject.x >= 450 && gameObject.x <= 600 && gameObject.y >= 540 && gameObject.y <= 640 ){
                 if(status1 == 1){
+                    gameObject.input.enabled = false;
                     displayResult2.setText('True!');
                     deleteBall (arr[ballNumber1 - 1]);
                     next1 = 1;
                 }
                 else{
+                    gameObject.input.enabled = true;
                     displayResult2.setText('False!');
                     textQuestion2.setText('Above Above '+ '\n' +'Above!');
                     gameObject.x = gameObject.input.dragStartX;
@@ -373,11 +379,13 @@ class Scene1 extends Phaser.Scene{
             }
             else if (gameObject.x >= 650 && gameObject.x <= 800 && gameObject.y >= 540 && gameObject.y <= 640 ){
                 if(status1 == 1){
+                    gameObject.input.enabled = false;
                     displayResult2.setText('True!');
                     deleteBall (arr[ballNumber1 - 1]);
                     next1 = 1;
                 }
                 else{
+                    gameObject.input.enabled = true;
                     displayResult2.setText('False!');
                     textQuestion2.setText('Above Above '+ '\n' +'Above!');
                     gameObject.x = gameObject.input.dragStartX;
