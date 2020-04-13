@@ -27,7 +27,9 @@ class Scene3 extends Phaser.Scene{
         // load image background;
         this.load.image('backGround', 'assets/images/imageBackground/backGround.png');
         this.load.image('frame', 'assets/images/imageBackground/frameMenu.png');
-        this.load.image('castle', "assets/images/imageBackground/castle.png");
+
+        //load image outside;
+        this.load.image('castle', "assets/images/imageOutside/castle.png");
 
         // load image button;
         this.load.image('backButton', 'assets/images/imageButton/backButton.png');
@@ -42,7 +44,7 @@ class Scene3 extends Phaser.Scene{
         this.load.image('img4', 'assets/images/imageObject/img4.png');
 
         //load image zone;
-        this.load.image('zonePutWindow', 'assets/images/zonePutWindow.png');
+        this.load.image('zonePutWindow', 'assets/images/imageZone/zonePutWindow.png');
     }
 
     create(){
@@ -111,10 +113,10 @@ class Scene3 extends Phaser.Scene{
             else if (gameObject.x >= 850 && gameObject.x <= 990 && gameObject.y >= 475 && gameObject.y <= 595 && zone4 != null)
                 zone4.setTint(0x00ff00);
             else {
-                zone1.clearTint();
-                zone2.clearTint();
-                zone3.clearTint();
-                zone4.clearTint();
+                if(zone1 != null) zone1.clearTint();
+                if(zone2 != null) zone2.clearTint();
+                if(zone3 != null) zone3.clearTint();
+                if(zone4 != null) zone4.clearTint();
             }
 
         });
