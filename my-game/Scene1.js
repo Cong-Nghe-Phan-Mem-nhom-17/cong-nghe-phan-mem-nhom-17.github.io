@@ -106,14 +106,7 @@ class Scene1 extends Phaser.Scene{
     eventClickButtonAbove(ball){
         if(status1 == 0){
             this.effectTrueAbove = this.add.image(233, 225, "effectTrueAbove").setOrigin(0, 0);
-            this.children.bringToTop(this.bird);
-            this.displayResult.setText("Correct!");
-            next_round1 = 1;
-
-            abv = this.add.text(440, 275, 'ABOVE', {font: '50px Arial', fill: 'black'});
-
-            this.buttonBelow.visible = false;
-            this.buttonAbove.visible = false;
+            this.drawIsCorrect(true, 1)
 
             timedEvent1 = this.time.delayedCall(2000, function Correct() {
                 abv.setText("")
@@ -129,12 +122,7 @@ class Scene1 extends Phaser.Scene{
         }
         else{
             this.effectFalseAbove = this.add.image(233, 225, "effectFalseAbove").setOrigin(0, 0);
-            this.children.bringToTop(this.bird);
-            this.displayResult.setText("Wrong!");
-            this.text1.setText("Below Below Below!");
-            this.buttonBelow.visible = false;
-            this.buttonAbove.visible = false;
-
+            this.drawIsCorrect(false, 1)
             timedEvent1 = this.time.delayedCall(1000, function wrong() {
                 this.effectFalseAbove.destroy();
                 this.buttonBelow.visible = true;
@@ -152,20 +140,13 @@ class Scene1 extends Phaser.Scene{
         }
     }
 
+    
+
     //Handle events when click button below;
     eventClickButtonBelow(ball){
         if(status1 == 1){
             this.effectTrueBelow = this.add.image(233, 525, "effectTrueBelow").setOrigin(0, 0);
-            this.children.bringToTop(this.bird);
-            this.displayResult.setText("Correct!");
-            next_round1 = 1;
-
-            blw = this.add.text(440, 575, 'BELOW', {
-                font: '50px Arial',
-                fill: 'black'
-            });
-            this.buttonBelow.visible = false;
-            this.buttonAbove.visible = false;
+            this.drawIsCorrect (true, 0)
 
             timedEvent1 = this.time.delayedCall(2000, function correct() {
                 blw.setText("")
@@ -182,12 +163,7 @@ class Scene1 extends Phaser.Scene{
         }
         else{
             this.effectFalseBelow = this.add.image(233, 525, "effectFalseBelow").setOrigin(0, 0);
-            this.children.bringToTop(this.bird);
-            this.displayResult.setText("Wrong!");
-            this.text1.setText("Above Above Above!");
-            this.buttonBelow.visible = false;
-            this.buttonAbove.visible = false;
-
+            this.drawIsCorrect (false, 0)
             timedEvent1 = this.time.delayedCall(1000, function wrong() {
                 this.effectFalseBelow.destroy();
                 this.buttonBelow.visible = true;
@@ -203,6 +179,29 @@ class Scene1 extends Phaser.Scene{
                 gameObject.clearTint();
             });
         }
+    }
+
+    //draw correct
+    drawIsCorrect (isCorrect, text ){
+        this.children.bringToTop(this.bird);
+        if (isCorrect == false){
+            this.displayResult.setText("Wrong!");
+            if (text == 1)
+                this.text1.setText("Below Below Below!");
+            if (text == 0)   
+                this.text1.setText("Above Above Above!");
+        }
+        else{
+            this.displayResult.setText("Correct!");
+            next_round1 = 1;
+            if (text == 1)
+                abv = this.add.text(440, 275, 'ABOVE', {font: '50px Arial', fill: 'black'});
+            if (text == 0)   
+                blw = this.add.text(440, 575, 'BELOW', {font: '50px Arial',fill: 'black'});
+        }
+        this.buttonBelow.visible = false;
+        this.buttonAbove.visible = false;
+        return 0;
     }
 
     //Random text question;
@@ -301,10 +300,7 @@ class Scene1 extends Phaser.Scene{
             else if (gameObject.x >= 650 && gameObject.x <= 800 && gameObject.y >= 540 && gameObject.y <= 640 )
                 zone4.setTint(0x00ff00);
             else {
-                zone1.clearTint();
-                zone2.clearTint();
-                zone3.clearTint();
-                zone4.clearTint();
+                clear_tint()
             }
 
         });
@@ -320,7 +316,7 @@ class Scene1 extends Phaser.Scene{
         this.input.on('drop', function (pointer, gameObject, dropZone) {
             gameObject.x = dropZone.x;
             gameObject.y = dropZone.y;
-            if (gameObject.x >= 450 && gameObject.x <= 600  && gameObject.y >= 250 && gameObject.y <= 350 ){
+            if ((gameObject.x >= 450 && gameObject.x <= 600  && gameObject.y >= 250 && gameObject.y <= 350 ) || (gameObject.x >= 650 && gameObject.x <= 800  && gameObject.y >= 250 && gameObject.y <= 350 )){
                 if(status1 == 0){
                     displayResult2.setText('True!');
                     gameObject.input.enabled = false;
@@ -334,21 +330,8 @@ class Scene1 extends Phaser.Scene{
                         gameObject.y = gameObject.input.dragStartY;
                 }
             }
-            else if (gameObject.x >= 650 && gameObject.x <= 800  && gameObject.y >= 250 && gameObject.y <= 350 ){
-                if(status1 == 0){
-                    displayResult2.setText('True!');
-                    gameObject.input.enabled = false;
-                    next_round1 = 1;
-                }
-                else{
-                    gameObject.input.enabled = true;
-                    displayResult2.setText('False!');
-                    textQuestion2.setText('Below Below '+ '\n' +'Below!');
-                    gameObject.x = gameObject.input.dragStartX;
-                    gameObject.y = gameObject.input.dragStartY;
-                }
-            }
-            else if (gameObject.x >= 450 && gameObject.x <= 600 && gameObject.y >= 540 && gameObject.y <= 640 ){
+            
+            else if ((gameObject.x >= 450 && gameObject.x <= 600 && gameObject.y >= 540 && gameObject.y <= 640 ) || (gameObject.x >= 650 && gameObject.x <= 800 && gameObject.y >= 540 && gameObject.y <= 640 )){
                 if(status1 == 1){
                     gameObject.input.enabled = false;
                     displayResult2.setText('True!');
@@ -362,20 +345,7 @@ class Scene1 extends Phaser.Scene{
                     gameObject.y = gameObject.input.dragStartY;
                 }
             }
-            else if (gameObject.x >= 650 && gameObject.x <= 800 && gameObject.y >= 540 && gameObject.y <= 640 ){
-                if(status1 == 1){
-                    gameObject.input.enabled = false;
-                    displayResult2.setText('True!');
-                    next_round1 = 1;
-                }
-                else{
-                    gameObject.input.enabled = true;
-                    displayResult2.setText('False!');
-                    textQuestion2.setText('Above Above '+ '\n' +'Above!');
-                    gameObject.x = gameObject.input.dragStartX;
-                    gameObject.y = gameObject.input.dragStartY;
-                }
-            }
+            
             else {
                 gameObject.x = gameObject.input.dragStartX;
                 gameObject.y = gameObject.input.dragStartY;
@@ -390,12 +360,6 @@ class Scene1 extends Phaser.Scene{
             }
         });
 
-        function deleteBall(ball){
-            ball.destroy();
-            ball = null;
-            ballNumber1--;
-        }
-        
     }
 
     //Random text question;
