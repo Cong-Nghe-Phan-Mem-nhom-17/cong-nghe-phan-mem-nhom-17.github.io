@@ -1,7 +1,12 @@
 let _const2=360;
+let _const_x2 = 1045;
+let _number2 = 9;
+let _x2 = 65;
 let ballNumber2 = 9;
 let status2 = 0;
-let timedEvent2
+let timedEvent2;
+let next_Round2 = 0;
+
 
 
 
@@ -60,7 +65,7 @@ class Scene2 extends Phaser.Scene{
         // ball;
         arr = new Array("redBall");
         for(var i = 0; i < ballNumber2; i++){
-            arr[i] = this.add.image(_const2 += 70, 137, "redBall").setOrigin(0, 0);
+            arr[i] = this.add.image(_const2 += _x2, 137, "redBall").setOrigin(0, 0);
         }
 
        
@@ -86,8 +91,8 @@ class Scene2 extends Phaser.Scene{
         this.ok1 = this.add.sprite(1130, 362, "ok1").setOrigin(0, 0)
 
         this.ok1.setInteractive().on('pointerdown', () => {
-
-            this.destroyBall()
+            next_Round2 = 1;
+            // this.destroyBall()
             this.ok1.destroy()
             this.ok2.destroy()
             this.answer_1.setScale(1.2)
@@ -163,8 +168,8 @@ class Scene2 extends Phaser.Scene{
 
        
         ok2.setInteractive().on('pointerdown', () => {
-
-            this.destroyBall()
+            next_Round2 = 1
+            // this.destroyBall()
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setText("")
@@ -221,8 +226,8 @@ class Scene2 extends Phaser.Scene{
 
        
         ok2.setInteractive().on('pointerdown', () => {
-
-            this.destroyBall()
+            next_Round2 = 1
+            // this.destroyBall()
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setText("")
@@ -288,8 +293,8 @@ class Scene2 extends Phaser.Scene{
         var ok2 = this.add.sprite(1160, 420, 'ok2').setOrigin(0,0)
 
         ok2.setInteractive().on('pointerdown', () =>{
-
-            this.destroyBall()
+            next_Round2 = 1
+            // this.destroyBall()
             ok2.destroy()
             ok1.destroy()
             this.answer_1.setText("")
@@ -333,8 +338,8 @@ class Scene2 extends Phaser.Scene{
         var ok1 = this.add.sprite(1155, 362, 'ok1').setOrigin(0,0)
 
         ok1.setInteractive().on('pointerdown', () => {
-
-            this.destroyBall()
+            next_Round2 = 1
+            // this.destroyBall()
             ok2.destroy()
             ok1.destroy()
             this.answer_1.setScale(1.2)
@@ -419,8 +424,8 @@ class Scene2 extends Phaser.Scene{
         var ok2 = this.add.sprite(1140, 420, 'ok2').setOrigin(0,0)
 
         ok2.setInteractive().on('pointerdown', () =>{
-
-            this.destroyBall()
+            next_Round2 = 1
+            // this.destroyBall()
             ok2.destroy()
             ok1.destroy()
             this.answer_1.setText("")
@@ -493,8 +498,8 @@ class Scene2 extends Phaser.Scene{
         var ok1 = this.add.sprite(265, 440, 'ok1').setOrigin(0, 0)
 
         ok1.setInteractive().on('pointerdown', () => {
-
-            this.destroyBall()
+            next_Round2 = 1
+            // this.destroyBall()
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setScale(1.2)
@@ -567,8 +572,8 @@ class Scene2 extends Phaser.Scene{
         var ok1 = this.add.sprite(265, 440, 'ok1').setOrigin(0, 0)
 
         ok1.setInteractive().on('pointerdown', () => {
-
-            this.destroyBall()
+            next_Round2 = 1
+            // this.destroyBall()
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setScale(1.2)
@@ -665,8 +670,8 @@ class Scene2 extends Phaser.Scene{
         var ok2 = this.add.sprite(265, 550, 'ok2').setOrigin(0, 0)
 
         ok2.setInteractive().on('pointerdown', () => {
-
-            this.destroyBall()
+            next_Round2 = 1
+            // this.destroyBall()
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setText("")
@@ -704,7 +709,7 @@ class Scene2 extends Phaser.Scene{
     }
 
     end_scene() {
-
+        this.deleteBall()
         this.backButton.destroy()
         
         this.nofication = this.add.text(475, 145, 'Well done! You completed the card!', {
@@ -735,17 +740,35 @@ class Scene2 extends Phaser.Scene{
         })
     }
     
-    
-    destroyBall(){
-
-        arr[ballNumber2 - 1].destroy()
-        ballNumber2 --
-
+    animationBall(){
+        var var_x = _const_x2 - (_number2 - ballNumber2) * _x2
+        if(next_Round2){
+        
+            if(arr[ballNumber2 - 1].x < var_x){
+                arr[ballNumber2 - 1].x += 1.5
+            } else {
+                next_Round2 = 0
+                ballNumber1 --
+            }
+            
+        }
     }
 
-    update() {
+    deleteBall(){
+        for(var i = 0;i < _number2; i++){
+            arr[i].destroy()
+        }
+    }
+    
+    // destroyBall(){
 
-        
+    //     arr[ballNumber2 - 1].destroy()
+    //     ballNumber2 --
+
+    // }
+
+    update() {
+        this.animationBall()
     }
 
 }

@@ -1,4 +1,4 @@
-
+let ball1
 class Menu extends Phaser.Scene {
 
     constructor() {
@@ -14,14 +14,7 @@ class Menu extends Phaser.Scene {
         this.load.image('play1', 'assets/images/imageBackground/play1.png')
         this.load.image('play2', 'assets/images/imageBackground/play2.png')
         this.load.image('play3', 'assets/images/imageBackground/play3.png')
-        // them audio test
-        // this.load.audio('fx', [
-            
-        //     'assets/audio/above.ogg'
-        // ])
-        // them image test
-        // this.load.image('cat', 'assets/images/cat.png')
-
+        
     }
 
     
@@ -44,8 +37,11 @@ class Menu extends Phaser.Scene {
         this.play1.setInteractive().on('pointerdown', () => {
 
             _const1 = 360;
+            _const_x = 1045
+            _number = 9;
             ballNumber1 = 9;
             status1 = 0;
+            next_round1 = 0;
             this.scene.start('Scene1')
 
         })
@@ -59,9 +55,12 @@ class Menu extends Phaser.Scene {
 
         this.textPlay1.setInteractive().on('pointerdown', () =>{
 
-            _const1 = 360
-            ballNumber1 = 9
-            status1 = 0
+            _const1 = 360;
+            _const_x = 1045
+            _number = 9;
+            ballNumber1 = 9;
+            next_round1 = 0;
+            status1 = 0;
             this.scene.start('Scene1')
 
         })
@@ -73,6 +72,10 @@ class Menu extends Phaser.Scene {
         this.play2.setInteractive().on('pointerdown', () => {
 
             _const2 = 360;
+            _const_x2 = 1045;
+            _number2 = 9;
+            _x2 = 65;
+            next_Round2 = 0;
             ballNumber2 = 9;
             status2 = 0;
             this.scene.start('Scene2')
@@ -88,9 +91,13 @@ class Menu extends Phaser.Scene {
 
         this.textPlay2.setInteractive().on('pointerdown', () => {
 
-            _const2 = 360
-            ballNumber2 = 9
-            status2 = 0
+            _const2 = 360;
+            _const_x2 = 1045;
+            _number2 = 9;
+            _x2 = 65;
+            next_Round2 = 0;
+            ballNumber2 = 9;
+            status2 = 0;
             this.scene.start('Scene2')
 
         })
@@ -140,6 +147,5 @@ class Menu extends Phaser.Scene {
     }
 
     update() {
-
     }
 }

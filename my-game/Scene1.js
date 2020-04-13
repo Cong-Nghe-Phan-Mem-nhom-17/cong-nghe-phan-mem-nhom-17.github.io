@@ -1,22 +1,30 @@
-let _const1 = 360;
+//var scene 1
+let _const1 = 360; 
+let _const_x = 1045;
+let _number = 9;
+let _x = 65;
 let ballNumber1 = 9;
 let status1 = 0;
-let imageBug;
-let displayResult2;
-let textQuestion2;
-let arr;
-let nextButton;
-let zone1;
+let next1 = 0;
+let next_round1 = 0;
+
+let imageBug; // image bug
+let displayResult2; // display result phase 2 
+let textQuestion2; // question phase 2
+let arr; // display ball
+
+// zone to drag and drop
+let zone1; 
 let zone2;
 let zone3;
 let zone4;
-let timedEvent1;
-let abv;
-let blw;
-let next1 = 0;
-let gameobject;
-let nameBug;
-let nameObject;
+
+let timedEvent1; // time event
+let abv; // display above phase 1
+let blw; // display below phase 1
+let gameobject; // Object to compare
+let nameBug; // name bug 
+let nameObject; // name object
 
 class Scene1 extends Phaser.Scene{
 
@@ -36,7 +44,6 @@ class Scene1 extends Phaser.Scene{
         this.load.image('buttonBelow', 'assets/images/imageButton/buttonBelow.png');
         this.load.image('effectTrueBelow', 'assets/images/imageButton/effectTrueBelow.png');
         this.load.image('effectFalseBelow', 'assets/images/imageButton/effectFalseBelow.png');
-        this.load.image('nextButton', 'assets/images/imageButton/nextButton.png');
         this.load.image('backButton', 'assets/images/imageButton/backButton.png');
         this.load.image('lesson', 'assets/images/imageButton/lesson.png');
 
@@ -71,7 +78,7 @@ class Scene1 extends Phaser.Scene{
         this.bird = this.add.image(420, 340, "imageBird").setOrigin(0, 0);
         arr = new Array("redBall");
         for(let i = 0; i < ballNumber1; i++){
-            arr[i] = this.add.image(_const1 += 70, 137, "redBall").setOrigin(0, 0);
+            arr[i] = this.add.image(_const1 += _x, 137, "redBall").setOrigin(0, 0);
         }
 
         // add text;
@@ -101,6 +108,7 @@ class Scene1 extends Phaser.Scene{
             this.effectTrueAbove = this.add.image(233, 225, "effectTrueAbove").setOrigin(0, 0);
             this.children.bringToTop(this.bird);
             this.displayResult.setText("Correct!");
+            next_round1 = 1;
 
             abv = this.add.text(440, 275, 'ABOVE', {font: '50px Arial', fill: 'black'});
 
@@ -108,13 +116,11 @@ class Scene1 extends Phaser.Scene{
             this.buttonAbove.visible = false;
 
             timedEvent1 = this.time.delayedCall(2000, function Correct() {
-                this.deleteBall(ball);
                 abv.setText("")
                 this.displayResult.setText("Result");
                 status1 = this.randomQuestion();
                 this.effectTrueAbove.destroy();
-                // this.buttonBelow.visible = true;
-                // this.buttonAbove.visible = true;
+
                 if (ballNumber1 == 5) {
                     this.destroyObject();
                     this.handleNextFrameGame();
@@ -152,7 +158,7 @@ class Scene1 extends Phaser.Scene{
             this.effectTrueBelow = this.add.image(233, 525, "effectTrueBelow").setOrigin(0, 0);
             this.children.bringToTop(this.bird);
             this.displayResult.setText("Correct!");
-            this.deleteBall (ball);
+            next_round1 = 1;
 
             blw = this.add.text(440, 575, 'BELOW', {
                 font: '50px Arial',
@@ -166,12 +172,10 @@ class Scene1 extends Phaser.Scene{
                 this.displayResult.setText("Result")
                 status1 = this.randomQuestion();
                 this.effectTrueBelow.destroy();
+
                 if(ballNumber1 == 5){
                     this.destroyObject();
                     this.handleNextFrameGame();
-                } else {
-                    // this.buttonBelow.visible = true;
-                    // this.buttonAbove.visible = true;
                 }
                 
             }, [], this)
@@ -209,6 +213,7 @@ class Scene1 extends Phaser.Scene{
             timedEvent1 = this.time.delayedCall(1000, function wrong() {
                 this.buttonBelow.visible = true;
                 this.buttonAbove.visible = true;
+
                 if(temp == 1){
                     this.text1.setText( "Click Below " + "\n" + "The Strange Creature");
                 }
@@ -217,24 +222,8 @@ class Scene1 extends Phaser.Scene{
                 }
             }, [], this)
         }
-        // else 
-        // {
-        //     if(temp == 1){
-        //         this.text1.setText( "Click Below " + "\n" + "The Strange Creature");
-        //     }
-        //     else{
-        //         this.text1.setText( "Click Above " + "\n" + "The Strange Creature");
-        //     }
-        // }
         
         return temp;
-    }
-
-    //Delete ball object when click true;
-    deleteBall (ball){
-        ball.destroy();
-        ball = null;
-        ballNumber1--;
     }
 
     //Destroy object to change frameGame;
@@ -251,7 +240,7 @@ class Scene1 extends Phaser.Scene{
 
     //Handle game over when ballNumber == 0;
     handleGameOver(){
-        if(ballNumber1 == 0){
+            this.deleteBall()
             this.destroyObject2();
             this.nofication = this.add.text(475, 145, 'Well done! You completed the card!', {font: '35px Arial', fill: 'red'});
             var lesson = this.add.sprite(650, 400, 'lesson').setOrigin(0, 0)
@@ -273,7 +262,6 @@ class Scene1 extends Phaser.Scene{
                 gameObject.clearTint()
 
             });
-        }
     }
 
     //Handle next framegame when ballNumber == 5;
@@ -335,9 +323,8 @@ class Scene1 extends Phaser.Scene{
             if (gameObject.x >= 450 && gameObject.x <= 600  && gameObject.y >= 250 && gameObject.y <= 350 ){
                 if(status1 == 0){
                     displayResult2.setText('True!');
-                    deleteBall (arr[ballNumber1 - 1]);
                     gameObject.input.enabled = false;
-                    next1 = 1;
+                    next_round1 = 1;
                 }
                 else{
                     gameObject.input.enabled = true;
@@ -350,9 +337,8 @@ class Scene1 extends Phaser.Scene{
             else if (gameObject.x >= 650 && gameObject.x <= 800  && gameObject.y >= 250 && gameObject.y <= 350 ){
                 if(status1 == 0){
                     displayResult2.setText('True!');
-                    deleteBall (arr[ballNumber1 - 1]);
                     gameObject.input.enabled = false;
-                    next1 = 1;
+                    next_round1 = 1;
                 }
                 else{
                     gameObject.input.enabled = true;
@@ -366,8 +352,7 @@ class Scene1 extends Phaser.Scene{
                 if(status1 == 1){
                     gameObject.input.enabled = false;
                     displayResult2.setText('True!');
-                    deleteBall (arr[ballNumber1 - 1]);
-                    next1 = 1;
+                    next_round1 = 1;
                 }
                 else{
                     gameObject.input.enabled = true;
@@ -381,8 +366,7 @@ class Scene1 extends Phaser.Scene{
                 if(status1 == 1){
                     gameObject.input.enabled = false;
                     displayResult2.setText('True!');
-                    deleteBall (arr[ballNumber1 - 1]);
-                    next1 = 1;
+                    next_round1 = 1;
                 }
                 else{
                     gameObject.input.enabled = true;
@@ -511,9 +495,37 @@ class Scene1 extends Phaser.Scene{
         zone4.clearTint()
     }
 
+    animationBall(){
+        var var_x = _const_x - (_number - ballNumber1) * _x
+        if(next_round1){
+        
+            if(arr[ballNumber1 - 1].x < var_x){
+                arr[ballNumber1 - 1].x += 1.5
+            } else {
+                next_round1 = 0
+                ballNumber1 --
+                if(ballNumber1 <= 5){
+                    next1 = 1
+                } 
+            }
+            
+        }
+    }
+
+    deleteBall(){
+        for(var i = 0;i < _number; i++){
+            arr[i].destroy()
+        }
+    }
+
     update(){
+        if(ballNumber1 == 0){
+            timedEvent1 = this.time.delayedCall(1500, function end_game(){
+                this.handleGameOver()
+            }, [], this)
+        }
         this.changeObject();
-        this.handleGameOver();
+        this.animationBall()
     }
 
 }
