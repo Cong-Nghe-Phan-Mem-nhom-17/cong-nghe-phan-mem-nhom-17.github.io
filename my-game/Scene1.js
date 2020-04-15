@@ -147,7 +147,6 @@ class Scene1 extends Phaser.Scene{
         if(status1 == 1){
             this.effectTrueBelow = this.add.image(233, 525, "effectTrueBelow").setOrigin(0, 0);
             this.drawIsCorrect (true, 0)
-
             timedEvent1 = this.time.delayedCall(2000, function correct() {
                 blw.setText("")
                 this.displayResult.setText("Result")
