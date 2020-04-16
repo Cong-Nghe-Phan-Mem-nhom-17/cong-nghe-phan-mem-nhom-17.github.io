@@ -1,6 +1,5 @@
-let game;
 
-window.onload=function () {
+// window.onload=function () {
 	const config = {
 		type: Phaser.AUTO,
 		width: 1525,
@@ -9,9 +8,10 @@ window.onload=function () {
 		background: 0x000000,
 		scene: [Menu,Scene2,Scene1,Scene3]
 	};
+	let game = new Phaser.Game(config);
 
-	game = new Phaser.Game(config);
-}
+	
+// }
 
 
 

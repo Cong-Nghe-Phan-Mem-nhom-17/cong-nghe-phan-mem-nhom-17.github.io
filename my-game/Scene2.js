@@ -517,10 +517,6 @@ class Scene2 extends Phaser.Scene{
         var ok2 = this.add.sprite(265, 550, 'ok2').setOrigin(0, 0)
 
         ok2.setInteractive().on('pointerdown', () => {
-
-            // ok1.destroy()
-            // ok2.destroy()
-            
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setText("Wrong! Do it again")
@@ -582,20 +578,12 @@ class Scene2 extends Phaser.Scene{
                 this.turtle.destroy()
                 this.phase_9()
             }, [], this)
-            // this.home_1.destroy()
-            // this.home_2.destroy()
-            // this.frog.destroy()
-            // this.turtle.destroy()
             
         })
 
         var ok2 = this.add.sprite(265, 550, 'ok2').setOrigin(0, 0)
 
         ok2.setInteractive().on('pointerdown', () => {
-
-            // ok1.destroy()
-            // ok2.destroy()
-            
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setText("Wrong! Do it again")
