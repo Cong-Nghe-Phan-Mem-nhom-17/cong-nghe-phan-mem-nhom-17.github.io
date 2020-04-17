@@ -14,13 +14,12 @@ let imag4;
 let click3 = 1;
 let timedEvent3
 let x = 0;
+let speak3;
 
 class Scene3 extends Phaser.Scene{
 
     constructor() {
-
         super('Scene3');
-
     }
 
     preload() {
@@ -45,6 +44,9 @@ class Scene3 extends Phaser.Scene{
 
         //load image zone;
         this.load.image('zonePutWindow', 'assets/images/imageZone/zonePutWindow.png');
+
+        // load image audio;
+        this.load.image('speak 3', 'assets/images/imageAudio/speak 1.png')
     }
 
     create(){

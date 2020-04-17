@@ -39,6 +39,7 @@ class Scene1 extends Phaser.Scene{
         super('Scene1');
     }
 
+    //load image and audio;
     preload() {
         // load image background;
         this.load.image('backGround', 'assets/images/imageBackground/backGround.png');
@@ -91,6 +92,7 @@ class Scene1 extends Phaser.Scene{
         this.load.audio('wrong_', 'assets/audio/audioScene1/wrong_.mp3')
     }
 
+    //create game;
     create(){
         // add image background and framework;
         this.background = this.add.image(0, 0, "backGround").setOrigin(0, 0);
@@ -301,6 +303,19 @@ class Scene1 extends Phaser.Scene{
         this.displayResult = null;
     }
 
+    //Destroy object when game over;
+    destroyObject2(){
+        displayResult2.destroy();
+        imageBug.destroy();
+        textQuestion2.destroy();
+        zone1.destroy();
+        zone2.destroy();
+        zone3.destroy();
+        zone4.destroy();
+        gameobject.destroy();
+        this.backButton.destroy()
+    }
+
     //Handle game over when ballNumber == 0;
     handleGameOver(){
             this.deleteBall()
@@ -456,20 +471,6 @@ class Scene1 extends Phaser.Scene{
         return temp2;
     }
 
-    //Destroy object when game over;
-    destroyObject2(){
-        displayResult2.destroy();
-        imageBug.destroy();
-        textQuestion2.destroy();
-        zone1.destroy();
-        zone2.destroy();
-        zone3.destroy();
-        zone4.destroy();
-        gameobject.destroy();
-        this.backButton.destroy()
-        speak1.destroy();
-    }
-
     //Change object after ans true;
     changeObject(){
         if(next1){
@@ -530,7 +531,7 @@ class Scene1 extends Phaser.Scene{
         }
     }
 
-    //drawImage
+    //drawImage part2;
     drawImage (namebug, object, bug) {
         nameBug = namebug
         nameObject = object
@@ -550,6 +551,7 @@ class Scene1 extends Phaser.Scene{
         this.input.setDraggable(imageBug)
     }
 
+    //Move on ball when client click true;
     animationBall(){
         var var_x = _const_x - (_number - ballNumber1) * _x
         if(next_round1){
@@ -567,6 +569,7 @@ class Scene1 extends Phaser.Scene{
         }
     }
 
+    //Remove effect;
     clear_tint(){
         zone1.clearTint();
         zone2.clearTint();
@@ -574,15 +577,18 @@ class Scene1 extends Phaser.Scene{
         zone4.clearTint();
     }
 
+    //Delete ball;
     deleteBall(){
         for(var i = 0;i < _number; i++){
             arr[i].destroy()
         }
     }
 
+    //Update;
     update(){
         if(ballNumber1 == 0){
             timedEvent1 = this.time.delayedCall(1500, function end_game(){
+                if(speak1 != null) speak1.destroy();
                 this.handleGameOver()
             }, [], this)
         }
