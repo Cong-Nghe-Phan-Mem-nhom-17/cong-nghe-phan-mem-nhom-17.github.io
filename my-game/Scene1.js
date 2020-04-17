@@ -88,7 +88,7 @@ class Scene1 extends Phaser.Scene{
         this.load.audio('putWAT','assets/audio/audioScene1/putWormAboveTurtle.mp3')
         this.load.audio('putWBT','assets/audio/audioScene1/putWormBelowTurtle.mp3')
         this.load.audio('wrong', 'assets/audio/audioScene1/wrong.mp3')
-
+        this.load.audio('wrong_', 'assets/audio/audioScene1/wrong_.mp3')
     }
 
     create(){
@@ -332,6 +332,11 @@ class Scene1 extends Phaser.Scene{
         displayResult2 = this.add.text(250, 350, "Result!", {font: '50px Arial', fill: 'Black'});
         status1 = 0;
         speak1 = this.add.image(800, 325, 'speak 1');
+        putAudio = this.sound.add('putWAB')
+        speak1.setInteractive().on('pointerdown', () =>{
+            putAudio.play()
+        })
+        wrongAudio = this.sound.add('wrong_')
         check = 1;
         textQuestion2 = this.add.text(770, 300, '\t\t\t' + ' Put the worm into' + '\n' + ' Above the bird!', {font: '50px Arial', fill: "Black"});
 
@@ -397,6 +402,7 @@ class Scene1 extends Phaser.Scene{
                     gameObject.input.enabled = true;
                     displayResult2.setText('False!');
                     textQuestion2.setText('\t\t' +'Below Below Below!');
+                    wrongAudio.play()
                         gameObject.x = gameObject.input.dragStartX;
                         gameObject.y = gameObject.input.dragStartY;
                 }
@@ -414,6 +420,7 @@ class Scene1 extends Phaser.Scene{
                     gameObject.input.enabled = true;
                     displayResult2.setText('False!');
                     textQuestion2.setText('\t\t' +'Above Above Above!');
+                    wrongAudio.play()
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
                 }
@@ -467,24 +474,57 @@ class Scene1 extends Phaser.Scene{
     changeObject(){
         if(next1){
             next1 = 0
+            putAudio.destroy()
             if(ballNumber1 == 4){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
                     this.drawImage("bee", "mouse", 'img1');
+                    if(status1){
+                        putAudio = this.sound.add('putBBM')
+                    } else {
+                        putAudio = this.sound.add('putBAM')
+                    }
+                    speak1.setInteractive().on('pointerdown', () =>{
+                        putAudio.play()
+                    })
                 }, [], this)
             } else
             if(ballNumber1 == 3){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
                     this.drawImage("butterfly", "chicken", 'img2');
+                    if(status1){
+                        putAudio = this.sound.add('putBBC')
+                    } else {
+                        putAudio = this.sound.add('putBAC')
+                    }
+                    speak1.setInteractive().on('pointerdown', () =>{
+                        putAudio.play()
+                    })
                 }, [], this)
             } else
             if(ballNumber1 == 2){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
                     this.drawImage("bug", "frog", 'img3');
+                    if(status1){
+                        putAudio = this.sound.add('putBBF')
+                    } else {
+                        putAudio = this.sound.add('putBAF')
+                    }
+                    speak1.setInteractive().on('pointerdown', () =>{
+                        putAudio.play()
+                    })
                 }, [], this)
             } else
             if(ballNumber1 == 1){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
                     this.drawImage("worm", "turtle", 'img4');
+                    if(status1){
+                        putAudio = this.sound.add('putWBT')
+                    } else {
+                        putAudio = this.sound.add('putWAT')
+                    }
+                    speak1.setInteractive().on('pointerdown', () =>{
+                        putAudio.play()
+                    })
                 }, [], this)
             }
         }
@@ -519,7 +559,7 @@ class Scene1 extends Phaser.Scene{
             } else {
                 next_round1 = 0
                 ballNumber1 --
-                if(ballNumber1 <= 5){
+                if(ballNumber1 < 5){
                     next1 = 1
                 } 
             }
