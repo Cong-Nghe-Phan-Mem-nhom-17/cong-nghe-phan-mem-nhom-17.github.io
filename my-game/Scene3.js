@@ -15,6 +15,8 @@ let click3 = 1;
 let timedEvent3
 let x = 0;
 let speak3;
+let audio;
+let wrongAudio3;
 
 class Scene3 extends Phaser.Scene{
 
@@ -47,6 +49,14 @@ class Scene3 extends Phaser.Scene{
 
         // load image audio;
         this.load.image('speak 3', 'assets/images/imageAudio/speak 1.png')
+
+        // load audio
+        this.load.audio('placeButterfly', 'assets/audio/audioScene3/placeButterfly.mp3')
+        this.load.audio('placeBug', 'assets/audio/audioScene3/placeBug.mp3')
+        this.load.audio('placeWorm', 'assets/audio/audioScene3/placeWorm.mp3')
+        this.load.audio('placeBee', 'assets/audio/audioScene3/placeBee.mp3')
+        this.load.audio('wrong_', 'assets/audio/audioScene3/wrong_.mp3')
+ 
     }
 
     create(){
@@ -66,6 +76,15 @@ class Scene3 extends Phaser.Scene{
         for(let i = 0; i < number; i++){
             arrNumberOfPlay[i] = this.add.image(_const3 += 70, 140, "numberOfPlay").setOrigin(0, 0);
         }
+
+        // image audio
+        speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+        //audio
+        wrongAudio3 = this.sound.add('wrong_')
+        audio = this.sound.add('placeBee')
+        speak3.setInteractive().on('pointerdown', () =>{
+            audio.play()
+        })
 
         // add text;
         textQuestion3 = this.add.text(450, 620, "Place the bee ABOVE the window", {font: "35px Arial", fill: "black"});
@@ -148,6 +167,8 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
+                    speak3.destroy()
+                    wrongAudio3.play()
                     textQuestion3.setText('Below Below Below!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
@@ -166,6 +187,8 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
+                    speak3.destroy()
+                    wrongAudio3.pllay()
                     textQuestion3.setText('Below Below Below!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
@@ -184,6 +207,8 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
+                    speak3.destroy()
+                    wrongAudio3.play()
                     textQuestion3.setText('Above Above Above!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
@@ -202,6 +227,8 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
+                    speak3.destroy()
+                    wrongAudio3.play()
                     textQuestion3.setText('Above Above Above!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
@@ -236,6 +263,7 @@ class Scene3 extends Phaser.Scene{
         if(imag4 != null) imag4.destroy();
         displayResult.destroy();
         textQuestion3.destroy();
+        speak3.destroy()
 
         if(number > 0){
 
@@ -313,39 +341,53 @@ class Scene3 extends Phaser.Scene{
 
     changeObject(){
         if(x == 1){
+            if(speak3!=null){
+                speak3.destroy()
+            }
             x = 0
             if(numberOfPlay == 3){ 
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
+                    speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+                    audio = this.sound.add('placeButterfly')
+                    speak3.setInteractive().on('pointerdown', () =>{
+                        audio.play()
+                    })
                     displayResult.setText("Result!")
                     textQuestion3.setText("Place the butterfly BELOW the window")
                     imag2 = this.add.image(1150, 550, 'img2')
                     imag2.setInteractive()
                     this.input.setDraggable(imag2)
-                    
-    
+
                 }, [], this)
                 
             } else 
             if(numberOfPlay == 2){
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
+                    speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+                    audio = this.sound.add('placeBug')
+                    speak3.setInteractive().on('pointerdown', () =>{
+                        audio.play()
+                    })
                     displayResult.setText("Result!")
                     textQuestion3.setText("Place the bug ABOVE the window")
                     imag3 = this.add.image(1150, 550, 'img3')
                     imag3.setInteractive()
-                    this.input.setDraggable(imag3)
-                    
+                    this.input.setDraggable(imag3)     
     
                 }, [], this)
             } else 
             if(numberOfPlay == 1){
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
+                    speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+                    audio = this.sound.add('placeWorm')
+                    speak3.setInteractive().on('pointerdown', () =>{
+                        audio.play()
+                    })
                     displayResult.setText("Result!")
                     textQuestion3.setText("Place the worm BELOW the window")
                     imag4 = this.add.image(1150, 550, 'img4')
                     imag4.setInteractive()
                     this.input.setDraggable(imag4)
-                    
-    
                 }, [], this)
             }
         }
