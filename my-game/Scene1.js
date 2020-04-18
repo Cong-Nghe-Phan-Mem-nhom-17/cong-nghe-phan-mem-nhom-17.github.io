@@ -7,7 +7,6 @@ let ballNumber1 = 9;
 let status1 = 0;
 let next1 = 0;
 let next_round1 = 0;
-let check = 0;
 
 let imageBug; // image bug
 let displayResult2; // display result phase 2 
@@ -149,6 +148,7 @@ class Scene1 extends Phaser.Scene{
 
             timedEvent1 = this.time.delayedCall(2000, function Correct() {
                 correctAudio.destroy()
+
                 this.effectTrueAbove.destroy();
                 abv.setText("");
                 this.displayResult.setText("Result");
@@ -170,10 +170,7 @@ class Scene1 extends Phaser.Scene{
                 this.buttonBelow.visible = true;
                 this.buttonAbove.visible = true;
                 this.displayResult.setText("Result");
-                speak1 = this.add.image(825, 375, 'speak 1');
-                speak1.setInteractive().on('pointerdown', () =>{
-                    clickAudio.play()
-                })
+                speak1.visible = true // hien icon audio
                 this.text1.setText("\t\t\t\t" + "Click Below \nThe Strange Creature")
             }, [], this)
 
@@ -198,6 +195,7 @@ class Scene1 extends Phaser.Scene{
             timedEvent1 = this.time.delayedCall(2000, function correct() {
                 correctAudio.destroy()
                 blw.setText("")
+
                 this.displayResult.setText("Result")
                 status1 = this.randomQuestion();
                 this.effectTrueBelow.destroy();
@@ -218,10 +216,7 @@ class Scene1 extends Phaser.Scene{
                 this.buttonBelow.visible = true;
                 this.buttonAbove.visible = true;
                 this.displayResult.setText("Result")
-                speak1 = this.add.image(825, 375, 'speak 1');
-                speak1.setInteractive().on('pointerdown', () =>{
-                    clickAudio.play()
-                })
+                speak1.visible = true // hien icon audio
                 this.text1.setText("\t\t\t\t" + "Click Above \nThe Strange Creature")
             }, [], this)
 
@@ -237,8 +232,8 @@ class Scene1 extends Phaser.Scene{
     //draw correct
     drawIsCorrect (isCorrect, text ){
         this.children.bringToTop(this.bird);
+        speak1.visible = false // an icon audio
         if (isCorrect == false){
-            speak1.destroy();
             this.displayResult.setText("Wrong!");
             if (text == 1)
                 this.text1.setText("Below Below Below!");
@@ -261,16 +256,15 @@ class Scene1 extends Phaser.Scene{
     //Random text question;
     randomQuestion(){
         var temp = Phaser.Math.Between(0, 1);
-        speak1.destroy();
         this.text1.setText( "Next question");
         if (ballNumber1 > 5){
             timedEvent1 = this.time.delayedCall(1000, function nextQuestion() {
 
+                speak1.visible = true // hien icon audio 
                 this.buttonBelow.visible = true;
                 this.buttonAbove.visible = true;
 
                 if(temp == 1){
-                    speak1 = this.add.image(825, 375, 'speak 1');
                     clickAudio = this.sound.add('clickBelow')
                     speak1.setInteractive().on('pointerdown', () =>{
                         clickAudio.play()
@@ -278,7 +272,6 @@ class Scene1 extends Phaser.Scene{
                     this.text1.setText( "\t\t\t\t" + "Click Below " + "\n" + "The Strange Creature");
                 }
                 else{
-                    speak1 = this.add.image(825, 375, 'speak 1');
                     clickAudio = this.sound.add('clickAbove')
                     speak1.setInteractive().on('pointerdown', () =>{
                         clickAudio.play()
@@ -293,6 +286,7 @@ class Scene1 extends Phaser.Scene{
 
     //Destroy object to change frameGame;
     destroyObject(){
+        speak1.destroy()
         this.buttonAbove.destroy();
         this.buttonAbove = null;
         this.buttonBelow.destroy();
@@ -313,6 +307,7 @@ class Scene1 extends Phaser.Scene{
         zone3.destroy();
         zone4.destroy();
         gameobject.destroy();
+        speak1.destroy();
         this.backButton.destroy()
     }
 
@@ -353,7 +348,7 @@ class Scene1 extends Phaser.Scene{
         })
         wrongAudio = this.sound.add('wrong_')
         check = 1;
-        textQuestion2 = this.add.text(770, 300, '\t\t\t' + ' Put the worm into' + '\n' + ' Above the bird!', {font: '50px Arial', fill: "Black"});
+        textQuestion2 = this.add.text(770, 300, '\t\t\t' + ' Put the worm into' + '\n' + '    Above the bird!', {font: '50px Arial', fill: "Black"});
 
         imageBug = this.add.image(1020, 530, 'imageBug', Phaser.Math.RND.pick(this.framework)).setInteractive();
         this.input.setDraggable(imageBug);
@@ -407,13 +402,13 @@ class Scene1 extends Phaser.Scene{
             gameObject.y = dropZone.y;
             if ((gameObject.x >= 450 && gameObject.x <= 600  && gameObject.y >= 250 && gameObject.y <= 350 ) || (gameObject.x >= 650 && gameObject.x <= 800  && gameObject.y >= 250 && gameObject.y <= 350 )){
                 if(status1 == 0){
+                    speak1.visible = false // an icon audio
                     displayResult2.setText('True!');
                     gameObject.input.enabled = false;
                     next_round1 = 1;
                 }
                 else{
-                    speak1.destroy();
-                    check = 0;
+                    speak1.visible = false // an icon audio
                     gameObject.input.enabled = true;
                     displayResult2.setText('False!');
                     textQuestion2.setText('\t\t' +'Below Below Below!');
@@ -428,10 +423,10 @@ class Scene1 extends Phaser.Scene{
                     gameObject.input.enabled = false;
                     displayResult2.setText('True!');
                     next_round1 = 1;
+                    speak1.visible = false // an icon audio
                 }
                 else{
-                    speak1.destroy();
-                    check = 0;
+                    speak1.visible = false // an icon audio
                     gameObject.input.enabled = true;
                     displayResult2.setText('False!');
                     textQuestion2.setText('\t\t' +'Above Above Above!');
@@ -460,13 +455,14 @@ class Scene1 extends Phaser.Scene{
     //Random text question;
     randomQuestion_1() {
         var temp2 = Phaser.Math.Between(0, 1);
+        speak1.visible = true // hien icon audio
         if(temp2 == 0){
-            if(check == 0) speak1 = this.add.image(800, 325, 'speak 1');
-            textQuestion2.setText('\t\t\t' + ' Put the ' + nameBug + ' into' + '\n' + 'Above the ' + nameObject + '!');
+            // speak1 = this.add.image(800, 325, 'speak 1');
+            textQuestion2.setText('\t\t\t' + ' Put the ' + nameBug + ' into' + '\n' + '    Above the ' + nameObject + '!');
         }
         else{
-            if(check == 0) speak1 = this.add.image(800, 325, 'speak 1');
-            textQuestion2.setText('\t\t\t' + ' Put the ' + nameBug + ' into' + '\n' + 'Below the ' + nameObject + '!');
+            // speak1 = this.add.image(800, 325, 'speak 1');
+            textQuestion2.setText('\t\t\t' + ' Put the ' + nameBug + ' into' + '\n' + '    Below the ' + nameObject + '!');
         }
         return temp2;
     }
@@ -475,7 +471,7 @@ class Scene1 extends Phaser.Scene{
     changeObject(){
         if(next1){
             next1 = 0
-            putAudio.destroy()
+            // putAudio.destroy()
             if(ballNumber1 == 4){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
                     this.drawImage("bee", "mouse", 'img1');

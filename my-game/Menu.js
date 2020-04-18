@@ -40,7 +40,8 @@ class Menu extends Phaser.Scene {
         this.play1 = this.add.sprite(350, 300, 'play1').setOrigin(0,0)
 
         this.play1.setInteractive().on('pointerdown', () => {
-
+            _x = 65;
+            next1 = 0;
             _const1 = 360;
             _const_x = 1045
             _number = 9;
@@ -59,7 +60,8 @@ class Menu extends Phaser.Scene {
         }).setOrigin(0, 0)
 
         this.textPlay1.setInteractive().on('pointerdown', () =>{
-
+            _x = 65;
+            next1 = 0;
             _const1 = 360;
             _const_x = 1045
             _number = 9;
@@ -112,7 +114,7 @@ class Menu extends Phaser.Scene {
         this.play3 = this.add.sprite(950, 300, 'play3').setOrigin(0,0)
 
         this.play3.setInteractive().on('pointerdown', () => {
-
+            x = 0;
             number = 3;
             status3 = 0;
             _const3 = 570;
@@ -129,6 +131,7 @@ class Menu extends Phaser.Scene {
         }).setOrigin(0, 0)
 
         this.textPlay3.setInteractive().on('pointerdown', () => {
+            x = 0;
             numberOfPlay = 4;
             number = 3;
             status3 = 0;

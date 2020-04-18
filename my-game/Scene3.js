@@ -11,7 +11,6 @@ let imag1;
 let imag2;
 let imag3;
 let imag4;
-let click3 = 1;
 let timedEvent3
 let x = 0;
 let speak3;
@@ -168,7 +167,8 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    speak3.destroy()
+                    // speak3.destroy()
+                    speak3.visible = false
                     wrongAudio3.play()
                     textQuestion3.setText('Below Below Below!');
                     gameObject.x = gameObject.input.dragStartX;
@@ -188,7 +188,8 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    speak3.destroy()
+                    // speak3.destroy()
+                    speak3.visible = false
                     wrongAudio3.pllay()
                     textQuestion3.setText('Below Below Below!');
                     gameObject.x = gameObject.input.dragStartX;
@@ -208,7 +209,8 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    speak3.destroy()
+                    // speak3.destroy()
+                    speak3.visible = false
                     wrongAudio3.play()
                     textQuestion3.setText('Above Above Above!');
                     gameObject.x = gameObject.input.dragStartX;
@@ -228,7 +230,8 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    speak3.destroy()
+                    // speak3.destroy()
+                    speak3.visible = false
                     wrongAudio3.play()
                     textQuestion3.setText('Above Above Above!');
                     gameObject.x = gameObject.input.dragStartX;
@@ -316,7 +319,7 @@ class Scene3 extends Phaser.Scene{
             this.destroyObject();
             textOver = this.add.text(625, 137, "Oops! Try Again!", {font: "50px Arial", fill: "black" });
             textOver.setInteractive().on('pointerdown', () =>{
-
+                x = 0;
                 number = 3;
                 status3 = 0;
                 _const3 = 570;
@@ -324,31 +327,20 @@ class Scene3 extends Phaser.Scene{
                 this.scene.start('Scene3')
 
             })
-
-            this.input.on('gameobjectover', function(pointer, gameObject) {
-
-                textOver.setColor('red');
-
-            })
-
-            this.input.on('gameobjectout', function(pointer, gameObject){
-
-                textOver.setColor('black')
-
-            })
-
         }
     }
 
     changeObject(){
         if(x == 1){
-            if(speak3!=null){
-                speak3.destroy()
-            }
+            // if(speak3!=null){
+            //     speak3.destroy()
+            // }
+            speak3.visible = false
             x = 0
             if(numberOfPlay == 3){ 
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
-                    speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+                    // speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+                    speak3.visible = true 
                     audio = this.sound.add('placeButterfly')
                     speak3.setInteractive().on('pointerdown', () =>{
                         audio.play()
@@ -364,7 +356,8 @@ class Scene3 extends Phaser.Scene{
             } else 
             if(numberOfPlay == 2){
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
-                    speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+                    // speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+                    speak3.visible = true
                     audio = this.sound.add('placeBug')
                     speak3.setInteractive().on('pointerdown', () =>{
                         audio.play()
@@ -379,7 +372,8 @@ class Scene3 extends Phaser.Scene{
             } else 
             if(numberOfPlay == 1){
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
-                    speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+                    // speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
+                    speak3.visible = true
                     audio = this.sound.add('placeWorm')
                     speak3.setInteractive().on('pointerdown', () =>{
                         audio.play()
