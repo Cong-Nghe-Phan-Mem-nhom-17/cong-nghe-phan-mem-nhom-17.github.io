@@ -31,6 +31,7 @@ class Scene3 extends Phaser.Scene{
 
         //load image outside;
         this.load.image('castle', "assets/images/imageOutside/castle.png");
+        this.load.image('dragon', "assets/images/imageOutside/imageDragon.png");
 
         // load image button;
         this.load.image('backButton', 'assets/images/imageButton/backButton.png');
@@ -290,8 +291,8 @@ class Scene3 extends Phaser.Scene{
                 fill: 'red'
 
             });
-
-            var lesson = this.add.sprite(650, 400, 'lesson').setOrigin(0, 0)
+            this.dragon = this.add.image(475, 145, 'dragon').setOrigin(0, 0);
+            var lesson = this.add.sprite(650, 400, 'lesson').setOrigin(0, 0);
 
             lesson.setInteractive().on('pointerdown', () => {
 
