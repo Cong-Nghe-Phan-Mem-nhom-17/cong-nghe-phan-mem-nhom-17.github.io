@@ -14,8 +14,6 @@ class Menu extends Phaser.Scene {
         this.load.image('play1', 'assets/images/imageBackground/play1.png')
         this.load.image('play2', 'assets/images/imageBackground/play2.png')
         this.load.image('play3', 'assets/images/imageBackground/play3.png')
-        // test audio
-        // this.load.audio('above', 'assets/audio/audioScene1/above.mp3')
         
     }
 
@@ -32,9 +30,6 @@ class Menu extends Phaser.Scene {
             fill: "red"
 
         }).setOrigin(0, 0);
-        // test audio
-        // var gamesound = this.sound.add('above')
-        // gamesound.play()
 
         // Choose scene 1 
         this.play1 = this.add.sprite(350, 300, 'play1').setOrigin(0,0)

@@ -167,7 +167,6 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    // speak3.destroy()
                     speak3.visible = false
                     wrongAudio3.play()
                     textQuestion3.setText('Below Below Below!');
@@ -188,7 +187,6 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    // speak3.destroy()
                     speak3.visible = false
                     wrongAudio3.pllay()
                     textQuestion3.setText('Below Below Below!');
@@ -209,7 +207,6 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    // speak3.destroy()
                     speak3.visible = false
                     wrongAudio3.play()
                     textQuestion3.setText('Above Above Above!');
@@ -230,7 +227,6 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    // speak3.destroy()
                     speak3.visible = false
                     wrongAudio3.play()
                     textQuestion3.setText('Above Above Above!');

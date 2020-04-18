@@ -347,7 +347,7 @@ class Scene1 extends Phaser.Scene{
             putAudio.play()
         })
         wrongAudio = this.sound.add('wrong_')
-        check = 1;
+        // check = 1;
         textQuestion2 = this.add.text(770, 300, '\t\t\t' + ' Put the worm into' + '\n' + '    Above the bird!', {font: '50px Arial', fill: "Black"});
 
         imageBug = this.add.image(1020, 530, 'imageBug', Phaser.Math.RND.pick(this.framework)).setInteractive();
@@ -457,11 +457,9 @@ class Scene1 extends Phaser.Scene{
         var temp2 = Phaser.Math.Between(0, 1);
         speak1.visible = true // hien icon audio
         if(temp2 == 0){
-            // speak1 = this.add.image(800, 325, 'speak 1');
             textQuestion2.setText('\t\t\t' + ' Put the ' + nameBug + ' into' + '\n' + '    Above the ' + nameObject + '!');
         }
         else{
-            // speak1 = this.add.image(800, 325, 'speak 1');
             textQuestion2.setText('\t\t\t' + ' Put the ' + nameBug + ' into' + '\n' + '    Below the ' + nameObject + '!');
         }
         return temp2;
@@ -471,7 +469,6 @@ class Scene1 extends Phaser.Scene{
     changeObject(){
         if(next1){
             next1 = 0
-            // putAudio.destroy()
             if(ballNumber1 == 4){
                 timedEvent1 = this.time.delayedCall(2000, function next (){
                     this.drawImage("bee", "mouse", 'img1');
