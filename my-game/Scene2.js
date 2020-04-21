@@ -125,9 +125,9 @@ class Scene2 extends Phaser.Scene{
         })
 
         // Answers
-        this.answer_1 = this.add.text(580, 360, 'The cat is ABOVE the squirrel', {font: "40px Arial", fill: "black" });
+        this.answer_1 = this.add.text(580, 360, 'The cat is ABOVE the squirrel.', {font: "40px Arial", fill: "black" });
 
-        this.answer_2 = this.add.text(580, 420, 'The cat is BELOW the squirrel', {font: "40px Arial", fill: "black" });
+        this.answer_2 = this.add.text(580, 420, 'The cat is BELOW the squirrel.', {font: "40px Arial", fill: "black" });
 
         this.ok1 = this.add.sprite(1130, 362, "ok1").setOrigin(0, 0)
 
@@ -159,7 +159,7 @@ class Scene2 extends Phaser.Scene{
             iconAudio_1.destroy();
             iconAudio_2.destroy();
             this.answer_1.setText("")
-            this.answer_2.setScale(1).setText("Wrong! Do it again")
+            this.answer_2.setScale(1).setText("Wrong! Do it again.")
             this.question.setText("")
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
@@ -206,8 +206,8 @@ class Scene2 extends Phaser.Scene{
         })
 
 
-        this.answer_1.setText('The squirrel is BELOW the bird');
-        this.answer_2.setText('The squirrel is ABOVE the bird'); 
+        this.answer_1.setText('The squirrel is BELOW the bird.');
+        this.answer_2.setText('The squirrel is ABOVE the bird.'); 
 
         var ok1 = this.add.sprite(1150, 362, "ok1").setOrigin(0, 0);
         var ok2 = this.add.sprite(1150, 420, "ok2").setOrigin(0, 0);
@@ -218,7 +218,7 @@ class Scene2 extends Phaser.Scene{
             ok2.destroy()
             iconAudio_1.destroy();
             iconAudio_2.destroy();
-            this.answer_1.setText("Wrong! Do it again")
+            this.answer_1.setText("Wrong! Do it again.")
             this.answer_2.setText("")
             this.question.setText("")
             
@@ -281,8 +281,8 @@ class Scene2 extends Phaser.Scene{
             answerAudio2.play()
         })
 
-        this.answer_1.setText('The bird is ABOVE the cat');
-        this.answer_2.setText('The bird is BELOW the cat'); 
+        this.answer_1.setText('The bird is ABOVE the cat.');
+        this.answer_2.setText('The bird is BELOW the cat.'); 
 
         var ok1 = this.add.sprite(1105, 362, "ok1").setOrigin(0, 0)
 
@@ -292,7 +292,7 @@ class Scene2 extends Phaser.Scene{
             ok2.destroy()
             iconAudio_1.destroy();
             iconAudio_2.destroy();
-            this.answer_1.setText("Wrong! Do it again")
+            this.answer_1.setText("Wrong! Do it again.")
             this.answer_2.setText("")
             this.question.setText("")
             
@@ -361,8 +361,8 @@ class Scene2 extends Phaser.Scene{
         })
 
         this.question.setText('Which one is true?')
-        this.answer_1.setText('The turtle is ABOVE the mouse')
-        this.answer_2.setText('The turtle is BELOW the mouse')
+        this.answer_1.setText('The turtle is ABOVE the mouse.')
+        this.answer_2.setText('The turtle is BELOW the mouse.')
 
         var ok1 = this.add.sprite(1160, 362, 'ok1').setOrigin(0,0)
 
@@ -373,7 +373,7 @@ class Scene2 extends Phaser.Scene{
             ok1.destroy()
             ok2.destroy()
             
-            this.answer_1.setText("Wrong! Do it again")
+            this.answer_1.setText("Wrong! Do it again.")
             this.answer_2.setText("")
             this.question.setText("")
             
@@ -444,8 +444,8 @@ class Scene2 extends Phaser.Scene{
         })
 
         this.question.setText('Which one is true?')
-        this.answer_1.setText('The chicken is ABOVE the frog')
-        this.answer_2.setText('The chicken is BELOW the frog')
+        this.answer_1.setText('The chicken is ABOVE the frog.')
+        this.answer_2.setText('The chicken is BELOW the frog.')
 
         var ok1 = this.add.sprite(1155, 362, 'ok1').setOrigin(0,0)
 
@@ -480,7 +480,7 @@ class Scene2 extends Phaser.Scene{
             ok2.destroy()
             
             this.answer_1.setText("")
-            this.answer_2.setText("Wrong! Do it again")
+            this.answer_2.setText("Wrong! Do it again.")
             this.question.setText("")
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
@@ -529,8 +529,8 @@ class Scene2 extends Phaser.Scene{
         })
 
         this.question.setText('Which one is true?')
-        this.answer_1.setText('The frog is ABOVE the turtle')
-        this.answer_2.setText('The frog is BELOW the turtle')
+        this.answer_1.setText('The frog is ABOVE the turtle.')
+        this.answer_2.setText('The frog is BELOW the turtle.')
 
         var ok1 = this.add.sprite(1140, 362, 'ok1').setOrigin(0,0)
 
@@ -541,7 +541,7 @@ class Scene2 extends Phaser.Scene{
             ok1.destroy()
             ok2.destroy()
             
-            this.answer_1.setText("Wrong! Do it again")
+            this.answer_1.setText("Wrong! Do it again.")
             this.answer_2.setText("")
             this.question.setText("")
             
@@ -629,14 +629,14 @@ class Scene2 extends Phaser.Scene{
         })
 
         // Answers
-        this.answer_1 = this.add.text(290, 390, 'The frog is ABOVE the chicken', {
+        this.answer_1 = this.add.text(290, 390, 'The frog is ABOVE the chicken.', {
 
             font: '40px Arial',
             fill: 'black'
 
         })
 
-        this.answer_2 = this.add.text(290, 490, 'The frog is BELOW the chicken', {
+        this.answer_2 = this.add.text(290, 490, 'The frog is BELOW the chicken.', {
 
             font: '40px Arial',
             fill: 'black'
@@ -677,7 +677,7 @@ class Scene2 extends Phaser.Scene{
             wrongAudio2.play()
             ok1.destroy()
             ok2.destroy()
-            this.answer_1.setText("Wrong! Do it again")
+            this.answer_1.setText("Wrong! Do it again.")
             this.answer_2.setText("")
             this.question.setText("")
             
@@ -729,8 +729,8 @@ class Scene2 extends Phaser.Scene{
         })
 
         this.question.setText('Which one is true?')
-        this.answer_1.setText('The turtle is BELOW the frog')
-        this.answer_2.setText('The frog is BELOW the turtle')
+        this.answer_1.setText('The turtle is BELOW the frog.')
+        this.answer_2.setText('The frog is BELOW the turtle.')
 
         var ok1 = this.add.sprite(290, 440, 'ok1').setOrigin(0, 0)
 
@@ -764,7 +764,7 @@ class Scene2 extends Phaser.Scene{
             wrongAudio2.play()
             ok1.destroy()
             ok2.destroy()
-            this.answer_1.setText("Wrong! Do it again")
+            this.answer_1.setText("Wrong! Do it again.")
             this.answer_2.setText("")
             this.question.setText("")
             
@@ -822,8 +822,8 @@ class Scene2 extends Phaser.Scene{
         this.mouse = this.add.sprite(1105, 450, 'mouse').setOrigin(0, 0)
 
         this.question.setText('Which one is true?')
-        this.answer_1.setText('The mouse is BELOW the cat')
-        this.answer_2.setText('The frog is ABOVE the cat')
+        this.answer_1.setText('The mouse is BELOW the cat.')
+        this.answer_2.setText('The frog is ABOVE the cat.')
 
         var ok1 = this.add.sprite(290, 440, 'ok1').setOrigin(0, 0)
 
@@ -834,7 +834,7 @@ class Scene2 extends Phaser.Scene{
             ok1.destroy()
             ok2.destroy()
             this.answer_1.setText("")
-            this.answer_2.setText("Wrong! Do it again")
+            this.answer_2.setText("Wrong! Do it again.")
             this.question.setText("")
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){

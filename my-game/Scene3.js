@@ -87,7 +87,7 @@ class Scene3 extends Phaser.Scene{
         })
 
         // add text;
-        textQuestion3 = this.add.text(450, 620, "Place the bee ABOVE the window", {font: "35px Arial", fill: "black"});
+        textQuestion3 = this.add.text(450, 620, "Place the bee ABOVE the window.", {font: "35px Arial", fill: "black"});
         displayResult = this.add.text(250, 350, "Result!", {font: "50px Arial", fill: "black"});
 
         // set onClick for the buttons;
@@ -339,7 +339,7 @@ class Scene3 extends Phaser.Scene{
                         audio.play()
                     })
                     displayResult.setText("Result!")
-                    textQuestion3.setText("Place the butterfly BELOW the window")
+                    textQuestion3.setText("Place the butterfly BELOW the window.")
                     imag2 = this.add.image(1150, 550, 'img2')
                     imag2.setInteractive()
                     this.input.setDraggable(imag2)
@@ -355,7 +355,7 @@ class Scene3 extends Phaser.Scene{
                         audio.play()
                     })
                     displayResult.setText("Result!")
-                    textQuestion3.setText("Place the bug ABOVE the window")
+                    textQuestion3.setText("Place the bug ABOVE the window.")
                     imag3 = this.add.image(1150, 550, 'img3')
                     imag3.setInteractive()
                     this.input.setDraggable(imag3)     
@@ -370,7 +370,7 @@ class Scene3 extends Phaser.Scene{
                         audio.play()
                     })
                     displayResult.setText("Result!")
-                    textQuestion3.setText("Place the worm BELOW the window")
+                    textQuestion3.setText("Place the worm BELOW the window.")
                     imag4 = this.add.image(1150, 550, 'img4')
                     imag4.setInteractive()
                     this.input.setDraggable(imag4)

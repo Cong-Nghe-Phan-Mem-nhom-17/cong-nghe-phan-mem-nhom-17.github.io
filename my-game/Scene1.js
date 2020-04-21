@@ -112,7 +112,7 @@ class Scene1 extends Phaser.Scene{
 
         // add text;
         clickAudio = this.sound.add('clickAbove')
-        this.text1 = this.add.text(800, 350, "\t\t\t\t" + "Click Above " + "\n" + "The Strange Creature", {font: "50px Arial", fill: "black"});
+        this.text1 = this.add.text(800, 350, "\t\t\t\t" + "Click Above " + "\n" + "The Strange Creature.", {font: "50px Arial", fill: "black"});
         this.displayResult = this.add.text(250, 350, "Result", {font: "50px Arial", fill: "black"});
 
         // add image audio;
@@ -172,7 +172,7 @@ class Scene1 extends Phaser.Scene{
                 this.buttonAbove.visible = true;
                 this.displayResult.setText("Result");
                 speak1.visible = true // hien icon audio
-                this.text1.setText("\t\t\t\t" + "Click Below \nThe Strange Creature")
+                this.text1.setText("\t\t\t\t" + "Click Below \nThe Strange Creature.")
             }, [], this)
 
             this.input.on('gameobjectdown', function (pointer, gameObject) {
@@ -218,7 +218,7 @@ class Scene1 extends Phaser.Scene{
                 this.buttonAbove.visible = true;
                 this.displayResult.setText("Result")
                 speak1.visible = true // hien icon audio
-                this.text1.setText("\t\t\t\t" + "Click Above \nThe Strange Creature")
+                this.text1.setText("\t\t\t\t" + "Click Above \nThe Strange Creature.")
             }, [], this)
 
             this.input.on('gameobjectdown', function (pointer, gameObject) {
@@ -257,7 +257,7 @@ class Scene1 extends Phaser.Scene{
     //Random text question;
     randomQuestion(){
         var temp = Phaser.Math.Between(0, 1);
-        this.text1.setText( "Next question");
+        this.text1.setText( "Next question.");
         if (ballNumber1 > 5){
             timedEvent1 = this.time.delayedCall(1000, function nextQuestion() {
 
@@ -270,14 +270,14 @@ class Scene1 extends Phaser.Scene{
                     speak1.setInteractive().on('pointerdown', () =>{
                         clickAudio.play()
                     })
-                    this.text1.setText( "\t\t\t\t" + "Click Below " + "\n" + "The Strange Creature");
+                    this.text1.setText( "\t\t\t\t" + "Click Below " + "\n" + "The Strange Creature.");
                 }
                 else{
                     clickAudio = this.sound.add('clickAbove')
                     speak1.setInteractive().on('pointerdown', () =>{
                         clickAudio.play()
                     })
-                    this.text1.setText( "\t\t\t\t" + "Click Above " + "\n" + "The Strange Creature");
+                    this.text1.setText( "\t\t\t\t" + "Click Above " + "\n" + "The Strange Creature.");
                 }
             }, [], this)
         }
