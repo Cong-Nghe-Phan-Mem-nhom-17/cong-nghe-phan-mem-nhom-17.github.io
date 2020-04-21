@@ -43,6 +43,7 @@ class Scene1 extends Phaser.Scene{
         // load image background;
         this.load.image('backGround', 'assets/images/imageBackground/backGround.png');
         this.load.image('frameWork', "assets/images/imageBackground/frameWork.png");
+        this.load.image('dragon', 'assets/images/imageOutside/dragon.png')
 
         // load image button;
         this.load.image('buttonAbove', 'assets/images/imageButton/buttonAbove.png');
@@ -316,7 +317,8 @@ class Scene1 extends Phaser.Scene{
             this.deleteBall()
             this.destroyObject2();
             this.nofication = this.add.text(475, 145, 'Well done! You completed the card!', {font: '35px Arial', fill: 'red'});
-            var lesson = this.add.sprite(650, 400, 'lesson').setOrigin(0, 0)
+            this.dragon = this.add.image(625, 210, 'dragon').setOrigin(0, 0).setScale(0.35);
+            var lesson = this.add.sprite(650, 610, 'lesson').setOrigin(0, 0);
 
             lesson.setInteractive().on('pointerdown', () => {
 
@@ -347,7 +349,6 @@ class Scene1 extends Phaser.Scene{
             putAudio.play()
         })
         wrongAudio = this.sound.add('wrong_')
-        // check = 1;
         textQuestion2 = this.add.text(770, 300, '\t\t\t' + ' Put the worm into' + '\n' + '    Above the bird!', {font: '50px Arial', fill: "Black"});
 
         imageBug = this.add.image(1020, 530, 'imageBug', Phaser.Math.RND.pick(this.framework)).setInteractive();

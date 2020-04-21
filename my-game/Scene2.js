@@ -37,6 +37,7 @@ class Scene2 extends Phaser.Scene{
         this.load.image('home_1', 'assets/images/imageOutside/home_1.png');
         this.load.image('home_2', 'assets/images/imageOutside/home_2.png');
         this.load.image('tree', 'assets/images/imageOutside/79.png');
+        this.load.image('dragon', 'assets/image/imageOutside/dragon.png')
 
         //load image object;
         this.load.image('cat', 'assets/images/imageObject/cat.png');
@@ -898,7 +899,8 @@ class Scene2 extends Phaser.Scene{
 
         })
 
-        var lesson = this.add.sprite(650, 400, 'lesson').setOrigin(0, 0)
+        this.dragon = this.add.image(625, 210, 'dragon').setOrigin(0, 0).setScale(0.35);
+        var lesson = this.add.sprite(650, 610, 'lesson').setOrigin(0, 0);
 
         lesson.setInteractive().on('pointerdown', () => {
 

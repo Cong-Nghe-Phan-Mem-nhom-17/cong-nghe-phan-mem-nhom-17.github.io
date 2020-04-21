@@ -30,7 +30,7 @@ class Scene3 extends Phaser.Scene{
 
         //load image outside;
         this.load.image('castle', "assets/images/imageOutside/castle.png");
-        this.load.image('dragon', "assets/images/imageOutside/imageDragon.png");
+        this.load.image('dragon', "assets/images/imageOutside/dragon.png");
 
         // load image button;
         this.load.image('backButton', 'assets/images/imageButton/backButton.png');
@@ -264,6 +264,7 @@ class Scene3 extends Phaser.Scene{
         displayResult.destroy();
         textQuestion3.destroy();
         speak3.destroy()
+        this.castle.destroy()
 
         if(number > 0){
 
@@ -290,8 +291,8 @@ class Scene3 extends Phaser.Scene{
                 fill: 'red'
 
             });
-            this.dragon = this.add.image(475, 145, 'dragon').setOrigin(0, 0);
-            var lesson = this.add.sprite(650, 400, 'lesson').setOrigin(0, 0);
+            this.dragon = this.add.image(625, 210, 'dragon').setOrigin(0, 0).setScale(0.35);
+            var lesson = this.add.sprite(650, 610, 'lesson').setOrigin(0, 0);
 
             lesson.setInteractive().on('pointerdown', () => {
 
@@ -328,14 +329,10 @@ class Scene3 extends Phaser.Scene{
 
     changeObject(){
         if(x == 1){
-            // if(speak3!=null){
-            //     speak3.destroy()
-            // }
             speak3.visible = false
             x = 0
             if(numberOfPlay == 3){ 
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
-                    // speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
                     speak3.visible = true 
                     audio = this.sound.add('placeButterfly')
                     speak3.setInteractive().on('pointerdown', () =>{
@@ -352,7 +349,6 @@ class Scene3 extends Phaser.Scene{
             } else 
             if(numberOfPlay == 2){
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
-                    // speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
                     speak3.visible = true
                     audio = this.sound.add('placeBug')
                     speak3.setInteractive().on('pointerdown', () =>{
@@ -368,7 +364,6 @@ class Scene3 extends Phaser.Scene{
             } else 
             if(numberOfPlay == 1){
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
-                    // speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
                     speak3.visible = true
                     audio = this.sound.add('placeWorm')
                     speak3.setInteractive().on('pointerdown', () =>{
