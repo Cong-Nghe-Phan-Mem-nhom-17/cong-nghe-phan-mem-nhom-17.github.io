@@ -35,14 +35,14 @@ class Menu extends Phaser.Scene {
         this.play1 = this.add.sprite(350, 300, 'play1').setOrigin(0,0)
 
         this.play1.setInteractive().on('pointerdown', () => {
-            _x = 65;
+            x1 = 65;
             next1 = 0;
-            _const1 = 360;
-            _const_x = 1045
-            _number = 9;
+            const1 = 360;
+            constX = 1045
+            number1 = 9;
             ballNumber1 = 9;
             status1 = 0;
-            next_round1 = 0;
+            nextRound1 = 0;
             this.scene.start('Scene1')
 
         })
@@ -55,13 +55,13 @@ class Menu extends Phaser.Scene {
         }).setOrigin(0, 0)
 
         this.textPlay1.setInteractive().on('pointerdown', () =>{
-            _x = 65;
+            x1 = 65;
             next1 = 0;
-            _const1 = 360;
-            _const_x = 1045
-            _number = 9;
+            const1 = 360;
+            constX = 1045
+            number1 = 9;
             ballNumber1 = 9;
-            next_round1 = 0;
+            nextRound1 = 0;
             status1 = 0;
             this.scene.start('Scene1')
 
@@ -73,11 +73,11 @@ class Menu extends Phaser.Scene {
 
         this.play2.setInteractive().on('pointerdown', () => {
 
-            _const2 = 360;
-            _const_x2 = 1045;
-            _number2 = 9;
-            _x2 = 65;
-            next_Round2 = 0;
+            const2 = 360;
+            constX2 = 1045;
+            number2 = 9;
+            x2 = 65;
+            nextRound2 = 0;
             ballNumber2 = 9;
             status2 = 0;
             this.scene.start('Scene2')
@@ -93,11 +93,11 @@ class Menu extends Phaser.Scene {
 
         this.textPlay2.setInteractive().on('pointerdown', () => {
 
-            _const2 = 360;
-            _const_x2 = 1045;
-            _number2 = 9;
-            _x2 = 65;
-            next_Round2 = 0;
+            const2 = 360;
+            constX2 = 1045;
+            number2 = 9;
+            x2 = 65;
+            nextRound2 = 0;
             ballNumber2 = 9;
             status2 = 0;
             this.scene.start('Scene2')
@@ -109,10 +109,10 @@ class Menu extends Phaser.Scene {
         this.play3 = this.add.sprite(950, 300, 'play3').setOrigin(0,0)
 
         this.play3.setInteractive().on('pointerdown', () => {
-            x = 0;
+            nextRound3 = 0;
             number = 3;
             status3 = 0;
-            _const3 = 570;
+            const3 = 570;
             numberOfPlay = 4;
             this.scene.start('Scene3')
 
@@ -126,11 +126,11 @@ class Menu extends Phaser.Scene {
         }).setOrigin(0, 0)
 
         this.textPlay3.setInteractive().on('pointerdown', () => {
-            x = 0;
+            nextRound3 = 0;
             numberOfPlay = 4;
             number = 3;
             status3 = 0;
-            _const3 = 570;
+            const3 = 570;
             this.scene.start('Scene3')
 
         })

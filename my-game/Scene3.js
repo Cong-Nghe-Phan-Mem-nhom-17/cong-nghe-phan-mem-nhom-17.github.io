@@ -1,6 +1,6 @@
 let ball;
 let arrNumberOfPlay;
-let _const3 = 570;
+let const3 = 570;
 let number = 3;
 let status3 = 0;
 let numberOfPlay = 4;
@@ -12,7 +12,7 @@ let imag2;
 let imag3;
 let imag4;
 let timedEvent3
-let x = 0;
+let nextRound3 = 0;
 let speak3;
 let audio;
 let wrongAudio3;
@@ -35,7 +35,6 @@ class Scene3 extends Phaser.Scene{
         // load image button;
         this.load.image('backButton', 'assets/images/imageButton/backButton.png');
         this.load.image('lesson', 'assets/images/imageButton/lesson.png');
-        this.load.image('nextButton', 'assets/images/imageButton/nextbutton.png')
 
         // load image object;
         this.load.image('numberOfPlay', "assets/images/imageObject/numberOfPlay.png");
@@ -74,7 +73,7 @@ class Scene3 extends Phaser.Scene{
         arrNumberOfPlay = new Array("numberOfPlay");
 
         for(let i = 0; i < number; i++){
-            arrNumberOfPlay[i] = this.add.image(_const3 += 70, 140, "numberOfPlay").setOrigin(0, 0);
+            arrNumberOfPlay[i] = this.add.image(const3 += 70, 140, "numberOfPlay").setOrigin(0, 0);
         }
 
         // image audio
@@ -163,7 +162,7 @@ class Scene3 extends Phaser.Scene{
                     zone1 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
-                    x = 1 ;
+                    nextRound3 = 1 ;
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -183,12 +182,12 @@ class Scene3 extends Phaser.Scene{
                     zone2 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
-                    x = 1;
+                    nextRound3 = 1;
                 }
                 else{
                     displayResult.setText("Wrong!");
                     speak3.visible = false
-                    wrongAudio3.pllay()
+                    wrongAudio3.play()
                     textQuestion3.setText('Below Below Below!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
@@ -203,7 +202,7 @@ class Scene3 extends Phaser.Scene{
                     zone3 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
-                    x = 1
+                    nextRound3 = 1
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -223,7 +222,7 @@ class Scene3 extends Phaser.Scene{
                     zone4 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
-                    x = 1
+                    nextRound3 = 1
                 }
                 else{
                     displayResult.setText("Wrong!");
@@ -285,8 +284,7 @@ class Scene3 extends Phaser.Scene{
         if(numberOfPlay == 0){
             this.backButton.destroy()
             this.destroyObject();
-            this.nofication = this.add.text(475, 145, 'Well done! You completed the card!', {
-
+            this.notification = this.add.text(475, 145, 'Well done! You completed the card!', {
                 font: '35px Arial',
                 fill: 'red'
 
@@ -314,12 +312,12 @@ class Scene3 extends Phaser.Scene{
         }
         if(number == 0){
             this.destroyObject();
-            textOver = this.add.text(625, 137, "Oops! Try Again!", {font: "50px Arial", fill: "black" });
+            textOver = this.add.text(600, 337, "Oops! Try Again!", {font: "50px Arial", fill: "red" });
             textOver.setInteractive().on('pointerdown', () =>{
-                x = 0;
+                nextRound3 = 0;
                 number = 3;
                 status3 = 0;
-                _const3 = 570;
+                const3 = 570;
                 numberOfPlay = 4;
                 this.scene.start('Scene3')
 
@@ -328,9 +326,9 @@ class Scene3 extends Phaser.Scene{
     }
 
     changeObject(){
-        if(x == 1){
+        if(nextRound3 == 1){
             speak3.visible = false
-            x = 0
+            nextRound3 = 0
             if(numberOfPlay == 3){ 
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
                     speak3.visible = true 
