@@ -1,9 +1,9 @@
-let ball;
 let arrNumberOfPlay;
 let const3 = 570;
 let number = 3;
 let status3 = 0;
 let numberOfPlay = 4;
+let time3 = 0;
 let textOver;
 let displayResult;
 let textQuestion3;
@@ -86,8 +86,18 @@ class Scene3 extends Phaser.Scene{
         })
 
         // add text;
-        textQuestion3 = this.add.text(450, 620, "Place the bee ABOVE the window.", {font: "35px Arial", fill: "black"});
-        displayResult = this.add.text(250, 350, "Result!", {font: "50px Arial", fill: "black"});
+        textQuestion3 = this.add.text(450, 620, "Place the bee ABOVE the window.", {
+            font: "35px Arial", 
+            fill: "black"
+        });
+        displayResult = this.add.text(250, 350, "Result!", {
+            font: "50px Arial", 
+            fill: "black"
+        });
+        this.textTime = this.add.text(1150, 150, "00:00",{
+            font: "30px Arial",
+            fill: "red"
+        }).setOrigin(0, 0);
 
         // set onClick for the buttons;
         this.backButton.setInteractive().on('pointerdown', () => {
@@ -253,6 +263,8 @@ class Scene3 extends Phaser.Scene{
             arrNumberOfPlay[number - 1] = null;
             number--;
         }
+
+        this.countTime();
     }
 
     destroyObject() {
@@ -319,6 +331,7 @@ class Scene3 extends Phaser.Scene{
                 status3 = 0;
                 const3 = 570;
                 numberOfPlay = 4;
+                time3 = 0;
                 this.scene.start('Scene3')
 
             })
@@ -378,9 +391,34 @@ class Scene3 extends Phaser.Scene{
         
     }
 
+    countTime(){
+        var timedEvent = this.time.addEvent({
+            delay: 1000,
+            callback:  () => {
+                time3 ++;
+                var sec = Math.floor(time3 % 60);
+                if(sec < 10){
+                    sec = "0" + sec; 
+                }
+                var min = Math.floor((time3 / 60) % 60); 
+                if(min < 10){
+                    min = "0" + min;
+                }
+                this.textTime.setText(min + ":" + sec);
+                if(numberOfPlay === 0 || number === 0){
+                    timedEvent.remove(true);
+                    console.log(numberOfPlay);
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
+       
+    }
+
     update(){
         this.handleGameOver();
-        this.changeObject()
+        this.changeObject();
     }
 }
 

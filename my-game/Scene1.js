@@ -7,6 +7,7 @@ let ballNumber1 = 9;
 let status1 = 0;
 let next1 = 0;
 let nextRound1 = 0;
+let time1 = 0;
 
 let imageBug; // image bug
 let displayResult2; // display result phase 2 
@@ -112,8 +113,20 @@ class Scene1 extends Phaser.Scene{
 
         // add text;
         clickAudio = this.sound.add('clickAbove')
-        this.text1 = this.add.text(800, 350, "\t\t\t\t" + "Click Above " + "\n" + "The Strange Creature.", {font: "50px Arial", fill: "black"});
-        this.displayResult = this.add.text(250, 350, "Result", {font: "50px Arial", fill: "black"});
+        this.text1 = this.add.text(800, 350, "\t\t\t\t" + "Click Above " + "\n" + "The Strange Creature.", {
+            font: "50px Arial", 
+            fill: "black"
+        });
+
+        this.displayResult = this.add.text(250, 350, "Result", {
+            font: "50px Arial", 
+            fill: "black"
+        });
+
+        this.textTime = this.add.text(1150, 150, "00:00",{
+            font: "30px Arial",
+            fill: "red"
+        }).setOrigin(0, 0);
 
         // add image audio;
         speak1 = this.add.image(825, 375, 'speak 1');
@@ -136,6 +149,8 @@ class Scene1 extends Phaser.Scene{
         this.input.on('gameobjectover', function (pointer, gameObject) { gameObject.setTint(0x8EEDE2); });
 
         this.input.on('gameobjectout', function (pointer, gameObject) { gameObject.clearTint(); });
+        
+        this.countTime();
     }
 
     //Handle events when click button above;
@@ -578,6 +593,31 @@ class Scene1 extends Phaser.Scene{
         }
     }
 
+    countTime(){
+        var timedEvent = this.time.addEvent({
+            delay: 1000,
+            callback:  () => {
+                time1 ++;
+                var sec = Math.floor(time1 % 60);
+                if(sec < 10){
+                    sec = "0" + sec; 
+                }
+                var min = Math.floor((time1 / 60) % 60); 
+                if(min < 10){
+                    min = "0" + min
+                }
+                this.textTime.setText(min + ":" + sec);
+                if(ballNumber1===0){
+                    timedEvent.remove(true)
+                    console.log(ballNumber1)
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
+       
+    }
+
     //Update;
     update(){
         if(ballNumber1 == 0){
@@ -585,9 +625,9 @@ class Scene1 extends Phaser.Scene{
                 if(speak1 != null) speak1.destroy();
                 this.handleGameOver()
             }, [], this)
-        }
+        };
         this.changeObject();
-        this.animationBall()
+        this.animationBall();
     }
 
 }

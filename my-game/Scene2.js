@@ -6,6 +6,7 @@ let ballNumber2 = 9;
 let status2 = 0;
 let timedEvent2;
 let nextRound2 = 0;
+let time2 = 0;
 let speak2;
 let questionAudio;
 let answerAudio1;
@@ -104,6 +105,12 @@ class Scene2 extends Phaser.Scene{
             arr[i] = this.add.image(const2 += x2, 137, "redBall").setOrigin(0, 0);
         }
 
+        this.textTime = this.add.text(1150, 150, "00:00",{
+            font: "30px Arial",
+            fill: "red"
+        }).setOrigin(0, 0);
+
+        this.countTime()
         this.phase1();
     }
 
@@ -941,8 +948,33 @@ class Scene2 extends Phaser.Scene{
         }
     }
 
+    countTime(){
+        var timedEvent = this.time.addEvent({
+            delay: 1000,
+            callback:  () => {
+                time2 ++;
+                var sec = Math.floor(time2 % 60);
+                if(sec < 10){
+                    sec = "0" + sec; 
+                }
+                var min = Math.floor((time2 / 60) % 60); 
+                if(min < 10){
+                    min = "0" + min;
+                }
+                this.textTime.setText(min + ":" + sec);
+                if(ballNumber2===0){
+                    timedEvent.remove(true);
+                    console.log(ballNumber2);
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
+       
+    }
+
     update() {
-        this.animationBall()
+        this.animationBall();
     }
 
 }
