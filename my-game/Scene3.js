@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 let arrNumberOfPlay;
 let const3 = 570;
 let number = 3;

@@ -1,0 +1,22 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "game 2d with phaser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cong-Nghe-Phan-Mem-nhom-17/cong-nghe-phan-mem-nhom-17.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cong-Nghe-Phan-Mem-nhom-17/cong-nghe-phan-mem-nhom-17.github.io/issues"
+  },
+  "homepage": "https://github.com/Cong-Nghe-Phan-Mem-nhom-17/cong-nghe-phan-mem-nhom-17.github.io#readme",
+  "devDependencies": {
+    "eslint": "^7.0.0"
+  }
+}
