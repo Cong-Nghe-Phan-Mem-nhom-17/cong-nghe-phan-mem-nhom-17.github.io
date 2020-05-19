@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 let const2=360;
 let constX2 = 1045;
 let number2 = 9;
@@ -15,12 +17,13 @@ let wrongAudio2;
 let iconAudio1;
 let iconAudio2;
 
+// eslint-disable-next-line no-undef
 class Scene2 extends Phaser.Scene{
 
     constructor() {
         super('Scene2');
     }
-
+    
     preload() {
         //load image backGround, frameWork;
         this.load.image('backGround', 'assets/images/imageBackground/backGround.png');
@@ -100,7 +103,7 @@ class Scene2 extends Phaser.Scene{
         })
 
         // ball;
-        arr = new Array("redBall");
+        let arr = new Array("redBall");
         for(var i = 0; i < ballNumber2; i++){
             arr[i] = this.add.image(const2 += x2, 137, "redBall").setOrigin(0, 0);
         }

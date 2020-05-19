@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 //var scene 1
 let const1 = 360; 
 let constX = 1045;
@@ -625,7 +627,7 @@ class Scene1 extends Phaser.Scene{
                 if(speak1 != null) speak1.destroy();
                 this.handleGameOver()
             }, [], this)
-        };
+        }
         this.changeObject();
         this.animationBall();
     }
