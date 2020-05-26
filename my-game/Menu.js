@@ -1,11 +1,8 @@
-let ball1
+let ball1;
 class Menu extends Phaser.Scene {
 
-
     constructor() {
-
         super('Menu')
-
     }
 
     preload() {
@@ -18,14 +15,13 @@ class Menu extends Phaser.Scene {
         
     }
 
-    
     create(){
         
         this.background = this.add.image(0, 0, "backGround").setOrigin(0, 0);
 
         this.framework = this.add.image(233, 115, "frameMenu").setOrigin(0, 0);
          
-        this.text0 = this.add.text(350, 200, "CHOOSE A GAME TO PLAY!", {
+        this.text0 = this.add.text(425, 200, "CHOOSE A GAME TO PLAY!", {
 
             font: "50px Arial", 
             fill: "red"
@@ -35,7 +31,7 @@ class Menu extends Phaser.Scene {
         // Choose scene 1 
         this.play1 = this.add.sprite(350, 300, 'play1').setOrigin(0,0);
 
-        this.play1.setInteractive().on('pointerdown', () => {
+        this.play1.setInteractive({cursor:'pointer'}).on('pointerdown', () => {
             x1 = 65;
             next1 = 0;
             const1 = 360;
@@ -60,7 +56,7 @@ class Menu extends Phaser.Scene {
             x1 = 65;
             next1 = 0;
             const1 = 360;
-            constX = 1045
+            constX = 1045;
             number1 = 9;
             ballNumber1 = 9;
             nextRound1 = 0;
@@ -71,10 +67,9 @@ class Menu extends Phaser.Scene {
         });
 
         // Choose scene 2
-
         this.play2 = this.add.sprite(650, 300, 'play2').setOrigin(0,0);
 
-        this.play2.setInteractive().on('pointerdown', () => {
+        this.play2.setInteractive({cursor:'pointer'}).on('pointerdown', () => {
 
             const2 = 360;
             constX2 = 1045;
@@ -110,10 +105,9 @@ class Menu extends Phaser.Scene {
         });
 
         // Choose scene 3
-
         this.play3 = this.add.sprite(950, 300, 'play3').setOrigin(0,0);
 
-        this.play3.setInteractive().on('pointerdown', () => {
+        this.play3.setInteractive({cursor:'pointer'}).on('pointerdown', () => {
             nextRound3 = 0;
             number = 3;
             status3 = 0;

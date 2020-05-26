@@ -79,11 +79,11 @@ class Scene3 extends Phaser.Scene{
         // image audio
         speak3 = this.add.image(400, 610, 'speak 3').setOrigin(0, 0)
         //audio
-        wrongAudio3 = this.sound.add('wrong_')
-        audio = this.sound.add('placeBee')
-        speak3.setInteractive().on('pointerdown', () =>{
-            audio.play()
-        })
+        wrongAudio3 = this.sound.add('wrong_');
+        audio = this.sound.add('placeBee');
+        speak3.setInteractive({cursor:'pointer'}).on('pointerdown', () =>{
+            audio.play();
+        });
 
         // add text;
         textQuestion3 = this.add.text(450, 620, "Place the bee ABOVE the window.", {
@@ -100,19 +100,19 @@ class Scene3 extends Phaser.Scene{
         }).setOrigin(0, 0);
 
         // set onClick for the buttons;
-        this.backButton.setInteractive().on('pointerdown', () => {
-            this.scene.start('Menu')
+        this.backButton.setInteractive({cursor:'pointer'}).on('pointerdown', () => {
+            this.scene.start('Menu');
         });
 
         this.input.on('gameobjectover', function(pointer, gameObject) {
-            gameObject.setTint(0x8EEDE2)
+            gameObject.setTint(0x8EEDE2);
         });
 
         this.input.on('gameobjectout', function(pointer, gameObject) {
-            gameObject.clearTint()
+            gameObject.clearTint();
         });
 
-        imag1.setInteractive();
+        imag1.setInteractive({cursor:'pointer'});
 
         this.input.setDraggable(imag1);
 
@@ -157,7 +157,7 @@ class Scene3 extends Phaser.Scene{
 
         this.input.on('dragleave', function (pointer, gameObject, dropZone) {
 
-            dropZone.clearTint()
+            dropZone.clearTint();
 
         });
 
@@ -176,8 +176,8 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    speak3.visible = false
-                    wrongAudio3.play()
+                    speak3.visible = false;
+                    wrongAudio3.play();
                     textQuestion3.setText('Below Below Below!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
@@ -196,12 +196,12 @@ class Scene3 extends Phaser.Scene{
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    speak3.visible = false
-                    wrongAudio3.play()
+                    speak3.visible = false;
+                    wrongAudio3.play();
                     textQuestion3.setText('Below Below Below!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
-                    handleAnsFalse()
+                    handleAnsFalse();
                 }
             }
             else if (gameObject.x >= 500 && gameObject.x <= 640 && gameObject.y >= 475 && gameObject.y <= 595){
@@ -212,12 +212,12 @@ class Scene3 extends Phaser.Scene{
                     zone3 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
-                    nextRound3 = 1
+                    nextRound3 = 1;
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    speak3.visible = false
-                    wrongAudio3.play()
+                    speak3.visible = false;
+                    wrongAudio3.play();
                     textQuestion3.setText('Above Above Above!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
@@ -232,12 +232,12 @@ class Scene3 extends Phaser.Scene{
                     zone4 = null;
                     gameObject.input.enabled = false;
                     numberOfPlay--;
-                    nextRound3 = 1
+                    nextRound3 = 1;
                 }
                 else{
                     displayResult.setText("Wrong!");
-                    speak3.visible = false
-                    wrongAudio3.play()
+                    speak3.visible = false;
+                    wrongAudio3.play();
                     textQuestion3.setText('Above Above Above!');
                     gameObject.x = gameObject.input.dragStartX;
                     gameObject.y = gameObject.input.dragStartY;
@@ -274,8 +274,8 @@ class Scene3 extends Phaser.Scene{
         if(imag4 != null) imag4.destroy();
         displayResult.destroy();
         textQuestion3.destroy();
-        speak3.destroy()
-        this.castle.destroy()
+        speak3.destroy();
+        this.castle.destroy();
 
         if(number > 0){
 
@@ -304,7 +304,7 @@ class Scene3 extends Phaser.Scene{
             this.dragon = this.add.image(625, 210, 'dragon').setOrigin(0, 0).setScale(0.35);
             var lesson = this.add.sprite(650, 610, 'lesson').setOrigin(0, 0);
 
-            lesson.setInteractive().on('pointerdown', () => {
+            lesson.setInteractive({cursor:'pointer'}).on('pointerdown', () => {
 
                 this.scene.start('Menu')
 
@@ -325,68 +325,70 @@ class Scene3 extends Phaser.Scene{
         if(number == 0){
             this.destroyObject();
             textOver = this.add.text(600, 337, "Oops! Try Again!", {font: "50px Arial", fill: "red" });
-            textOver.setInteractive().on('pointerdown', () =>{
+            textOver.setInteractive({cursor:'pointer'}).on('pointerdown', () =>{
                 nextRound3 = 0;
                 number = 3;
                 status3 = 0;
                 const3 = 570;
                 numberOfPlay = 4;
                 time3 = 0;
-                this.scene.start('Scene3')
+                this.scene.start('Scene3');
 
-            })
+            });
         }
     }
 
     changeObject(){
         if(nextRound3 == 1){
-            speak3.visible = false
-            nextRound3 = 0
+            speak3.visible = false;
+            nextRound3 = 0;
             if(numberOfPlay == 3){ 
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
-                    speak3.visible = true 
-                    audio = this.sound.add('placeButterfly')
-                    speak3.setInteractive().on('pointerdown', () =>{
-                        audio.play()
+                    speak3.visible = true; 
+                    audio = this.sound.add('placeButterfly');
+                    speak3.setInteractive({cursor:'pointer'}).on('pointerdown', () =>{
+                        audio.play();
                     })
                     displayResult.setText("Result!")
                     textQuestion3.setText("Place the butterfly BELOW the window.")
-                    imag2 = this.add.image(1150, 550, 'img2')
-                    imag2.setInteractive()
+                    imag2 = this.add.image(1150, 550, 'img2');
+                    imag2.setInteractive({cursor:'pointer'});
                     this.input.setDraggable(imag2)
 
-                }, [], this)
+                }, [], this);
                 
             } else 
             if(numberOfPlay == 2){
                 timedEvent3 = this.time.delayedCall(1500, function nextObject() {
-                    speak3.visible = true
-                    audio = this.sound.add('placeBug')
-                    speak3.setInteractive().on('pointerdown', () =>{
-                        audio.play()
-                    })
+                    speak3.visible = true;
+                    audio = this.sound.add('placeBug');
+                    speak3.setInteractive({cursor:'pointer'}).on('pointerdown', () =>{
+                        audio.play();
+                    });
                     displayResult.setText("Result!")
-                    textQuestion3.setText("Place the bug ABOVE the window.")
+                    textQuestion3.setText("Place the bug ABOVE the window.");
                     imag3 = this.add.image(1150, 550, 'img3')
-                    imag3.setInteractive()
+                    imag3.setInteractive({cursor:'pointer'})
                     this.input.setDraggable(imag3)     
     
                 }, [], this)
-            } else 
-            if(numberOfPlay == 1){
-                timedEvent3 = this.time.delayedCall(1500, function nextObject() {
-                    speak3.visible = true
-                    audio = this.sound.add('placeWorm')
-                    speak3.setInteractive().on('pointerdown', () =>{
-                        audio.play()
-                    })
-                    displayResult.setText("Result!")
-                    textQuestion3.setText("Place the worm BELOW the window.")
-                    imag4 = this.add.image(1150, 550, 'img4')
-                    imag4.setInteractive()
-                    this.input.setDraggable(imag4)
-                }, [], this)
+            } else {
+                if(numberOfPlay == 1){
+                    timedEvent3 = this.time.delayedCall(1500, function nextObject() {
+                        speak3.visible = true
+                        audio = this.sound.add('placeWorm')
+                        speak3.setInteractive({cursor:'pointer'}).on('pointerdown', () =>{
+                            audio.play()
+                        })
+                        displayResult.setText("Result!")
+                        textQuestion3.setText("Place the worm BELOW the window.")
+                        imag4 = this.add.image(1150, 550, 'img4')
+                        imag4.setInteractive({cursor:'pointer'});
+                        this.input.setDraggable(imag4);
+                    }, [], this)
+                }
             }
+            
         }
         
     }
