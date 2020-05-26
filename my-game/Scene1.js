@@ -44,7 +44,7 @@ class Scene1 extends Phaser.Scene{
         // load image background;
         this.load.image('backGround', 'assets/images/imageBackground/backGround.png');
         this.load.image('frameWork', "assets/images/imageBackground/frameWork.png");
-        this.load.image('dragon', 'assets/images/imageOutside/dragon.png')
+        this.load.image('dragon', 'assets/images/imageOutside/dragon.png');
 
         // load image button;
         this.load.image('buttonAbove', 'assets/images/imageButton/buttonAbove.png');
@@ -130,20 +130,20 @@ class Scene1 extends Phaser.Scene{
 
         // add image audio;
         speak1 = this.add.image(825, 375, 'speak 1');
-        speak1.setInteractive().on('pointerdown', () =>{
+        speak1.setInteractive({cursor:'pointer'}).on('pointerdown', () =>{
             clickAudio.play()
         });
 
         // set onClick for the buttons;
-        this.buttonAbove.setInteractive().on('pointerdown', () => {
+        this.buttonAbove.setInteractive({cursor:'pointer'}).on('pointerdown', () => {
             this.eventClickButtonAbove(arr[ballNumber1 - 1])
         });
 
-        this.buttonBelow.setInteractive().on('pointerdown', () => {
+        this.buttonBelow.setInteractive({cursor:'pointer'}).on('pointerdown', () => {
             this.eventClickButtonBelow(arr[ballNumber1 - 1])
         });
         
-        this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'));
+        this.backButton.setInteractive({cursor:'pointer'}).on('pointerdown', () => this.scene.start('Menu'));
 
         //effect of sprites;
         this.input.on('gameobjectover', function (pointer, gameObject) { gameObject.setTint(0x8EEDE2); });

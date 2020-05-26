@@ -87,7 +87,7 @@ class Scene2 extends Phaser.Scene{
 
         // Add image buttons;
         this.backButton = this.add.sprite(245, 117, 'backButton').setOrigin(0,0);
-        this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'))
+        this.backButton.setInteractive({cursor:'pointer'}).on('pointerdown', () => this.scene.start('Menu'))
 
         wrongAudio2 = this.sound.add('wrong')
 
@@ -124,10 +124,10 @@ class Scene2 extends Phaser.Scene{
         //audio
         answerAudio1 = this.sound.add('catAboveSquirrel')
         answerAudio2 = this.sound.add('catBelowSquirrel')
-        iconAudio1.setInteractive().on('pointerdown', () =>{
+        iconAudio1.setInteractive({cursor:'pointer'}).on('pointerdown', () =>{
             answerAudio1.play()
         })
-        iconAudio2.setInteractive().on('pointerdown', () =>{
+        iconAudio2.setInteractive({cursor:'pointer'}).on('pointerdown', () =>{
             answerAudio2.play()
         })
 
@@ -138,7 +138,7 @@ class Scene2 extends Phaser.Scene{
 
         this.ok1 = this.add.sprite(1130, 362, "ok1").setOrigin(0, 0)
 
-        this.ok1.setInteractive().on('pointerdown', () => {
+        this.ok1.setInteractive({cursor:'pointer'}).on('pointerdown', () => {
             nextRound2 = 1;
             answerAudio1.destroy()
             answerAudio2.destroy()
@@ -159,7 +159,7 @@ class Scene2 extends Phaser.Scene{
 
         this.ok2 = this.add.sprite(1130, 420, "ok2").setOrigin(0, 0);
 
-        this.ok2.setInteractive().on('pointerdown', () => {
+        this.ok2.setInteractive({cursor:'pointer'}).on('pointerdown', () => {
             wrongAudio2.play()
             this.ok1.destroy()
             this.ok2.destroy()
