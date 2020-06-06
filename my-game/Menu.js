@@ -1,4 +1,4 @@
-let ball1
+let ball1;
 class Menu extends Phaser.Scene {
 
 

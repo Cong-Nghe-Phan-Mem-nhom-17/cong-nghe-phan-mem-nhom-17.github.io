@@ -54,25 +54,25 @@ class Scene2 extends Phaser.Scene{
         this.load.image('speak 2', 'assets/images/imageAudio/speak 1.png');
 
         // load audio
-        this.load.audio('wrong', 'assets/audio/audioScene2/wrong.mp3')
-        this.load.audio('birdAboveCat', 'assets/audio/audioScene2/birdAboveCat.mp3')
-        this.load.audio('birdBelowCat', 'assets/audio/audioScene2/birdBelowCat.mp3')
-        this.load.audio('catAboveSquirrel', 'assets/audio/audioScene2/catAboveSquirrel.mp3')
-        this.load.audio('catBelowSquirrel', 'assets/audio/audioScene2/catBelowSquirrel.mp3')
-        this.load.audio('chickenAboveFrog', 'assets/audio/audioScene2/chickenAboveFrog.mp3')
-        this.load.audio('chickenBelowFrog', 'assets/audio/audioScene2/chickenBelowFrog.mp3')
-        this.load.audio('frogAboveCat', 'assets/audio/audioScene2/frogAboveCat.mp3')
-        this.load.audio('frogAboveChicken', 'assets/audio/audioScene2/frogAboveChicken.mp3')
-        this.load.audio('frogAboveTurtle', 'assets/audio/audioScene2/frogAboveTurtle.mp3')
-        this.load.audio('frogBelowChicken', 'assets/audio/audioScene2/frogBelowChicken.mp3')
-        this.load.audio('frogBelowTurtle', 'assets/audio/audioScene2/frogBelowTurtle.mp3')
-        this.load.audio('squirrelAboveBird', 'assets/audio/audioScene2/squirrelAboveBird.mp3')
-        this.load.audio('squirrelBelowBird', 'assets/audio/audioScene2/squirrelBelowBird.mp3')
-        this.load.audio('turtleAboveMouse', 'assets/audio/audioScene2/turtleAboveMouse.mp3')
-        this.load.audio('turtleBelowMouse', 'assets/audio/audioScene2/turtleBelowMouse.mp3')
-        this.load.audio('turtleBelowFrog', 'assets/audio/audioScene2/turtleBelowFrog.mp3')
-        this.load.audio('mouseBelowCat', 'assets/audio/audioScene2/mouseBelowCat.mp3')
-        this.load.audio('question', 'assets/audio/audioScene2/question.mp3')
+        this.load.audio('wrong', 'assets/audio/audioScene2/wrong.mp3');
+        this.load.audio('birdAboveCat', 'assets/audio/audioScene2/birdAboveCat.mp3');
+        this.load.audio('birdBelowCat', 'assets/audio/audioScene2/birdBelowCat.mp3');
+        this.load.audio('catAboveSquirrel', 'assets/audio/audioScene2/catAboveSquirrel.mp3');
+        this.load.audio('catBelowSquirrel', 'assets/audio/audioScene2/catBelowSquirrel.mp3');
+        this.load.audio('chickenAboveFrog', 'assets/audio/audioScene2/chickenAboveFrog.mp3');
+        this.load.audio('chickenBelowFrog', 'assets/audio/audioScene2/chickenBelowFrog.mp3');
+        this.load.audio('frogAboveCat', 'assets/audio/audioScene2/frogAboveCat.mp3');
+        this.load.audio('frogAboveChicken', 'assets/audio/audioScene2/frogAboveChicken.mp3');
+        this.load.audio('frogAboveTurtle', 'assets/audio/audioScene2/frogAboveTurtle.mp3');
+        this.load.audio('frogBelowChicken', 'assets/audio/audioScene2/frogBelowChicken.mp3');
+        this.load.audio('frogBelowTurtle', 'assets/audio/audioScene2/frogBelowTurtle.mp3');
+        this.load.audio('squirrelAboveBird', 'assets/audio/audioScene2/squirrelAboveBird.mp3');
+        this.load.audio('squirrelBelowBird', 'assets/audio/audioScene2/squirrelBelowBird.mp3');
+        this.load.audio('turtleAboveMouse', 'assets/audio/audioScene2/turtleAboveMouse.mp3');
+        this.load.audio('turtleBelowMouse', 'assets/audio/audioScene2/turtleBelowMouse.mp3');
+        this.load.audio('turtleBelowFrog', 'assets/audio/audioScene2/turtleBelowFrog.mp3');
+        this.load.audio('mouseBelowCat', 'assets/audio/audioScene2/mouseBelowCat.mp3');
+        this.load.audio('question', 'assets/audio/audioScene2/question.mp3');
  
     }   
 
@@ -89,7 +89,7 @@ class Scene2 extends Phaser.Scene{
         this.backButton = this.add.sprite(245, 117, 'backButton').setOrigin(0,0);
         this.backButton.setInteractive().on('pointerdown', () => this.scene.start('Menu'))
 
-        wrongAudio2 = this.sound.add('wrong')
+        wrongAudio2 = this.sound.add('wrong');
 
         this.input.on('gameobjectover', function(pointer, gameObject){
             gameObject.setTint(0x8EEDE2);
@@ -122,8 +122,8 @@ class Scene2 extends Phaser.Scene{
         iconAudio1 = this.add.image(520, 355, 'speak 2').setOrigin(0, 0);
         iconAudio2 = this.add.image(520, 415, 'speak 2').setOrigin(0, 0);
         //audio
-        answerAudio1 = this.sound.add('catAboveSquirrel')
-        answerAudio2 = this.sound.add('catBelowSquirrel')
+        answerAudio1 = this.sound.add('catAboveSquirrel');
+        answerAudio2 = this.sound.add('catBelowSquirrel');
         iconAudio1.setInteractive().on('pointerdown', () =>{
             answerAudio1.play()
         })
@@ -140,19 +140,19 @@ class Scene2 extends Phaser.Scene{
 
         this.ok1.setInteractive().on('pointerdown', () => {
             nextRound2 = 1;
-            answerAudio1.destroy()
-            answerAudio2.destroy()
+            answerAudio1.destroy();
+            answerAudio2.destroy();
             iconAudio1.destroy();
             iconAudio2.destroy();
-            this.ok1.destroy()
-            this.ok2.destroy()
+            this.ok1.destroy();
+            this.ok2.destroy();
             this.answer1.setScale(1.2)
             this.answer2.setText("")
             this.question.setText("")
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.answer1.setScale(1)
-                this.phase2()
+                this.answer1.setScale(1);
+                this.phase2();
 
             }, [], this)
         });
@@ -160,19 +160,19 @@ class Scene2 extends Phaser.Scene{
         this.ok2 = this.add.sprite(1130, 420, "ok2").setOrigin(0, 0);
 
         this.ok2.setInteractive().on('pointerdown', () => {
-            wrongAudio2.play()
-            this.ok1.destroy()
-            this.ok2.destroy()
+            wrongAudio2.play();
+            this.ok1.destroy();
+            this.ok2.destroy();
             iconAudio1.destroy();
             iconAudio2.destroy();
-            this.answer1.setText("")
+            this.answer1.setText("");
             this.answer2.setScale(1).setText("Wrong! Do it again.")
             this.question.setText("")
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.answer2.setScale(1)
-                this.answer2.destroy()
-                this.phase1()
+                this.answer2.setScale(1);
+                this.answer2.destroy();
+                this.phase1();
                 
             }, [], this)
 
@@ -180,13 +180,13 @@ class Scene2 extends Phaser.Scene{
 
         this.input.on('gameojectover', function(pointer, gameObject) {
 
-            gameObject.setTint(0x8EEDE2)
+            gameObject.setTint(0x8EEDE2);
 
         })
 
         this.input.on('gameobjectout', function(pointer, gameObject) {
 
-            gameObject.clearTint()
+            gameObject.clearTint();
 
         })
 
@@ -195,16 +195,16 @@ class Scene2 extends Phaser.Scene{
 
     phase2(){
         
-        this.cat.setAlpha(0.5)
-        this.bird.setAlpha(1)
-        this.question.setText('Which one is true?')
+        this.cat.setAlpha(0.5);
+        this.bird.setAlpha(1);
+        this.question.setText('Which one is true?');
 
         //image audio;
         iconAudio1 = this.add.image(520, 355, 'speak 2').setOrigin(0, 0);
         iconAudio2 = this.add.image(520, 415, 'speak 2').setOrigin(0, 0);
         // audio
-        answerAudio1 = this.sound.add('squirrelBelowBird')
-        answerAudio2 = this.sound.add('squirrelAboveBird')
+        answerAudio1 = this.sound.add('squirrelBelowBird');
+        answerAudio2 = this.sound.add('squirrelAboveBird');
         iconAudio1.setInteractive().on('pointerdown', () =>{
             answerAudio1.play()
         })
@@ -221,8 +221,8 @@ class Scene2 extends Phaser.Scene{
 
         ok1.setInteractive().on('pointerdown', () => {
             wrongAudio2.play()
-            ok1.destroy()
-            ok2.destroy()
+            ok1.destroy();
+            ok2.destroy();
             iconAudio1.destroy();
             iconAudio2.destroy();
             this.answer1.setText("Wrong! Do it again.")
@@ -230,7 +230,7 @@ class Scene2 extends Phaser.Scene{
             this.question.setText("")
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.phase2()
+                this.phase2();
             }, [], this)
 
         });
@@ -239,53 +239,53 @@ class Scene2 extends Phaser.Scene{
 
        
         ok2.setInteractive().on('pointerdown', () => {
-            nextRound2 = 1
-            ok1.destroy()
-            ok2.destroy()
+            nextRound2 = 1;
+            ok1.destroy();
+            ok2.destroy();
             iconAudio1.destroy();
             iconAudio2.destroy();
-            answerAudio1.destroy()
-            answerAudio2.destroy()
-            this.answer1.setText("")
+            answerAudio1.destroy();
+            answerAudio2.destroy();
+            this.answer1.setText("");
             this.answer2.setScale(1.2)
-            this.question.setText("")
+            this.question.setText("");
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.answer2.setScale(1)
-                this.phase3()
+                this.answer2.setScale(1);
+                this.phase3();
             }, [], this)
 
         });
 
         this.input.on('gameojectover', function(pointer, gameObject) {
 
-            gameObject.setTint(0x8EEDE2)
+            gameObject.setTint(0x8EEDE2);
 
         })
 
         this.input.on('gameobjectout', function(pointer, gameObject) {
 
-            gameObject.clearTint()
+            gameObject.clearTint();
 
         })
 
     }
 
     phase3() {
-        this.cat.setAlpha(1)
-        this.squirrel.setAlpha(0.5)
+        this.cat.setAlpha(1);
+        this.squirrel.setAlpha(0.5);
         this.question.setText('Which one is true?');
         //image audio;
         iconAudio1 = this.add.image(520, 355, 'speak 2').setOrigin(0, 0);
         iconAudio2 = this.add.image(520, 415, 'speak 2').setOrigin(0, 0);
         // audio
-        answerAudio1 = this.sound.add('birdAboveCat')
-        answerAudio2 = this.sound.add('birdBelowCat')
+        answerAudio1 = this.sound.add('birdAboveCat');
+        answerAudio2 = this.sound.add('birdBelowCat');
         iconAudio1.setInteractive().on('pointerdown', () =>{
-            answerAudio1.play()
+            answerAudio1.play();
         })
         iconAudio2.setInteractive().on('pointerdown', () =>{
-            answerAudio2.play()
+            answerAudio2.play();
         })
 
         this.answer1.setText('The bird is ABOVE the cat.');
@@ -294,17 +294,17 @@ class Scene2 extends Phaser.Scene{
         var ok1 = this.add.sprite(1105, 362, "ok1").setOrigin(0, 0)
 
         ok1.setInteractive().on('pointerdown', () => {
-            wrongAudio2.play()
-            ok1.destroy()
-            ok2.destroy()
+            wrongAudio2.play();
+            ok1.destroy();
+            ok2.destroy();
             iconAudio1.destroy();
             iconAudio2.destroy();
-            this.answer1.setText("Wrong! Do it again.")
-            this.answer2.setText("")
-            this.question.setText("")
+            this.answer1.setText("Wrong! Do it again.");
+            this.answer2.setText("");
+            this.question.setText("");
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.phase3()
+                this.phase3();
             }, [], this)
 
         })
@@ -313,36 +313,36 @@ class Scene2 extends Phaser.Scene{
 
        
         ok2.setInteractive().on('pointerdown', () => {
-            nextRound2 = 1
-            ok1.destroy()
-            ok2.destroy()
+            nextRound2 = 1;
+            ok1.destroy();
+            ok2.destroy();
             iconAudio1.destroy();
             iconAudio2.destroy();
-            answerAudio1.destroy()
-            answerAudio2.destroy()
-            this.answer1.setText("")
-            this.answer2.setScale(1.2)
-            this.question.setText("")
+            answerAudio1.destroy();
+            answerAudio2.destroy();
+            this.answer1.setText("");
+            this.answer2.setScale(1.2);
+            this.question.setText("");
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.answer2.setScale(1)
-                this.tree.destroy()
-                this.cat.destroy()
-                this.squirrel.destroy()
-                this.bird.destroy()
-                this.phase4()
+                this.answer2.setScale(1);
+                this.tree.destroy();
+                this.cat.destroy();
+                this.squirrel.destroy();
+                this.bird.destroy();
+                this.phase4();
             }, [], this)
         });
 
         this.input.on('gameojectover', function(pointer, gameObject) {
 
-            gameObject.setTint(0x8EEDE2)
+            gameObject.setTint(0x8EEDE2);
 
         })
 
         this.input.on('gameobjectout', function(pointer, gameObject) {
 
-            gameObject.clearTint()
+            gameObject.clearTint();
 
         })
 
@@ -350,21 +350,21 @@ class Scene2 extends Phaser.Scene{
 
     phase4() {
 
-        this.home0 = this.add.sprite(265, 250, 'home0').setOrigin(0,0)
-        this.mouse = this.add.sprite(300, 250, 'mouse').setOrigin(0,0)
-        this.turtle = this.add.sprite(290, 455, 'turtle').setOrigin(0,0)
+        this.home0 = this.add.sprite(265, 250, 'home0').setOrigin(0,0);
+        this.mouse = this.add.sprite(300, 250, 'mouse').setOrigin(0,0);
+        this.turtle = this.add.sprite(290, 455, 'turtle').setOrigin(0,0);
 
         //image audio;
         iconAudio1 = this.add.image(520, 355, 'speak 2').setOrigin(0, 0);
         iconAudio2 = this.add.image(520, 415, 'speak 2').setOrigin(0, 0);
         // audio
-        answerAudio1 = this.sound.add('turtleAboveMouse')
-        answerAudio2 = this.sound.add('turtleBelowMouse')
+        answerAudio1 = this.sound.add('turtleAboveMouse');
+        answerAudio2 = this.sound.add('turtleBelowMouse');
         iconAudio1.setInteractive().on('pointerdown', () =>{
-            answerAudio1.play()
+            answerAudio1.play();
         })
         iconAudio2.setInteractive().on('pointerdown', () =>{
-            answerAudio2.play()
+            answerAudio2.play();
         })
 
         this.question.setText('Which one is true?')
@@ -376,19 +376,19 @@ class Scene2 extends Phaser.Scene{
         ok1.setInteractive().on('pointerdown', () => {
             iconAudio1.destroy();
             iconAudio2.destroy();
-            wrongAudio2.play()
-            ok1.destroy()
-            ok2.destroy()
+            wrongAudio2.play();
+            ok1.destroy();
+            ok2.destroy();
             
-            this.answer1.setText("Wrong! Do it again.")
-            this.answer2.setText("")
-            this.question.setText("")
+            this.answer1.setText("Wrong! Do it again.");
+            this.answer2.setText("");
+            this.question.setText("");
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.home0.destroy()
-                this.turtle.destroy()
-                this.mouse.destroy()
-                this.phase4()
+                this.home0.destroy();
+                this.turtle.destroy();
+                this.mouse.destroy();
+                this.phase4();
             }, [], this)
 
         })
@@ -396,22 +396,22 @@ class Scene2 extends Phaser.Scene{
         var ok2 = this.add.sprite(1160, 420, 'ok2').setOrigin(0,0)
 
         ok2.setInteractive().on('pointerdown', () =>{
-            nextRound2 = 1
+            nextRound2 = 1;
             iconAudio1.destroy();
             iconAudio2.destroy();
             answerAudio1.destroy()
             answerAudio2.destroy()
-            ok2.destroy()
-            ok1.destroy()
-            this.answer1.setText("")
-            this.answer2.setScale(1.2)
-            this.question.setText("")
+            ok2.destroy();
+            ok1.destroy();
+            this.answer1.setText("");
+            this.answer2.setScale(1.2);
+            this.question.setText("");
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.answer2.setScale(1)
-                this.turtle.destroy()
-                this.mouse.destroy()
-                this.phase5()
+                this.answer2.setScale(1);
+                this.turtle.destroy();
+                this.mouse.destroy();
+                this.phase5();
             }, [], this)
 
 
@@ -419,40 +419,38 @@ class Scene2 extends Phaser.Scene{
 
         this.input.on('gameobjectover', function(pointer, gameObject) {
 
-            gameObject.setTint(0x8EEDE2)
+            gameObject.setTint(0x8EEDE2);
 
         })
 
         this.input.on('gameobjectout', function(pointer, gameObject) {
 
-            gameObject.clearTint(
-
-            )
+            gameObject.clearTint();
         })
  
     }
 
     phase5() {
 
-        this.chicken = this.add.sprite(295, 250, 'chicken').setOrigin(0,0)
-        this.frog = this.add.sprite(287, 455, 'frog').setOrigin(0,0)
+        this.chicken = this.add.sprite(295, 250, 'chicken').setOrigin(0,0);
+        this.frog = this.add.sprite(287, 455, 'frog').setOrigin(0,0);
 
         //image audio;
         iconAudio1 = this.add.image(520, 355, 'speak 2').setOrigin(0, 0);
         iconAudio2 = this.add.image(520, 415, 'speak 2').setOrigin(0, 0);
         // audio
-        answerAudio1 = this.sound.add('chickenAboveFrog')
-        answerAudio2 = this.sound.add('chickenBelowFrog')
+        answerAudio1 = this.sound.add('chickenAboveFrog');
+        answerAudio2 = this.sound.add('chickenBelowFrog');
         iconAudio1.setInteractive().on('pointerdown', () =>{
-            answerAudio1.play()
+            answerAudio1.play();
         })
         iconAudio2.setInteractive().on('pointerdown', () =>{
-            answerAudio2.play()
+            answerAudio2.play();
         })
 
-        this.question.setText('Which one is true?')
-        this.answer1.setText('The chicken is ABOVE the frog.')
-        this.answer2.setText('The chicken is BELOW the frog.')
+        this.question.setText('Which one is true?');
+        this.answer1.setText('The chicken is ABOVE the frog.');
+        this.answer2.setText('The chicken is BELOW the frog.');
 
         var ok1 = this.add.sprite(1155, 362, 'ok1').setOrigin(0,0)
 
@@ -460,18 +458,18 @@ class Scene2 extends Phaser.Scene{
             nextRound2 = 1
             iconAudio1.destroy();
             iconAudio2.destroy();
-            answerAudio1.destroy()
-            answerAudio2.destroy()
-            ok2.destroy()
-            ok1.destroy()
-            this.answer1.setScale(1.2)
-            this.answer2.setText("")
-            this.question.setText("")
+            answerAudio1.destroy();
+            answerAudio2.destroy();
+            ok2.destroy();
+            ok1.destroy();
+            this.answer1.setScale(1.2);
+            this.answer2.setText("");
+            this.question.setText("");
 
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.answer1.setScale(1)
-                this.chicken.destroy()
-                this.phase6()
+                this.answer1.setScale(1);
+                this.chicken.destroy();
+                this.phase6();
             }, [], this)
 
 
@@ -482,26 +480,26 @@ class Scene2 extends Phaser.Scene{
         ok2.setInteractive().on('pointerdown', () =>{
             iconAudio1.destroy();
             iconAudio2.destroy();
-            wrongAudio2.play()
-            ok1.destroy()
-            ok2.destroy()
+            wrongAudio2.play();
+            ok1.destroy();
+            ok2.destroy();
             
-            this.answer1.setText("")
-            this.answer2.setText("Wrong! Do it again.")
-            this.question.setText("")
+            this.answer1.setText("");
+            this.answer2.setText("Wrong! Do it again.");
+            this.question.setText("");
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.frog.destroy()
-                this.answer1.setScale(1)
-                this.chicken.destroy()
-                this.phase5()
+                this.frog.destroy();
+                this.answer1.setScale(1);
+                this.chicken.destroy();
+                this.phase5();
             }, [], this)
 
         })
 
         this.input.on('gameobjectover', function(pointer, gameObject) {
 
-            gameObject.setTint(0x8EEDE2)
+            gameObject.setTint(0x8EEDE2);
 
         })
 
@@ -509,89 +507,89 @@ class Scene2 extends Phaser.Scene{
 
             gameObject.clearTint(
 
-            )
+            );
         })
  
     }
 
     phase6() {
 
-        this.home0.destroy()
-        this.frog.destroy()
-        this.home0 = this.add.sprite(265, 250, 'home0').setOrigin(0,0)
-        this.turtle = this.add.sprite(300, 250, 'turtle').setOrigin(0,0)
-        this.frog = this.add.sprite(287, 455, 'frog').setOrigin(0,0)
+        this.home0.destroy();
+        this.frog.destroy();
+        this.home0 = this.add.sprite(265, 250, 'home0').setOrigin(0,0);
+        this.turtle = this.add.sprite(300, 250, 'turtle').setOrigin(0,0);
+        this.frog = this.add.sprite(287, 455, 'frog').setOrigin(0,0);
 
         //image audio;
         iconAudio1 = this.add.image(520, 355, 'speak 2').setOrigin(0, 0);
         iconAudio2 = this.add.image(520, 415, 'speak 2').setOrigin(0, 0);
         // audio
-        answerAudio1 = this.sound.add('frogAboveTurtle')
-        answerAudio2 = this.sound.add('frogBelowTurtle')
+        answerAudio1 = this.sound.add('frogAboveTurtle');
+        answerAudio2 = this.sound.add('frogBelowTurtle');
         iconAudio1.setInteractive().on('pointerdown', () =>{
-            answerAudio1.play()
+            answerAudio1.play();
         })
         iconAudio2.setInteractive().on('pointerdown', () =>{
-            answerAudio2.play()
+            answerAudio2.play();
         })
 
-        this.question.setText('Which one is true?')
-        this.answer1.setText('The frog is ABOVE the turtle.')
-        this.answer2.setText('The frog is BELOW the turtle.')
+        this.question.setText('Which one is true?');
+        this.answer1.setText('The frog is ABOVE the turtle.');
+        this.answer2.setText('The frog is BELOW the turtle.');
 
         var ok1 = this.add.sprite(1140, 362, 'ok1').setOrigin(0,0)
 
         ok1.setInteractive().on('pointerdown', () => {
             iconAudio1.destroy();
             iconAudio2.destroy();
-            wrongAudio2.play()
-            ok1.destroy()
-            ok2.destroy()
+            wrongAudio2.play();
+            ok1.destroy();
+            ok2.destroy();
             
-            this.answer1.setText("Wrong! Do it again.")
-            this.answer2.setText("")
-            this.question.setText("")
+            this.answer1.setText("Wrong! Do it again.");
+            this.answer2.setText("");
+            this.question.setText("");
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.home0.destroy()
-                this.turtle.destroy()
-                this.frog.destroy()
-                this.turtle.destroy()
-                this.phase6()
+                this.home0.destroy();
+                this.turtle.destroy();
+                this.frog.destroy();
+                this.turtle.destroy();
+                this.phase6();
             }, [], this)
             
         })
         
 
-        var ok2 = this.add.sprite(1140, 420, 'ok2').setOrigin(0,0)
+        var ok2 = this.add.sprite(1140, 420, 'ok2').setOrigin(0,0);
 
         ok2.setInteractive().on('pointerdown', () =>{
             nextRound2 = 1;
             iconAudio1.destroy();
             iconAudio2.destroy();
-            answerAudio1.destroy()
-            answerAudio2.destroy()
-            ok2.destroy()
-            ok1.destroy()
-            this.answer1.setText("")
-            this.answer2.setScale(1.2)
-            this.question.setText("")
+            answerAudio1.destroy();
+            answerAudio2.destroy();
+            ok2.destroy();
+            ok1.destroy();
+            this.answer1.setText("");
+            this.answer2.setScale(1.2);
+            this.question.setText("");
             
             timedEvent2 = this.time.delayedCall(1500, function nextPhase(){
-                this.question.destroy()
-                this.home0.destroy()
-                this.turtle.destroy()
-                this.frog.destroy()
-                this.answer1.destroy()
-                this.answer2.destroy()
-                this.phase7()
+                this.question.destroy();
+                this.home0.destroy();
+                this.turtle.destroy();
+                this.frog.destroy();
+                this.answer1.destroy();
+                this.answer2.destroy();
+                this.phase7();
             }, [], this)
             
         })
 
         this.input.on('gameobjectover', function(pointer, gameObject) {
 
-            gameObject.setTint(0x8EEDE2)
+            gameObject.setTint(0x8EEDE2);
 
         })
 
@@ -599,20 +597,20 @@ class Scene2 extends Phaser.Scene{
 
             gameObject.clearTint(
 
-            )
+            );
         })
  
     }
 
     phase7() {
-        this.home0.destroy()
-        this.turtle.destroy()
-        this.frog.destroy()
+        this.home0.destroy();
+        this.turtle.destroy();
+        this.frog.destroy();
 
-        this.home1 = this.add.sprite(850, 250, 'home1').setOrigin(0, 0)
-        this.home2 = this.add.sprite(1070, 250, 'home2').setOrigin(0, 0)
-        this.frog = this.add.sprite(882, 295, 'frog').setOrigin(0, 0)
-        this.chicken = this.add.sprite(1095, 425, 'chicken').setOrigin(0, 0)
+        this.home1 = this.add.sprite(850, 250, 'home1').setOrigin(0, 0);
+        this.home2 = this.add.sprite(1070, 250, 'home2').setOrigin(0, 0);
+        this.frog = this.add.sprite(882, 295, 'frog').setOrigin(0, 0);
+        this.chicken = this.add.sprite(1095, 425, 'chicken').setOrigin(0, 0);
 
         // Question
         this.question = this.add.text(275, 300, 'Which one is true?', {
@@ -735,9 +733,9 @@ class Scene2 extends Phaser.Scene{
             answerAudio2.play()
         })
 
-        this.question.setText('Which one is true?')
-        this.answer1.setText('The turtle is BELOW the frog.')
-        this.answer2.setText('The frog is BELOW the turtle.')
+        this.question.setText('Which one is true?');
+        this.answer1.setText('The turtle is BELOW the frog.');
+        this.answer2.setText('The frog is BELOW the turtle.');
 
         var ok1 = this.add.sprite(290, 440, 'ok1').setOrigin(0, 0)
 
